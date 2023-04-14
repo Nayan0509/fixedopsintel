@@ -51,7 +51,8 @@ namespace WoodenAutomative.EntityFramework.Services
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                 await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
             }
-            throw new NotImplementedException();
+            return 1;
+            //throw new NotImplementedException();
         }
 
         private IEnumerable<Claim> GetUserClaims(ApplicationUser user, string roles, string peSession)

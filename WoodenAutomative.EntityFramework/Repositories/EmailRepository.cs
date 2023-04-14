@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
 
-namespace WoodenAutomative.EntityFramework.Services
+namespace WoodenAutomative.EntityFramework.Repositories
 {
-    public class EmailRepository: IEmailRepository
+    public class EmailRepository : IEmailRepository
     {
 
     }
