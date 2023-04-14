@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using WoodenAutomative.Domain.Models;
 using WoodenAutomative.EntityFramework;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
 using WoodenAutomative.EntityFramework.Services;
@@ -10,9 +12,19 @@ builder.Services.AddControllersWithViews();
 System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 builder.Services.AddDbContext<WoodenAutomativeContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("WoodenAutomativeDbConString")));
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<WoodenAutomativeContext>()
+        .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<UserManager<ApplicationUser>, UserManager<ApplicationUser>>();
+builder.Services.AddScoped<SignInManager<ApplicationUser>, SignInManager<ApplicationUser>>();
 
 builder.Services.AddTransient<ILoginService, LoginService>();
-
+builder.Services.AddAuthentication("Cookies")
+        .AddCookie("Cookies", options =>
+        {
+            options.LoginPath = "/Account/Login";
+        });
 //LogForNet
 builder.Logging.SetMinimumLevel(LogLevel.Error);
 builder.Logging.SetMinimumLevel(LogLevel.Debug);
