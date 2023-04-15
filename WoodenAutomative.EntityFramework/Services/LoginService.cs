@@ -52,10 +52,6 @@ namespace WoodenAutomative.EntityFramework.Services
                                         );
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                     await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                    //user.LastLoginTime = null;
-                    //user.LastPasswordModifiedDate = null;
-                    //_context.Entry(user).State = EntityState.Modified;
-                    //_context.SaveChanges();
                     if(user.LastPasswordModifiedDate == null)
                     {
                         return LoginStatus.SetNewPassword;
@@ -68,7 +64,6 @@ namespace WoodenAutomative.EntityFramework.Services
             {
                 throw ex;
             }
-            //throw new NotImplementedException();
         }
 
         private IEnumerable<Claim> GetUserClaims(ApplicationUser user, string roles, string peSession)
