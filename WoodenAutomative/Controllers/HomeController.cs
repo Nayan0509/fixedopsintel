@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using WoodenAutomative.Domain.Dtos.Request.Login;
+using WoodenAutomative.Domain.Dtos.Response.Login;
+using WoodenAutomative.EntityFramework.Interfaces.Services;
+using WoodenAutomative.EntityFramework.Services;
 using WoodenAutomative.Models;
 
 namespace WoodenAutomative.Controllers
@@ -7,10 +12,14 @@ namespace WoodenAutomative.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IUserService _userService;
+        private readonly INotyfService _notyf;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IUserService userService,INotyfService notyf)
         {
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+            _notyf = notyf ?? throw new ArgumentNullException(nameof(notyf));
         }
 
         public IActionResult Index()
@@ -18,17 +27,16 @@ namespace WoodenAutomative.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public async Task<ActionResult> UpdateProfile(UserProfileRequest userProfileRequest)
         {
-            return View();
-        }
+            var status = await _userService.ModifyUserProfile(userProfileRequest);
 
-
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (status == true)
+                _notyf.Success("User profile is successfully updated !!");
+            else
+                _notyf.Warning("User profile is not updated !!");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

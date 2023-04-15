@@ -1,3 +1,5 @@
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WoodenAutomative.Domain.Models;
@@ -20,6 +22,13 @@ builder.Services.AddScoped<UserManager<ApplicationUser>, UserManager<Application
 builder.Services.AddScoped<SignInManager<ApplicationUser>, SignInManager<ApplicationUser>>();
 
 builder.Services.AddTransient<ILoginService, LoginService>();
+builder.Services.AddTransient<IUserService, UserService>(); 
+
+builder.Services.AddNotyf(config => { config.DurationInSeconds = 4; 
+                                      config.IsDismissable = true; 
+                                      config.Position = NotyfPosition.BottomRight; 
+                         });
+
 builder.Services.AddAuthentication("Cookies")
         .AddCookie("Cookies", options =>
         {
@@ -43,6 +52,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseNotyf();
 
 app.MapControllerRoute(
     name: "default",
