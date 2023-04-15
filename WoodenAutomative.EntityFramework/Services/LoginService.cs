@@ -35,23 +35,39 @@ namespace WoodenAutomative.EntityFramework.Services
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
         }
 
-        public async Task<int> SignIn(HttpContext httpContext, LoginRequest loginRequest)
+        public async Task<LoginStatus> SignIn(HttpContext httpContext, LoginRequest loginRequest)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginRequest.Email &&
-                                                                                u.IsActive == true &&
-                                                                                u.IsDeleted == false);
-            var result = await _signInManager.CheckPasswordSignInAsync(user, loginRequest.Password, false);
-            if (result.Succeeded)
+            try
             {
-                var roleNames = await _userManager.GetRolesAsync(user);
-                ClaimsIdentity identity = new ClaimsIdentity(
-                                this.GetUserClaims(user,roleNames.ToString(), ""),
-                                CookieAuthenticationDefaults.AuthenticationScheme
-                                    );
-                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-                await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginRequest.Email &&
+                                                                    u.IsActive == true &&
+                                                                    u.IsDeleted == false);
+                var result = await _signInManager.CheckPasswordSignInAsync(user, loginRequest.Password, false);
+                if (result.Succeeded)
+                {
+                    var roleNames = await _userManager.GetRolesAsync(user);
+                    ClaimsIdentity identity = new ClaimsIdentity(
+                                    this.GetUserClaims(user, roleNames.ToString(), ""),
+                                    CookieAuthenticationDefaults.AuthenticationScheme
+                                        );
+                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                    await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                    //user.LastLoginTime = null;
+                    //user.LastPasswordModifiedDate = null;
+                    //_context.Entry(user).State = EntityState.Modified;
+                    //_context.SaveChanges();
+                    if(user.LastPasswordModifiedDate == null)
+                    {
+                        return LoginStatus.SetNewPassword;
+                    }
+                    return LoginStatus.Succeeded;
+                }
+                return LoginStatus.Failed;
             }
-            return 1;
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             //throw new NotImplementedException();
         }
 

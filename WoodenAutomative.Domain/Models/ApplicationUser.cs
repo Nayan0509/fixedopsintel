@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace WoodenAutomative.Domain.Models
 {
@@ -16,6 +12,10 @@ namespace WoodenAutomative.Domain.Models
         public DateTime ModifiedDate { get; set; }
 
         public string ModifiedBy { get; set; }
+
+        public DateTime? LastPasswordModifiedDate { get; set; }
+
+        public DateTime? LastLoginTime { get; set; }
 
         public bool IsActive { get; set; }
 

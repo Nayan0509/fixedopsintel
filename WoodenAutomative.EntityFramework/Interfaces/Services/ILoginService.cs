@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WoodenAutomative.Domain.Dtos.Request.Login;
 using WoodenAutomative.Domain.Dtos.Response.Login;
+using WoodenAutomative.Domain.Models;
 
 namespace WoodenAutomative.EntityFramework.Interfaces.Services
 {
@@ -17,7 +18,7 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
         /// </summary>
         /// <param name="httpContext">HttpContext</param>
         /// <param name="loginRequest">Login request parameter</param>
-        public Task<int> SignIn(HttpContext httpContext, LoginRequest loginRequest);
+        public Task<LoginStatus> SignIn(HttpContext httpContext, LoginRequest loginRequest);
 
     }
 }
