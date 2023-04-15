@@ -26,6 +26,7 @@
                                     <div class="login p-50">
                                         <h1 class="mb-2">Wooden Automative</h1>
                                         <p>Welcome back, please login to your account.</p>
+                            <div class="error">@TempData["ErrorMsg"]</div>
                                 <form method="post" role="form" class="form-horizontal" id="login-form">
                                 @Html.AntiForgeryToken()
                                             <div class="row">
