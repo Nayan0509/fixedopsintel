@@ -10,6 +10,7 @@ namespace WoodenAutomative.Domain.Models
     {
         Succeeded,
         Failed,
-        SetNewPassword
+        SetNewPassword,
+        UpdatePassword
     }
 }

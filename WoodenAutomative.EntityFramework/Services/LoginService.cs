@@ -52,7 +52,7 @@ namespace WoodenAutomative.EntityFramework.Services
                                         );
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                     await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                    if(user.LastPasswordModifiedDate == null)
+                    if(user.LastPasswordModifiedDate == null || user.LastPasswordModifiedDate.Value.AddDays(60)<=DateTime.Now)
                     {
                         return LoginStatus.SetNewPassword;
                     }
