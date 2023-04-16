@@ -66,7 +66,7 @@ namespace WoodenAutomative.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("RedirectToDashboard");
+                        return RedirectToAction("Index","Home");
                     }
 
                 }

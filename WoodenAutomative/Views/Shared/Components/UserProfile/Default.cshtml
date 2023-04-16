@@ -1,0 +1,63 @@
+﻿@using WoodenAutomative.Domain.Dtos.Request.Login
+@model UserProfileRequest
+@{
+    ViewData["Title"] = "Index";
+}
+<!-- Vertical Center Modal -->
+<div class="modal fade" id="verticalCenter" tabindex="-1" aria-labelledby="largeModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+                @using (Html.BeginForm("UpdateProfile","Home",FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()        
+                    @Html.ValidationSummary(true)
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="verticalCenterTitle">Update Profile</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card-body">
+                            @Html.HiddenFor(model => model.Id)
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    @Html.LabelFor(model => model.FirstName)
+                                    @Html.TextBoxFor(model => model.FirstName , new { @class="form-control" })
+                                    @*<input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="Firstname">*@
+                                    <span id="firstNameError" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    @Html.LabelFor(model => model.LastName)
+                                    @Html.TextBoxFor(model => model.LastName , new { @class="form-control" })
+                                    @*<input type="text" class="form-control" id="LastName" name="LastName" placeholder="Lastname">*@
+                                    <span id="lastNameError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email)
+                                @Html.TextBoxFor(model => model.Email , new { @class="form-control" })
+                                @*<input type="email" class="form-control" id="Email" name="Email" aria-describedby="emailHelp" placeholder="Enter email">*@
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                <span id="emailError" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PhoneNumber)
+                                @Html.TextBoxFor(model => model.PhoneNumber , new { @class="form-control" })
+                                @*<input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" placeholder="ex. 98******20">*@
+                                <span id="phoneNumberError" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
