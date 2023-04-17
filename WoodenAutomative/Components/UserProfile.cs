@@ -1,4 +1,5 @@
 ﻿
+using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
@@ -12,13 +13,13 @@ namespace WoodenAutomative.Components
     public class UserProfile : ViewComponent
     {
         private readonly IUserService _userService;
-        //private readonly INotyfService _notyf;
+        private readonly INotyfService _notyf;
         private readonly IWebHostEnvironment _hostEnvironment;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public UserProfile(IUserService userService/*, INotyfService notyf*/, IWebHostEnvironment hostEnvironment, IHttpContextAccessor httpContextAccessor)
+        public UserProfile(IUserService userService, INotyfService notyf, IWebHostEnvironment hostEnvironment, IHttpContextAccessor httpContextAccessor)
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
-            //_notyf = notyf ?? throw new ArgumentNullException(nameof(notyf));
+            _notyf = notyf ?? throw new ArgumentNullException(nameof(notyf));
             _hostEnvironment = hostEnvironment ?? throw new ArgumentNullException(nameof(hostEnvironment));
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }

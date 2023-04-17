@@ -15,6 +15,8 @@ builder.Services.AddControllersWithViews();
 System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 builder.Services.AddDbContext<WoodenAutomativeContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("WoodenAutomativeDbConString")));
+
+
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultTokenProviders()
         .AddEntityFrameworkStores<WoodenAutomativeContext>();
 builder.Services.AddScoped<UserManager<ApplicationUser>, UserManager<ApplicationUser>>();
