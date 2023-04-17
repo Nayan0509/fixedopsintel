@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,12 +17,15 @@ namespace WoodenAutomative.EntityFramework.Services
     {
         #region
         private readonly WoodenAutomativeContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
         #endregion
 
         #region Constructor
-        public UserService(WoodenAutomativeContext context)
+        public UserService(UserManager<ApplicationUser> userManager, 
+            WoodenAutomativeContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         }
         #endregion
 
@@ -43,7 +48,7 @@ namespace WoodenAutomative.EntityFramework.Services
 
         public async Task<UserProfileResponse> GetDetailsOfLoginUser(string id)
         {
-            ApplicationUser user = await _context.Users.FindAsync(id);
+            var user = _context.Users.Find(id);
 
             return new UserProfileResponse()
             {

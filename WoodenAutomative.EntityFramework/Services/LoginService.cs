@@ -3,13 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using WoodenAutomative.Domain.Dtos.Request;
 using WoodenAutomative.Domain.Dtos.Request.Login;
 using WoodenAutomative.Domain.Models;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
@@ -35,6 +29,8 @@ namespace WoodenAutomative.EntityFramework.Services
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
         }
 
+
+
         public async Task<LoginStatus> SignIn(HttpContext httpContext, LoginRequest loginRequest)
         {
             try
@@ -42,17 +38,19 @@ namespace WoodenAutomative.EntityFramework.Services
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginRequest.Email &&
                                                                     u.IsActive == true &&
                                                                     u.IsDeleted == false);
-                var result = await _signInManager.CheckPasswordSignInAsync(user, loginRequest.Password, false);
-                if (result.Succeeded)
+                //var result = await _signInManager.CheckPasswordSignInAsync(user, loginRequest.Password, true);
+                var result = _userManager.PasswordHasher.VerifyHashedPassword(user,user.PasswordHash, loginRequest.Password);
+                if (result.ToString().Contains("Success"))
                 {
                     var roleNames = await _userManager.GetRolesAsync(user);
+
                     ClaimsIdentity identity = new ClaimsIdentity(
-                                    this.GetUserClaims(user, roleNames.ToString(), ""),
-                                    CookieAuthenticationDefaults.AuthenticationScheme
-                                        );
+                                    this.GetUserClaims(user, "WACAdmin"),
+                                    CookieAuthenticationDefaults.AuthenticationScheme);
+
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                     await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                    if(user.LastPasswordModifiedDate == null)
+                    if (user.LastPasswordModifiedDate == null || user.LastPasswordModifiedDate.Value.AddDays(60) <= DateTime.Now)
                     {
                         return LoginStatus.SetNewPassword;
                     }
@@ -66,14 +64,16 @@ namespace WoodenAutomative.EntityFramework.Services
             }
         }
 
-        private IEnumerable<Claim> GetUserClaims(ApplicationUser user, string roles, string peSession)
+        private IEnumerable<Claim> GetUserClaims(ApplicationUser user, string roles)
         {
             List<Claim> claims = new List<Claim>();
 
             claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString() ?? "0"));
+            claims.Add(new Claim(ClaimTypes.Name, user.FirstName ?? ""));
             claims.Add(new Claim(ClaimTypes.Email, user.Email ?? ""));
-            claims.Add(new Claim(ClaimTypes.PostalCode, peSession));
+            claims.Add(new Claim(ClaimTypes.Uri, value: user.LastName ?? ""));
             claims.Add(new Claim(ClaimTypes.Role, roles));
+            claims.Add(new Claim(ClaimTypes.Surname, "Company"));
             return claims;
         }
 
