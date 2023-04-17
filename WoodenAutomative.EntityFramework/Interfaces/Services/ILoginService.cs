@@ -20,5 +20,10 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
         /// <param name="loginRequest">Login request parameter</param>
         public Task<LoginStatus> SignIn(HttpContext httpContext, LoginRequest loginRequest);
 
+        /// <summary>
+        /// Sign-Out
+        /// </summary>
+        /// <param name="httpContext">HttpContext</param>
+        public void SignOut(HttpContext httpContext);
     }
 }

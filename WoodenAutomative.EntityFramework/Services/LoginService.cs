@@ -64,6 +64,11 @@ namespace WoodenAutomative.EntityFramework.Services
             }
         }
 
+        public async void SignOut(HttpContext httpContext)
+        {
+            await httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        }
+
         private IEnumerable<Claim> GetUserClaims(ApplicationUser user, string roles)
         {
             List<Claim> claims = new List<Claim>();

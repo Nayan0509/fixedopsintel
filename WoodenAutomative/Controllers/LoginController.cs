@@ -32,20 +32,6 @@ namespace WoodenAutomative.Controllers
                 throw;
             }
         }
-        
-        
-        public async Task<IActionResult> SetNewPassword()
-        {
-            try
-            {
-                ViewData["ErrorMsg"] = null;
-                return View();
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
 
         [HttpPost]
         public async Task<IActionResult> Index(LoginRequest loginRequest)
@@ -62,8 +48,8 @@ namespace WoodenAutomative.Controllers
                         return RedirectToAction("Index", "Login");
                     }
                     else if(regStatus == LoginStatus.SetNewPassword)
-                            {
-                        return RedirectToAction("SetNewPassword");
+                    {
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -80,6 +66,32 @@ namespace WoodenAutomative.Controllers
             }
         }
 
+        public async Task<IActionResult> SetNewPassword()
+        {
+            try
+            {
+                ViewData["ErrorMsg"] = null;
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public IActionResult LogOut()
+        {
+            try
+            {
+                _loginService.SignOut(this.HttpContext);
+                return RedirectToAction("Index", "Login");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.ToString());
+                throw;
+            }
+        }
 
         public IActionResult Roles()
         {

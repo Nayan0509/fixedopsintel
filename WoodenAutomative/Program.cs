@@ -43,8 +43,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
             options =>
             {
-                options.LoginPath = "/Login/Login";
-                options.LogoutPath = "/Login/LogOut/";
+                options.LoginPath = "/Login/Index";
+                options.LogoutPath = "/Login/LogOut";
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
                 options.SlidingExpiration = true;
                 options.AccessDeniedPath = "/Forbidden/";
@@ -56,7 +56,6 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 });
 
-builder.Services.AddAuthorization();
 
 //LogForNet
 builder.Logging.SetMinimumLevel(LogLevel.Error);
@@ -70,19 +69,26 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+app.UseRouting();
 
 app.UseStaticFiles();
 
-app.UseRouting();
+app.UseAuthentication();
 
 app.UseAuthentication();
-app.UseAuthorization();
 
+app.UseAuthorization();
 
 app.UseNotyf();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Login}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Login}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Login}/{action=Index}/{id?}");
+});
 
 app.Run();
