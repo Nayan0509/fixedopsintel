@@ -81,3 +81,9 @@
 /WoodenAutomative/obj/project.assets.json
 /WoodenAutomative.EntityFramework/bin/Debug/net6.0
 /WoodenAutomative/.vs/WoodenAutomative/FileContentIndex
+/WoodenAutomative.EntityFramework/obj/Debug/net6.0/WoodenAutomative.EntityFramework.GeneratedMSBuildEditorConfig.editorconfig
+/WoodenAutomative.EntityFramework/Migrations/20230414053325_aspnetusertable1.Designer.cs
+/WoodenAutomative.Domain/obj/Debug/net6.0/WoodenAutomative.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/WoodenAutomative/WoodenAutomative.csproj
+*.wsuo
+/WoodenAutomative/.vs/WoodenAutomative/FileContentIndex/5f454460-718e-41a0-8f46-c3ce1ce87ec2.vsidx
