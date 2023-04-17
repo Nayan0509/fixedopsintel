@@ -1,11 +1,8 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using System.Security.Claims;
 using WoodenAutomative.Domain.Dtos.Request.Login;
-using WoodenAutomative.Domain.Dtos.Response.Login;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
-using WoodenAutomative.EntityFramework.Services;
-using WoodenAutomative.Models;
 
 namespace WoodenAutomative.Controllers
 {
