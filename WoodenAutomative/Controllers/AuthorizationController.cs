@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
 using WoodenAutomative.EntityFramework;
 using WoodenAutomative.EntityFramework.Services;
+using WoodenAutomative.Domain.Dtos.Request.Password;
 
 namespace WoodenAutomative.Controllers
 {
@@ -32,6 +33,21 @@ namespace WoodenAutomative.Controllers
         {
             try
             {
+                ViewData["ErrorMsg"] = null;
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SavePassword(SetPasswordRequest setPasswordRequest)
+        {
+            try
+            {
+                var status=_authorization.SetPassword(setPasswordRequest);  
                 ViewData["ErrorMsg"] = null;
                 return View();
             }
