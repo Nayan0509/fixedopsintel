@@ -85,19 +85,5 @@ namespace WoodenAutomative.Controllers
                 throw;
             }
         }
-
-        public IActionResult Roles()
-        {
-            try
-            {
-                //var list=_context.Role.ToList();
-                ViewData["ErrorMsg"] = null;
-                return View();
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
     }
 }

@@ -24,6 +24,7 @@ builder.Services.AddScoped<SignInManager<ApplicationUser>, SignInManager<Applica
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<ILoginService, LoginService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IAuthorizationRepository, AuthorizationRepository>();
 
 builder.Services.AddNotyf(config =>
 {
