@@ -16,3 +16,36 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.toaster-error {
+    background-color: #f44336;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    animation: slide-in 0.3s ease-in-out;
+}
+
+.toaster-icon {
+    margin-right: 8px;
+}
+
+.toaster-message {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}

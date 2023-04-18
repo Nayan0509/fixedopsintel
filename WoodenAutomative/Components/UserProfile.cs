@@ -29,8 +29,7 @@ namespace WoodenAutomative.Components
             var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
             var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            var userProfileResponse = await _userService.GetDetailsOfLoginUser(claimName.Value); //Here please replace static userid to login userid 
-
+            var userProfileResponse = await _userService.GetDetailsOfLoginUser(claimName.Value);
             UserProfileRequest userProfileRequest = new UserProfileRequest()
             {
                 Id = userProfileResponse.Id,

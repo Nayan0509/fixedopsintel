@@ -18,11 +18,15 @@
         <div class="app-wrap">
         <main role="main" class="pb-3">
             @RenderBody()
+
+                <div id="snackbar"></div>
         </main>
         </div>
     </div>
     <script src="~/assets/js/vendors.js"></script>
     <script src="~/assets/js/app.js" asp-append-version="true"></script>
+
+    @await Component.InvokeAsync("Notyf")
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

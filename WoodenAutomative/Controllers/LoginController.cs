@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using WoodenAutomative.Domain.Dtos.Request.Login;
 using WoodenAutomative.Domain.Models;
@@ -12,12 +15,16 @@ namespace WoodenAutomative.Controllers
 
         private readonly WoodenAutomativeContext _context;
         private readonly ILoginService _loginService;
+        private readonly INotyfService _notyf;
 
         public LoginController(ILoginService loginService, 
-                               WoodenAutomativeContext context)
+                               WoodenAutomativeContext context,
+                               INotyfService notyf)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
+            _notyf = notyf ?? throw new ArgumentNullException(nameof(notyf));
+
         }
 
         public async Task<IActionResult> Index()
@@ -44,37 +51,23 @@ namespace WoodenAutomative.Controllers
                     var regStatus = await _loginService.SignIn(this.HttpContext, loginRequest);
                     if (regStatus == LoginStatus.Failed)
                     {
-                        TempData["ErrorMsg"] = "Please enter valid Username / Password.";
-                        return RedirectToAction("Index", "Login");
+                        _notyf.Warning("Please enter valid Username / Password. !!");
                     }
                     else if(regStatus == LoginStatus.SetNewPassword)
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("SetNewPassword", "Authorization");
                     }
                     else
                     {
                         return RedirectToAction("Index","Home");
                     }
-
+                    return RedirectToAction("Index", "Login");
                 }
                 return View();
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.ToString());
-                throw;
-            }
-        }
-
-        public async Task<IActionResult> SetNewPassword()
-        {
-            try
-            {
-                ViewData["ErrorMsg"] = null;
-                return View();
-            }
-            catch (Exception ex)
-            {
                 throw;
             }
         }
