@@ -41207,3 +41207,26 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
         opacity: 0;
     }
 }
+.otp-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .otp-input input {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        text-align: center;
+        border: 2px solid #999;
+        border-radius: 4px;
+        margin: 0 5px;
+    }
+
+@media screen and (max-width: 768px) {
+    .otp-input input {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+}

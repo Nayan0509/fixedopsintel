@@ -25,24 +25,48 @@
                             <div class="row no-gutters align-items-center justify-content-center">
                                 <div class="col-md-10 text-center m-b-40" id="setPassword">
 
-                                    <!-- Coming soon text -->
-                                    <div class="px-5">
-                                        <h3 class="text-white display-3 font-weight-normal">Set New Password</h3>
-                                    </div>
                                     <!-- newsletter -->
                                     <div class="row no-gutters" id="setPassword">
+
                                         <div class="col-md-7 mx-auto">
-                                            <p class="text-white">Please Provider New Password</p>
-                                            <span class="visually-hidden" id="errormsg" style="color: red;"> Password and Confrim Password not matched</span>
+                                            <h4 class="text-white font-weight-normal pull-center">Please Select authorization type</h4>
                                             <form class="px-5 mt-3" method="post" action="SavePassword">
-                                                @* method="post" action="SetNewPassword"*@
-                                                @Html.PasswordFor(m => m.Password, new { id = "password", @class = "form-control bg-white-inverse", @placeholder = "Enter Password", @style = "margin-bottom:14px !important;" })
+@*                                                <h5 class="text-white font-weight-normal pull-left">
+                                                    @Html.RadioButton("Email ID", "male",true)
+                                                    Email ID</h5>
                                                 <br />
-                                                @Html.PasswordFor(m => m.ConfrimPassword, new { id = "confrimPassword", @class = "form-control bg-white-inverse", @placeholder = "Enter Confirm Password", @style = "margin-bottom:14px !important;" })
                                                 <br />
-                                                <div class="mt-3"><button type="submit" class="btn btn-inverse-light" id="save"> Save </button></div>
+                                                <h5 class="text-white font-weight-normal pull-left">
+                                                    @Html.RadioButton("Mobile Number", "male")
+                                                Mobile Number</h5>
+                                                <br />
+                                                <div class="mt-3">
+                                                    <button type="submit" class="btn btn-inverse-light pull-left" id="save">
+                                                        Send OTP
+                                                    </button>
+                                                </div>*@
+                                                <div class="col-sm-9">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                                        <label class="form-check-label text-white" for="gridRadios1">
+                                                    Email ID
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                                        <label class="form-check-label text-white" for="gridRadios2">
+                                                                Mobile Number
+                                                            <br />
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <button type="submit" class="btn btn-inverse-light pull-left" id="save">
+                                                            Send OTP
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </form>
-        
+
                                         </div>
                                     </div>
 

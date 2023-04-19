@@ -41,6 +41,32 @@ namespace WoodenAutomative.Controllers
                 throw;
             }
         }
+        
+        public async Task<IActionResult> SelectAuthorizationType()
+        {
+            try
+            {
+                ViewData["ErrorMsg"] = null;
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        
+        public async Task<IActionResult> Verification()
+        {
+            try
+            {
+                ViewData["ErrorMsg"] = null;
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         [HttpPost]
         public async Task<IActionResult> SavePassword(SetPasswordRequest setPasswordRequest)
@@ -56,5 +82,6 @@ namespace WoodenAutomative.Controllers
                 throw;
             }
         }
+
     }
 }
