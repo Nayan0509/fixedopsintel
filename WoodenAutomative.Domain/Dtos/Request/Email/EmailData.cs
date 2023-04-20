@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WoodenAutomative.Domain.Models
+namespace WoodenAutomative.Domain.Dtos.Request.Email
 {
     public class EmailData
     {

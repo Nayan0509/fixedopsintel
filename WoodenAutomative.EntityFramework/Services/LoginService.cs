@@ -79,6 +79,8 @@ namespace WoodenAutomative.EntityFramework.Services
             claims.Add(new Claim(ClaimTypes.Uri, value: user.LastName ?? ""));
             claims.Add(new Claim(ClaimTypes.Role, roles));
             claims.Add(new Claim(ClaimTypes.Surname, "Company"));
+            claims.Add(new Claim("SecurityStamp", user.SecurityStamp));
+
             return claims;
         }
 

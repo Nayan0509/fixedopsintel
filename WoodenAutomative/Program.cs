@@ -1,11 +1,14 @@
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using WoodenAutomative.Domain.Models;
 using WoodenAutomative.EntityFramework;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
+using WoodenAutomative.EntityFramework.Repositories;
 using WoodenAutomative.EntityFramework.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +28,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<ILoginService, LoginService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAuthorizationRepository, AuthorizationRepository>();
+builder.Services.AddTransient<IEmailRepository, EmailRepository>();
 
 builder.Services.AddNotyf(config =>
 {
@@ -81,6 +85,26 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseNotyf();
+
+//app.Use(async (context, next) =>
+//{
+//    var user = context.User;
+//    if (user.Identity.IsAuthenticated && user.HasClaim(c => c.Type == "SecurityStamp"))
+//    {
+//        var userId = user.FindFirstValue(ClaimTypes.NameIdentifier);
+//        var securityStamp = user.FindFirstValue("SecurityStamp");
+
+//        var userManager = context.RequestServices.GetService<UserManager<ApplicationUser>>();
+
+//        var currentUser = await userManager.FindByIdAsync(userId);
+//        if (currentUser != null && currentUser.SecurityStamp != securityStamp)
+//        {
+//            await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+//            return;
+//        }
+//    }
+//    await next.Invoke();
+//});
 
 app.UseEndpoints(endpoints =>
 {

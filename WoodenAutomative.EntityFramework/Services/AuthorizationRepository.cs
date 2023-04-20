@@ -2,14 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using WoodenAutomative.Domain.Dtos.Request.Login;
 using WoodenAutomative.Domain.Dtos.Request.Password;
 using WoodenAutomative.Domain.Models;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
@@ -57,10 +50,10 @@ namespace WoodenAutomative.EntityFramework.Services
                 {
                     ApplicationUser user = await db.Users.FindAsync(claimName.Value);
                     user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, setPasswordRequest.Password);
+                    user.SecurityStamp = Guid.NewGuid().ToString();
                     var result = await db.SaveChangesAsync();
                     status = result > 0 ? true : false;
                 }
-                
                 return status;
         }
     }

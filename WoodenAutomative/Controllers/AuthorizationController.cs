@@ -6,6 +6,8 @@ using WoodenAutomative.EntityFramework.Interfaces.Services;
 using WoodenAutomative.EntityFramework;
 using WoodenAutomative.EntityFramework.Services;
 using WoodenAutomative.Domain.Dtos.Request.Password;
+using WoodenAutomative.Domain.Dtos.Request.Authorization;
+using System.Security.Claims;
 
 namespace WoodenAutomative.Controllers
 {
@@ -16,13 +18,15 @@ namespace WoodenAutomative.Controllers
         private readonly IUserService _userService;
         private readonly INotyfService _notyf;
         private readonly IAuthorizationRepository _authorization;
+        private readonly IEmailRepository _emailRepository;
 
-        public AuthorizationController(ILogger<HomeController> logger, IUserService userService, INotyfService notyf, IAuthorizationRepository authorization)
+        public AuthorizationController(ILogger<HomeController> logger, IEmailRepository emailRepository, IUserService userService, INotyfService notyf, IAuthorizationRepository authorization)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
             _notyf = notyf ?? throw new ArgumentNullException(nameof(notyf));
-            _authorization = authorization ?? throw new ArgumentNullException(nameof(_authorization));
+            _authorization = authorization ?? throw new ArgumentNullException(nameof(authorization));
+            _emailRepository = emailRepository ?? throw new ArgumentNullException(nameof(emailRepository));
         }
         public IActionResult Index()
         {
@@ -81,6 +85,32 @@ namespace WoodenAutomative.Controllers
                 {
                     return View("SavePassword");
                 }
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> SendOTP(AuthorizationTypeRequest authorizationTypeRequest)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
+            var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (authorizationTypeRequest.AuthorizationType.Contains("Email"))
+            {
+                var status =await _emailRepository.SendOTP(claimName.Value);
+                if(status)
+                {
+                    return RedirectToAction("Verification");
+                }
+                return View();
+            }
+            else if(authorizationTypeRequest.AuthorizationType.Contains("MobileNo"))
+            {
+                return View();
+            }
+            else
+            {
+                return View();
+            }
         }
 
     }

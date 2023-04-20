@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Dtos\Request\OTP\" />
     <Folder Include="Helpers\" />
   </ItemGroup>
 

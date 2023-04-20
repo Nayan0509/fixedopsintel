@@ -10,7 +10,8 @@ namespace WoodenAutomative.EntityFramework
                 : base(options)
             { }
 
-            protected override void OnModelCreating(ModelBuilder builder)
+        public DbSet<otp> OTP { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
             {
                 base.OnModelCreating(builder);
                                 builder.Entity<ApplicationUser>()
@@ -25,8 +26,8 @@ namespace WoodenAutomative.EntityFramework
                                                                 .Ignore(u => u.NormalizedEmail);    
                                 builder.Entity<ApplicationUser>()
                                                                 .Ignore(u => u.NormalizedUserName);
-                                builder.Entity<ApplicationUser>()
-                                                                .Ignore(u => u.SecurityStamp);     
+                                //builder.Entity<ApplicationUser>()
+                                //                                .Ignore(u => u.SecurityStamp);     
                                 builder.Entity<ApplicationUser>()
                                                                 .Ignore(u => u.TwoFactorEnabled);    
                                 builder.Entity<ApplicationUser>()

@@ -43,7 +43,7 @@
                                             Please enter OTP which has been sent to XXXXXXX67895
                                         </h4>
                                         <div class="col-md-7 mx-auto">
-                                            <form class="px-5 mt-3" method="post" action="SavePassword">
+                                            <form class="px-5 mt-3" id="otp">
                                                 <div class="col-sm-9">
 @*                                                    <input id="partitioned" class="pull-center"  type="text" maxlength="6" />
                                                         <br/>
@@ -55,6 +55,7 @@
                                                         <input type="text" maxlength="1" onkeydown="return isNumberKey(event)" />
                                                         <input type="text" maxlength="1" onkeydown="return isNumberKey(event)" />
                                                         <input type="text" maxlength="1" onkeydown="return isNumberKey(event)" />
+
                                                     </div>
                                                     <div class="d-block d-sm-flex  pull-right">
                                                         <a href="javascript:void(0);" class="ml-auto text-white">Resend OTP</a>
@@ -112,5 +113,27 @@
             }
             return true;
         }
+
+
+        $("#save").on('click', function () {
+            // Retrieve the values of each textbox and concatenate them into a single string
+            const textBoxes = document.querySelectorAll('#otp input[type="text"]');
+            let result = '';
+            textBoxes.forEach(textBox => {
+                result += textBox.value;
+            });
+            alert(result);
+            //$.ajax({
+            //    async: true,
+            //    data: $('#form').serialize(),
+            //    type: "POST",
+            //    url: '/Resource/AddCriteria',
+            //    success: function (partialView) {
+            //        console.log("partialView: " + partialView);
+            //        $('#criteriasContainer').html(partialView);
+            //    }
+            //});
+        });
+
     </script>
 }
