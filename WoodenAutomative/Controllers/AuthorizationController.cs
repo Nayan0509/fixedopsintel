@@ -71,16 +71,16 @@ namespace WoodenAutomative.Controllers
         [HttpPost]
         public async Task<IActionResult> SavePassword(SetPasswordRequest setPasswordRequest)
         {
-            try
-            {
-                var status=_authorization.SetPassword(setPasswordRequest);  
-                ViewData["ErrorMsg"] = null;
-                return View();
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+                var status=await _authorization.SetPassword(setPasswordRequest);  
+                if(status)
+                {
+                    _notyf.Success("Password change Successfully");
+                    return RedirectToAction("SelectAuthorizationType");
+                }
+                else
+                {
+                    return View("SavePassword");
+                }
         }
 
     }

@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -17,47 +20,48 @@ namespace WoodenAutomative.EntityFramework.Services
     {
         #region private Fields
         private readonly WoodenAutomativeContext _context;
+        private readonly IConfiguration _configuration;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IPasswordHasher<ApplicationUser> _passwordHasher;
         #endregion
 
 
         public AuthorizationRepository(UserManager<ApplicationUser> userManager,
                             WoodenAutomativeContext context,
-                            SignInManager<ApplicationUser> signInManager,
-                            IPasswordHasher<ApplicationUser> passwordHasher
+                            IConfiguration configuration,
+                            SignInManager<ApplicationUser> signInManager
             , IHttpContextAccessor httpContextAccessor)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
-            _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
+            _configuration=configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         public async Task<bool> SetPassword(SetPasswordRequest setPasswordRequest)
         {
-            try
-            {
-                if (setPasswordRequest == null)
+            var status = false;
+            if (setPasswordRequest == null)
                     throw new ArgumentNullException(nameof(setPasswordRequest));
 
                 var claimsIdentity = (ClaimsIdentity)_httpContextAccessor.HttpContext.User.Identity;
                 var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
                 var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-                ApplicationUser user = await _context.Users.FindAsync(claimName.Value);
-                var st = _userManager.ChangePasswordAsync(user,user.PasswordHash,setPasswordRequest.Password);
-                var result = await _context.SaveChangesAsync();
-                var status = result > 0 ? true : false;
+               
+                using (WoodenAutomativeContext db = new WoodenAutomativeContext(new DbContextOptionsBuilder<WoodenAutomativeContext>()
+                                                .UseSqlServer(_configuration.GetConnectionString("WoodenAutomativeDbConString"))
+                                                .Options))
+                {
+                    ApplicationUser user = await db.Users.FindAsync(claimName.Value);
+                    user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, setPasswordRequest.Password);
+                    var result = await db.SaveChangesAsync();
+                    status = result > 0 ? true : false;
+                }
+                
                 return status;
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
         }
     }
 }
