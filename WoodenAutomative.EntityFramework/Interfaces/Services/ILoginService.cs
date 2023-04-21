@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using WoodenAutomative.Domain.Dtos.Request.Login;
@@ -25,5 +26,11 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
         /// </summary>
         /// <param name="httpContext">HttpContext</param>
         public void SignOut(HttpContext httpContext);
+
+        /// <summary>
+        /// Get details of updated current users details
+        /// </summary>
+        /// <param name="httpContext">HttpContext</param>
+        public Task<bool> GetUpdatedUserClaims(HttpContext httpContext);
     }
 }
