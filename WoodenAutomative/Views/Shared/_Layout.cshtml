@@ -84,52 +84,11 @@
     </div>
     <!-- end app -->
     <!-- plugins -->
-    @await Component.InvokeAsync("UserProfile");
 
     <script src="~/assets/js/vendors.js"></script>
     <!-- custom app -->
     <script src="~/assets/js/app.js"></script>
     @await Component.InvokeAsync("Notyf")
-
-    <script>
-        $(document).ready(function () {
-            $("#firstNameError").text("");
-            $("#lastNameError").text("");
-            $("#emailError").text("");
-            $("#phoneNumberError").text("");
-
-            $("form").submit(function () {
-                var firstname = $("#FirstName").val();
-                var lastname = $("#LastName").val();
-                var email = $("#Email").val();
-                var phoneNumber = $("#PhoneNumber").val();
-                if (firstname == "" || lastname == "" || email == "" || phoneNumber == "" || phoneNumber.length > 10) {
-                    if(firstname == ""){ 
-                        $("#firstNameError").text("First Name is Required");
-                    }
-                    if(lastname == ""){
-                        $("#lastNameError").text("Last Name is Required");
-                    }
-                    if(email == ""){
-                        $("#emailError").text("Email ID is Required");
-                    }
-                    if (phoneNumber == "") {
-                        $("#phoneNumberError").text("Mobile Number is Required");
-                    }
-                    if (phoneNumber.length > 10) {
-                        $("#phoneNumberError").text("Only 10 digit Mobile Number is Required");
-                    }
-                    return false;
-                }
-            });
-
-            $('#PhoneNumber').keypress(function (e) {
-                var charCode = (e.which) ? e.which : event.keyCode
-                if (String.fromCharCode(charCode).match(/[^0-9]/g))
-                    return false;
-            });
-        });
-    </script>
     @await RenderSectionAsync("scripts", required: false)
 </body>
 </html>

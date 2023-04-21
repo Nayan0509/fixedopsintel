@@ -23,8 +23,8 @@ namespace WoodenAutomative.EntityFramework.Services
         public AuthorizationRepository(UserManager<ApplicationUser> userManager,
                             WoodenAutomativeContext context,
                             IConfiguration configuration,
-                            SignInManager<ApplicationUser> signInManager
-            , IHttpContextAccessor httpContextAccessor)
+                            SignInManager<ApplicationUser> signInManager, 
+                            IHttpContextAccessor httpContextAccessor)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
