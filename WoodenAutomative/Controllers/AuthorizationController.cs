@@ -112,6 +112,32 @@ namespace WoodenAutomative.Controllers
                 return View();
             }
         }
+        
+        [HttpPost]
+        public async Task<IActionResult> VerifyOTP(string otpValue)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
+            var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            return View();
+            //if (authorizationTypeRequest.AuthorizationType.Contains("Email"))
+            //{
+            //    var status =await _emailRepository.SendOTP(claimName.Value);
+            //    if(status)
+            //    {
+            //        return RedirectToAction("Verification");
+            //    }
+            //    return View();
+            //}
+            //else if(authorizationTypeRequest.AuthorizationType.Contains("MobileNo"))
+            //{
+            //    return View();
+            //}
+            //else
+            //{
+            //    return View();
+            //}
+        }
 
     }
 }

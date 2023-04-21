@@ -123,16 +123,17 @@
                 result += textBox.value;
             });
             alert(result);
-            //$.ajax({
-            //    async: true,
-            //    data: $('#form').serialize(),
-            //    type: "POST",
-            //    url: '/Resource/AddCriteria',
-            //    success: function (partialView) {
-            //        console.log("partialView: " + partialView);
-            //        $('#criteriasContainer').html(partialView);
-            //    }
-            //});
+            var otp=result;
+            $.ajax({
+                async: true,
+                data: otp,
+                type: "POST",
+                url: 'VerifyOTP/' + otp,
+                success: function (partialView) {
+                    console.log("partialView: " + partialView);
+                    $('#criteriasContainer').html(partialView);
+                }
+            });
         });
 
     </script>
