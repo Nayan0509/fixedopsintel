@@ -25,6 +25,7 @@ namespace WoodenAutomative.Controllers
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();

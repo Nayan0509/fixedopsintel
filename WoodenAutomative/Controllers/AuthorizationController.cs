@@ -61,15 +61,8 @@ namespace WoodenAutomative.Controllers
         
         public async Task<IActionResult> Verification()
         {
-            try
-            {
                 ViewData["ErrorMsg"] = null;
                 return View();
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
         }
 
         [HttpPost]
@@ -96,7 +89,7 @@ namespace WoodenAutomative.Controllers
 
             if (authorizationTypeRequest.AuthorizationType.Contains("Email"))
             {
-                var status =await _emailRepository.SendOTP(claimName.Value);
+                var status =await _emailRepository.SendEmailOTP(claimName.Value);
                 if(status)
                 {
                     return RedirectToAction("Verification");
@@ -116,27 +109,30 @@ namespace WoodenAutomative.Controllers
         [HttpPost]
         public async Task<IActionResult> VerifyOTP(string otpValue)
         {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
-            var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            return View();
-            //if (authorizationTypeRequest.AuthorizationType.Contains("Email"))
-            //{
-            //    var status =await _emailRepository.SendOTP(claimName.Value);
-            //    if(status)
-            //    {
-            //        return RedirectToAction("Verification");
-            //    }
-            //    return View();
-            //}
-            //else if(authorizationTypeRequest.AuthorizationType.Contains("MobileNo"))
-            //{
-            //    return View();
-            //}
-            //else
-            //{
-            //    return View();
-            //}
+            if (otpValue != null)
+            {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
+                var claimName = claimsIdentity.FindFirst(ClaimTypes.Email);
+
+                var status = await _emailRepository.VerifyOTP(claimName.Value, otpValue);
+                if (status)
+                {
+                    //redirect();
+                    //return View();
+                    return Redirect("/Home/Index");
+                }
+                else { return View(); }
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        public async Task<IActionResult> redirect()
+        {
+            return RedirectToAction("UpdateProfile", "Home");
         }
 
     }

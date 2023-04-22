@@ -126,12 +126,14 @@
             var otp=result;
             $.ajax({
                 async: true,
-                data: otp,
+                data: { otpValue: otp },
                 type: "POST",
-                url: 'VerifyOTP/' + otp,
+                contentType: "application/json; charset=utf-8",
+                url: 'VerifyOTP',
                 success: function (partialView) {
-                    console.log("partialView: " + partialView);
-                    $('#criteriasContainer').html(partialView);
+                    //alert(partialView);
+                    //alert(hii);
+                    window.location.href=Basepath()+"/Home/Index";
                 }
             });
         });
