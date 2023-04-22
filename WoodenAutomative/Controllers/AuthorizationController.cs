@@ -106,6 +106,20 @@ namespace WoodenAutomative.Controllers
             }
         }
         
+        [HttpGet]
+        public async Task<IActionResult> SendOTPonEmail()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
+            var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                var status =await _emailRepository.SendEmailOTP(claimName.Value);
+                if(status)
+                {
+                    return RedirectToAction("Verification");
+                }
+                return View();
+        }
+        
         [HttpPost]
         public async Task<IActionResult> VerifyOTP(string otpValue)
         {

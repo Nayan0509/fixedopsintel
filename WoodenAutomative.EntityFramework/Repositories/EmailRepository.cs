@@ -45,14 +45,10 @@ namespace WoodenAutomative.EntityFramework.Repositories
                     emailMessage.To.Add(emailTo);
                     emailMessage.Subject = emailData.EmailSubject;
 
-                    //BodyBuilder emailBody = new BodyBuilder();
-
-                    //emailBody.HtmlBody = emailData.EmailBody;
-                    //emailMessage.Body = emailBody.ToMessageBody();
                     emailMessage.Body = new TextPart(TextFormat.Html) { Text = emailData.EmailBody };
 
-                    emailClient.Connect("fixedopsintel.com", 587, SecureSocketOptions.StartTls);
-                    emailClient.Authenticate("admin@fixedopsintel.com", "ZmH*76Cgwh");
+                    emailClient.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                    emailClient.Authenticate("trackgaddireports1@gmail.com", "txqrdkvxwrduspwy");
                     emailClient.Send(emailMessage);
 
                     return true;
@@ -122,6 +118,8 @@ namespace WoodenAutomative.EntityFramework.Repositories
                     var vaildOTP = await db.OTP.Where(x => x.AuthorizeFor == email && x.OTPNumber == otp && x.ValidTill > DateTime.Now && x.IsVerify == false).FirstOrDefaultAsync();
                     if (vaildOTP != null)
                     {
+                        var user=await _userManager.FindByEmailAsync(email);
+                        user.EmailConfirmed = true;
                         vaildOTP.IsVerify= true;
                         var result = await db.SaveChangesAsync();
                         status = result > 0 ? true : false;

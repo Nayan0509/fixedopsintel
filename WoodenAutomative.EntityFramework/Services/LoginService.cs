@@ -59,6 +59,14 @@ namespace WoodenAutomative.EntityFramework.Services
                     {
                         return LoginStatus.SetNewPassword;
                     }
+                    else if(!user.EmailConfirmed)
+                    {
+                        return LoginStatus.EmailVerification;
+                    }
+                    else if(!user.PhoneNumberConfirmed)
+                    {
+                        return LoginStatus.MobileVerification;
+                    }
                     return LoginStatus.Succeeded;
                 }
                 return LoginStatus.Failed;
