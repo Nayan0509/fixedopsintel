@@ -107,18 +107,18 @@ namespace WoodenAutomative.EntityFramework.Repositories
             return status;
         }
 
-        public async Task<bool> VerifyOTP(string email, string otp)
+        public async Task<bool> VerifyOTP(string userId, string otp)
         {
-                var status = false;
+            
+            var status = false;
                 using (WoodenAutomativeContext db = new WoodenAutomativeContext(new DbContextOptionsBuilder<WoodenAutomativeContext>()
                                     .UseSqlServer(_configuration.GetConnectionString("WoodenAutomativeDbConString"))
                                     .Options))
                 {
-
-                    var vaildOTP = await db.OTP.Where(x => x.AuthorizeFor == email && x.OTPNumber == otp && x.ValidTill > DateTime.Now && x.IsVerify == false).FirstOrDefaultAsync();
+                    var user = await db.Users.FindAsync(userId);
+                    var vaildOTP = await db.OTP.Where(x => x.AuthorizeFor == user.Email && x.OTPNumber == otp && x.ValidTill > DateTime.Now && x.IsVerify == false).FirstOrDefaultAsync();
                     if (vaildOTP != null)
                     {
-                        var user=await _userManager.FindByEmailAsync(email);
                         user.EmailConfirmed = true;
                         vaildOTP.IsVerify= true;
                         var result = await db.SaveChangesAsync();

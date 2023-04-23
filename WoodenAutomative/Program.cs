@@ -54,6 +54,18 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
                 options.SlidingExpiration = true;
                 options.AccessDeniedPath = "/Forbidden/";
+
+                //options.Events = new CookieAuthenticationEvents
+                //{
+                //    OnValidatePrincipal = async context =>
+                //    {
+                //        var isEmailConfirmed = context.Principal.FindFirstValue("IsEmailverify");
+                //        if (!Convert.ToBoolean(isEmailConfirmed))
+                //        {
+                //            context.Response.Redirect
+                //        }
+                //    }
+                //};
             });
 
 // authentication 

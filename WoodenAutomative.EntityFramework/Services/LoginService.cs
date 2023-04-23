@@ -113,6 +113,8 @@ namespace WoodenAutomative.EntityFramework.Services
             claims.Add(new Claim(ClaimTypes.Uri, value: user.LastName ?? ""));
             claims.Add(new Claim(ClaimTypes.Role, roles));
             claims.Add(new Claim("SecurityStamp", user.SecurityStamp));
+            claims.Add(new Claim("IsEmailverify",user.EmailConfirmed.ToString() ?? ""));
+            claims.Add(new Claim("IsMobileVerify", user.PhoneNumberConfirmed.ToString() ?? ""));
 
             return claims;
         }

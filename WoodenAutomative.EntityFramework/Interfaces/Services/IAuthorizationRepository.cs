@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WoodenAutomative.Domain.Dtos.Request.Login;
 using WoodenAutomative.Domain.Dtos.Request.Password;
+using WoodenAutomative.Domain.Models;
 
 namespace WoodenAutomative.EntityFramework.Interfaces.Services
 {

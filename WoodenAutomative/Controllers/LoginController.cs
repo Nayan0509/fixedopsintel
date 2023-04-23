@@ -66,7 +66,7 @@ namespace WoodenAutomative.Controllers
                     }
                     else if(regStatus == LoginStatus.MobileVerification)
                     {
-                        return RedirectToAction("SendOTP", "Authorization");
+                        return RedirectToAction("SendOTPonMobile", "Authorization");
                     }
                     else
                     {
