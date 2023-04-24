@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using WoodenAutomative.Domain.Dtos.Request.Login;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
+using WoodenAutomative.EntityFramework.Services;
 
 namespace WoodenAutomative.Controllers
 {
@@ -16,18 +17,21 @@ namespace WoodenAutomative.Controllers
         private readonly ILoginService _loginService;
         private readonly INotyfService _notyf;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICurrentUserAccessor _currentUserAccessor;
 
         public HomeController(ILogger<HomeController> logger, 
             IUserService userService, 
             ILoginService loginService,
             INotyfService notyf, 
-            IHttpContextAccessor httpContextAccessor)
+            IHttpContextAccessor httpContextAccessor,
+            ICurrentUserAccessor currentUserAccessor)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
             _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
             _notyf = notyf ?? throw new ArgumentNullException(nameof(notyf));
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+            _currentUserAccessor = currentUserAccessor ?? throw new ArgumentNullException(nameof(currentUserAccessor));
         }
 
         [HttpGet]
