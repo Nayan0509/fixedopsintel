@@ -1,0 +1,110 @@
+﻿@model WoodenAutomative.Domain.Dtos.Request.Authorization.AuthorizationTypeRequest
+@{
+    ViewData["Title"] = "Set New Password";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<style>
+
+</style>
+<div class="loader">
+    <div class="h-100 d-flex justify-content-center">
+        <div class="align-self-center">
+            <img src="~/assets/img/loader/loader.svg" alt="loader">
+        </div>
+    </div>
+</div>
+<!-- end pre-loader -->
+<!--start login contant-->
+<div class="app-contant">
+    <div class="bg-white comingsoon">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+                <div class="col-lg-6 align-self-center bg-gradient">
+                    <div class="d-flex align-items-center h-100-vh">
+                        <div class="comingsoon-wrap w-100">
+                            <div class="row no-gutters align-items-center justify-content-center">
+                                <div class="col-md-10 text-center m-b-40" id="setPassword">
+
+                                    <!-- newsletter -->
+                                    <div class="row no-gutters" id="setPassword">
+
+                                        <div class="col-md-7 mx-auto">
+                                            <h4 class="text-white font-weight-normal pull-center">Please Select authorization type</h4>
+                                            <form class="px-5 mt-3" method="post" action="SendOTP">
+                                                <div class="col-sm-9">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="AuthorizationType" id="gridRadios1" value="Email" checked>
+                                                        <label class="form-check-label text-white" for="gridRadios1">
+                                                    Email ID
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="AuthorizationType" id="gridRadios2" value="MobileNo">
+                                                        <label class="form-check-label text-white" for="gridRadios2">
+                                                                Mobile Number
+                                                            <br />
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <button type="submit" class="btn btn-inverse-light pull-left" id="save">
+                                                            Send OTP
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-end">
+                    <img class="img-fluid" src="~/assets/img/bg/coming-soon-bg.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+        });
+        // Write your JavaScript code.
+        function showError(message) {
+            var toaster = document.getElementById("toaster");
+            toaster.querySelector(".toaster-message").innerHTML = message;
+            toaster.classList.add("toaster-error");
+            toaster.style.display = "block";
+            setTimeout(function () {
+                toaster.classList.remove("toaster-error");
+                toaster.style.display = "none";
+            }, 5000);
+        }
+
+        $("#save").click(function () {
+            var pass = $("#password").val();
+            var cpass = $("#confrimPassword").val();
+            if (pass === cpass) {
+
+            }
+            else if (pass === null) {
+                alert("Please Enter Password");
+            }
+            else if (cpass === null) {
+                alert("Please Enter Confrim Password");
+            }
+            else {
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                x.innerHTML = "Hello, world!";
+                setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
+
+            }
+        });
+    </script>
+}

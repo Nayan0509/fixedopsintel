@@ -1,0 +1,142 @@
+﻿@model WoodenAutomative.Domain.Dtos.Request.OTP.OTPRequest
+@{
+    ViewData["Title"] = "Set New Password";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<style>
+    #partitioned {
+        padding-left: 15px;
+        letter-spacing: 42px;
+        border: 0;
+        background-color: transparent;
+        background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
+        background-position: bottom;
+        background-size: 50px 1px;
+        background-repeat: repeat-x;
+        background-position-x: 35px;
+        width: 302px;
+        outline: none;
+    }
+</style>
+<div class="loader">
+    <div class="h-100 d-flex justify-content-center">
+        <div class="align-self-center">
+            <img src="~/assets/img/loader/loader.svg" alt="loader">
+        </div>
+    </div>
+</div>
+<!-- end pre-loader -->
+<!--start login contant-->
+<div class="app-contant">
+    <div class="bg-white comingsoon">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+                <div class="col-lg-6 align-self-center bg-gradient">
+                    <div class="d-flex align-items-center h-100-vh">
+                        <div class="comingsoon-wrap w-100">
+                            <div class="row no-gutters align-items-center justify-content-center">
+                                <div class="col-md-10 text-center m-b-40" id="setPassword">
+
+                                    <!-- newsletter -->
+                                    <div class="row no-gutters" id="setPassword">
+                                        <h4 class="text-white font-weight-normal">
+                                            Please enter OTP which has been sent to @ViewBag.AuthorizationType
+                                        </h4>
+                                        <div class="col-md-7 mx-auto">
+                                            <form class="px-5 mt-3" id="otp" action="VerifyOTP" method="post">
+                                                <div class="col-sm-9">
+@*                                                    <input id="partitioned" class="pull-center"  type="text" maxlength="6" />
+                                                        <br/>
+                                                        <br/>*@
+                                                    <div class="otp-input pull-right">
+                                                        <input type="text" name="digit1" maxlength="1" onkeydown="return isNumberKey(event)" />
+                                                        <input type="text" name="digit2" maxlength="1" onkeydown="return isNumberKey(event)" />
+                                                        <input type="text" name="digit3" maxlength="1" onkeydown="return isNumberKey(event)" />
+                                                        <input type="text" name="digit4" maxlength="1" onkeydown="return isNumberKey(event)" />
+                                                        <input type="text" name="digit5" maxlength="1" onkeydown="return isNumberKey(event)" />
+                                                        <input type="text" name="digit6" maxlength="1" onkeydown="return isNumberKey(event)" />
+
+                                                    </div>
+                                                    <div class="d-block d-sm-flex  pull-right">
+                                                        <a href="SendOTPonEmail" class="ml-auto text-white">Resend OTP</a>
+                                                    </div>
+                                                    <br/>
+                                                    <div class="form-check">
+                                                        <button type="submit" class="btn btn-inverse-light pull-left" id="save">
+                                                            Verify OTP
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-end">
+                    <img class="img-fluid" src="~/assets/img/bg/coming-soon-bg.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        const inputs = document.querySelectorAll('.otp-input input');
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('keyup', (event) => {
+                const inputLength = input.value.length;
+
+                if (inputLength === 1) {
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    } else {
+                        input.blur();
+                    }
+                } else if (inputLength === 0 && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+
+
+        //$("#save").on('click', function () {
+        //    // Retrieve the values of each textbox and concatenate them into a single string
+        //    const textBoxes = document.querySelectorAll('#otp input[type="text"]');
+        //    let result = '';
+        //    textBoxes.forEach(textBox => {
+        //        result += textBox.value;
+        //    });
+        //    alert(result);
+        //    var otp=result;
+        //    $.ajax({
+        //        async: true,
+        //        data: { otpValue: otp },
+        //        type: "POST",
+        //        contentType: "application/json; charset=utf-8",
+        //        url: 'VerifyOTP',
+        //        success: function (partialView) {
+        //            //alert(partialView);
+        //            //alert(hii);
+        //            window.location.href=Basepath()+"/Home/Index";
+        //        }
+        //    });
+        //});
+
+    </script>
+}

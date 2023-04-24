@@ -1,4 +1,14 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http;
+@using System.Security.Claims;
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@{
+    var claimsIdentity = (ClaimsIdentity)HttpContextAccessor.HttpContext.User.Identity;
+    var Claims = HttpContextAccessor.HttpContext.User.Identities;
+    var claimEmail = claimsIdentity.FindFirst(ClaimTypes.Email);
+    var claimName = claimsIdentity.FindFirst(ClaimTypes.Name);
+    var claimSurname = claimsIdentity.FindFirst(ClaimTypes.Surname);
+}
 <div class="navigation d-flex">
     <ul class="navbar-nav nav-left">
         <li class="nav-item">
@@ -27,7 +37,7 @@
             </div>
         </li>
         <li class="nav-item user-name">
-            <span>Alice Williams</span>
+            <span>@claimName.Value @claimSurname.Value</span>
         </li>
 
         <li class="nav-item dropdown user-profile">
@@ -39,13 +49,13 @@
                 <div class="bg-gradient px-4 py-3">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="mr-1">
-                            <h4 class="text-white mb-0">Alice Williams</h4>
-                            <small class="text-white">Henry@example.com</small>
+                            <h4 class="text-white mb-0">@claimName.Value @claimSurname.Value</h4>
+                            <small class="text-white">@claimEmail.Value</small>
                         </div>
                     </div>
                 </div>
                 <div class="p-4">
-                    <a class="dropdown-item d-flex nav-link" data-toggle="modal" data-target="#verticalCenter">
+                    <a class="dropdown-item d-flex nav-link" href="/Home/UpdateProfile">
                         <i class="fa fa-user pr-2 text-success"></i>Update Profile
                     </a>
                     <a class="dropdown-item d-flex nav-link" href="javascript:void(0)">
@@ -59,4 +69,3 @@
         </li>
     </ul>
 </div>
-

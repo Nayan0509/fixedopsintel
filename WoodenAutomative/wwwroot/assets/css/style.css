@@ -17699,7 +17699,8 @@ ol.breadcrumb {
 
 .top-bar .navbar .nav-right .nav-item.user-name{
     padding: .9em 0;
-    position: relative
+    position: relative;
+    width:80px;
 }
 
 .top-bar .navbar .nav-right .nav-item.user-profile {
@@ -41205,5 +41206,28 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
     to {
         bottom: 0;
         opacity: 0;
+    }
+}
+.otp-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .otp-input input {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        text-align: center;
+        border: 2px solid #999;
+        border-radius: 4px;
+        margin: 0 5px;
+    }
+
+@media screen and (max-width: 768px) {
+    .otp-input input {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
     }
 }
