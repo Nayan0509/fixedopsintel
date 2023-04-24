@@ -10,7 +10,6 @@ using WoodenAutomative.EntityFramework;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
 using WoodenAutomative.EntityFramework.Repositories;
 using WoodenAutomative.EntityFramework.Services;
-using WoodenAutomative.Helper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +30,6 @@ builder.Services.AddTransient<ILoginService, LoginService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAuthorizationRepository, AuthorizationRepository>();
 builder.Services.AddTransient<IEmailRepository, EmailRepository>();
-builder.Services.AddTransient<IMyMemoryCache, MyMemoryCache>();
 
 builder.Services.AddNotyf(config =>
 {
