@@ -59,6 +59,14 @@ namespace WoodenAutomative.EntityFramework.Services
                     {
                         return LoginStatus.SetNewPassword;
                     }
+                    else if(!user.EmailConfirmed)
+                    {
+                        return LoginStatus.EmailVerification;
+                    }
+                    else if(!user.PhoneNumberConfirmed)
+                    {
+                        return LoginStatus.MobileVerification;
+                    }
                     return LoginStatus.Succeeded;
                 }
                 return LoginStatus.Failed;
@@ -105,6 +113,8 @@ namespace WoodenAutomative.EntityFramework.Services
             claims.Add(new Claim(ClaimTypes.Uri, value: user.LastName ?? ""));
             claims.Add(new Claim(ClaimTypes.Role, roles));
             claims.Add(new Claim("SecurityStamp", user.SecurityStamp));
+            claims.Add(new Claim("IsEmailverify",user.EmailConfirmed.ToString() ?? ""));
+            claims.Add(new Claim("IsMobileVerify", user.PhoneNumberConfirmed.ToString() ?? ""));
 
             return claims;
         }

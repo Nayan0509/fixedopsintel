@@ -1,4 +1,4 @@
-﻿@model WoodenAutomative.Domain.Dtos.Request.Password.SetPasswordRequest
+﻿@model WoodenAutomative.Domain.Dtos.Request.OTP.OTPRequest
 @{
     ViewData["Title"] = "Set New Password";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
@@ -43,22 +43,22 @@
                                             Please enter OTP which has been sent to XXXXXXX67895
                                         </h4>
                                         <div class="col-md-7 mx-auto">
-                                            <form class="px-5 mt-3" id="otp">
+                                            <form class="px-5 mt-3" id="otp" action="VerifyOTP" method="post">
                                                 <div class="col-sm-9">
 @*                                                    <input id="partitioned" class="pull-center"  type="text" maxlength="6" />
                                                         <br/>
                                                         <br/>*@
                                                     <div class="otp-input pull-right">
-                                                        <input type="text" maxlength="1" onkeydown="return isNumberKey(event)" />
-                                                        <input type="text" maxlength="1" onkeydown="return isNumberKey(event)" />
-                                                        <input type="text" maxlength="1" onkeydown="return isNumberKey(event)" />
-                                                        <input type="text" maxlength="1" onkeydown="return isNumberKey(event)" />
-                                                        <input type="text" maxlength="1" onkeydown="return isNumberKey(event)" />
-                                                        <input type="text" maxlength="1" onkeydown="return isNumberKey(event)" />
+                                                        <input type="text" name="digit1" maxlength="1" onkeydown="return isNumberKey(event)" />
+                                                        <input type="text" name="digit2" maxlength="1" onkeydown="return isNumberKey(event)" />
+                                                        <input type="text" name="digit3" maxlength="1" onkeydown="return isNumberKey(event)" />
+                                                        <input type="text" name="digit4" maxlength="1" onkeydown="return isNumberKey(event)" />
+                                                        <input type="text" name="digit5" maxlength="1" onkeydown="return isNumberKey(event)" />
+                                                        <input type="text" name="digit6" maxlength="1" onkeydown="return isNumberKey(event)" />
 
                                                     </div>
                                                     <div class="d-block d-sm-flex  pull-right">
-                                                        <a href="javascript:void(0);" class="ml-auto text-white">Resend OTP</a>
+                                                        <a href="SendOTPonEmail" class="ml-auto text-white">Resend OTP</a>
                                                     </div>
                                                     <br/>
                                                     <div class="form-check">
@@ -115,26 +115,28 @@
         }
 
 
-        $("#save").on('click', function () {
-            // Retrieve the values of each textbox and concatenate them into a single string
-            const textBoxes = document.querySelectorAll('#otp input[type="text"]');
-            let result = '';
-            textBoxes.forEach(textBox => {
-                result += textBox.value;
-            });
-            alert(result);
-            var otp=result;
-            $.ajax({
-                async: true,
-                data: otp,
-                type: "POST",
-                url: 'VerifyOTP/' + otp,
-                success: function (partialView) {
-                    console.log("partialView: " + partialView);
-                    $('#criteriasContainer').html(partialView);
-                }
-            });
-        });
+        //$("#save").on('click', function () {
+        //    // Retrieve the values of each textbox and concatenate them into a single string
+        //    const textBoxes = document.querySelectorAll('#otp input[type="text"]');
+        //    let result = '';
+        //    textBoxes.forEach(textBox => {
+        //        result += textBox.value;
+        //    });
+        //    alert(result);
+        //    var otp=result;
+        //    $.ajax({
+        //        async: true,
+        //        data: { otpValue: otp },
+        //        type: "POST",
+        //        contentType: "application/json; charset=utf-8",
+        //        url: 'VerifyOTP',
+        //        success: function (partialView) {
+        //            //alert(partialView);
+        //            //alert(hii);
+        //            window.location.href=Basepath()+"/Home/Index";
+        //        }
+        //    });
+        //});
 
     </script>
 }

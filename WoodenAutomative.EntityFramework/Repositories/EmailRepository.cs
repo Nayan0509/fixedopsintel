@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using MimeKit;
 using MimeKit.Text;
 using System.Configuration;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 using WoodenAutomative.Domain.Dtos.Request.Email;
 using WoodenAutomative.Domain.Models;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
@@ -42,10 +45,6 @@ namespace WoodenAutomative.EntityFramework.Repositories
                     emailMessage.To.Add(emailTo);
                     emailMessage.Subject = emailData.EmailSubject;
 
-                    //BodyBuilder emailBody = new BodyBuilder();
-
-                    //emailBody.HtmlBody = emailData.EmailBody;
-                    //emailMessage.Body = emailBody.ToMessageBody();
                     emailMessage.Body = new TextPart(TextFormat.Html) { Text = emailData.EmailBody };
 
                     emailClient.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
@@ -67,7 +66,7 @@ namespace WoodenAutomative.EntityFramework.Repositories
             }
         }
 
-        public async Task<bool> SendOTP(string userId)
+        public async Task<bool> SendEmailOTP(string userId)
         {
             var user=await _userManager.FindByIdAsync(userId);
 
@@ -106,6 +105,43 @@ namespace WoodenAutomative.EntityFramework.Repositories
                 status = result > 0 ? true : false;
             }
             return status;
+        }
+
+        public async Task<bool> VerifyOTP(string userId, string otp)
+        {
+            
+            var status = false;
+                using (WoodenAutomativeContext db = new WoodenAutomativeContext(new DbContextOptionsBuilder<WoodenAutomativeContext>()
+                                    .UseSqlServer(_configuration.GetConnectionString("WoodenAutomativeDbConString"))
+                                    .Options))
+                {
+                    var user = await db.Users.FindAsync(userId);
+                    var vaildOTP = await db.OTP.Where(x => x.AuthorizeFor == user.Email && x.OTPNumber == otp && x.ValidTill > DateTime.Now && x.IsVerify == false).FirstOrDefaultAsync();
+                    if (vaildOTP != null)
+                    {
+                        user.EmailConfirmed = true;
+                        vaildOTP.IsVerify= true;
+                        var result = await db.SaveChangesAsync();
+                        status = result > 0 ? true : false;
+                    }
+                }
+                return status;
+        }
+
+        public Task<bool> SendMobileOTP(string userId)
+        {
+            // Your Twilio account SID and auth token from twilio.com/console
+            string accountSid = "YOUR_ACCOUNT_SID";
+            string authToken = "YOUR_AUTH_TOKEN";
+            string otpValue = new Random().Next(100000, 999999).ToString();
+            TwilioClient.Init(accountSid, authToken);
+
+            var message = MessageResource.Create(
+                body: $"Your OTP is {otpValue}",
+                from: new PhoneNumber("YOUR_TWILIO_PHONE_NUMBER"),
+                to: new PhoneNumber("")
+            );
+            throw new NotImplementedException();
         }
     }
 }

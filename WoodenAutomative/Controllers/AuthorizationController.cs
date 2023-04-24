@@ -8,6 +8,7 @@ using WoodenAutomative.EntityFramework.Services;
 using WoodenAutomative.Domain.Dtos.Request.Password;
 using WoodenAutomative.Domain.Dtos.Request.Authorization;
 using System.Security.Claims;
+using WoodenAutomative.Domain.Dtos.Request.OTP;
 
 namespace WoodenAutomative.Controllers
 {
@@ -61,15 +62,8 @@ namespace WoodenAutomative.Controllers
         
         public async Task<IActionResult> Verification()
         {
-            try
-            {
                 ViewData["ErrorMsg"] = null;
                 return View();
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
         }
 
         [HttpPost]
@@ -96,7 +90,7 @@ namespace WoodenAutomative.Controllers
 
             if (authorizationTypeRequest.AuthorizationType.Contains("Email"))
             {
-                var status =await _emailRepository.SendOTP(claimName.Value);
+                var status =await _emailRepository.SendEmailOTP(claimName.Value);
                 if(status)
                 {
                     return RedirectToAction("Verification");
@@ -113,30 +107,60 @@ namespace WoodenAutomative.Controllers
             }
         }
         
-        [HttpPost]
-        public async Task<IActionResult> VerifyOTP(string otpValue)
+        [HttpGet]
+        public async Task<IActionResult> SendOTPonEmail()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
             var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            return View();
-            //if (authorizationTypeRequest.AuthorizationType.Contains("Email"))
-            //{
-            //    var status =await _emailRepository.SendOTP(claimName.Value);
-            //    if(status)
-            //    {
-            //        return RedirectToAction("Verification");
-            //    }
-            //    return View();
-            //}
-            //else if(authorizationTypeRequest.AuthorizationType.Contains("MobileNo"))
-            //{
-            //    return View();
-            //}
-            //else
-            //{
-            //    return View();
-            //}
+                var status =await _emailRepository.SendEmailOTP(claimName.Value);
+                if(status)
+                {
+                    return RedirectToAction("Verification");
+                }
+                return View();
+        } 
+        
+        [HttpGet]
+        public async Task<IActionResult> SendOTPonMobile()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
+            var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                var status =await _emailRepository.SendEmailOTP(claimName.Value);
+                if(status)
+                {
+                    return RedirectToAction("Verification");
+                }
+                return View();
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> VerifyOTP(OTPRequest oTPRequest)
+        {
+            if (oTPRequest != null)
+            {
+                string otpValue = string.Concat(oTPRequest.Digit1,
+                                                oTPRequest.Digit2,
+                                                oTPRequest.Digit3,
+                                                oTPRequest.Digit4,
+                                                oTPRequest.Digit5,
+                                                oTPRequest.Digit6);
+
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
+                var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                var status = await _emailRepository.VerifyOTP(claimName.Value, otpValue);
+                if (status)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else { return View(); }
+            }
+            else
+            {
+                return View();
+            }
         }
 
     }

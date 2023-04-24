@@ -36,6 +36,7 @@ namespace WoodenAutomative.Controllers
             _currentUserAccessor = currentUserAccessor ?? throw new ArgumentNullException(nameof(currentUserAccessor));
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();

@@ -7,6 +7,7 @@ using WoodenAutomative.Domain.Dtos.Request.Login;
 using WoodenAutomative.Domain.Models;
 using WoodenAutomative.EntityFramework;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
+using WoodenAutomative.EntityFramework.Repositories;
 
 namespace WoodenAutomative.Controllers
 {
@@ -15,16 +16,18 @@ namespace WoodenAutomative.Controllers
 
         private readonly WoodenAutomativeContext _context;
         private readonly ILoginService _loginService;
+        private readonly IEmailRepository _emailRepository;
         private readonly INotyfService _notyf;
 
-        public LoginController(ILoginService loginService, 
+        public LoginController(ILoginService loginService,
+            IEmailRepository emailRepository, 
                                WoodenAutomativeContext context,
                                INotyfService notyf)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
             _notyf = notyf ?? throw new ArgumentNullException(nameof(notyf));
-
+            _emailRepository= emailRepository ?? throw new ArgumentNullException(nameof(_emailRepository));
         }
 
         public async Task<IActionResult> Index()
@@ -56,6 +59,14 @@ namespace WoodenAutomative.Controllers
                     else if(regStatus == LoginStatus.SetNewPassword)
                     {
                         return RedirectToAction("SetNewPassword", "Authorization");
+                    }
+                    else if(regStatus == LoginStatus.EmailVerification)
+                    {
+                        return RedirectToAction("SendOTPonEmail", "Authorization");
+                    }
+                    else if(regStatus == LoginStatus.MobileVerification)
+                    {
+                        return RedirectToAction("SendOTPonMobile", "Authorization");
                     }
                     else
                     {
