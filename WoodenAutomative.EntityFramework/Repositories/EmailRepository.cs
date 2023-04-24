@@ -8,6 +8,8 @@ using MimeKit.Text;
 using System.Configuration;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
+using Twilio.Rest.Chat.V2;
+using Twilio.Rest.Verify.V2.Service;
 using Twilio.Types;
 using WoodenAutomative.Domain.Dtos.Request.Email;
 using WoodenAutomative.Domain.Models;
@@ -128,19 +130,35 @@ namespace WoodenAutomative.EntityFramework.Repositories
                 return status;
         }
 
-        public Task<bool> SendMobileOTP(string userId)
+        public async Task<bool> SendMobileOTP(string userId)
         {
-            // Your Twilio account SID and auth token from twilio.com/console
-            string accountSid = "YOUR_ACCOUNT_SID";
-            string authToken = "YOUR_AUTH_TOKEN";
-            string otpValue = new Random().Next(100000, 999999).ToString();
-            TwilioClient.Init(accountSid, authToken);
+            try
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                // Your Twilio account SID and auth token from twilio.com/console
+                string accountSid = "AC6c46d01370a2958f1340596417d7f3dc";
+                string authToken = "7641a191ac254b8508cf572fb1e9d4c8";
+                string otpValue = new Random().Next(100000, 999999).ToString();
+                TwilioClient.Init(accountSid, authToken);
 
-            var message = MessageResource.Create(
-                body: $"Your OTP is {otpValue}",
-                from: new PhoneNumber("YOUR_TWILIO_PHONE_NUMBER"),
-                to: new PhoneNumber("")
-            );
+                var service = ServiceResource.Create(friendlyName: "My Verify Service");
+
+                var verification = VerificationResource.Create(
+                                    to: "+16076383751",
+                                    channel: "sms",
+                                    pathServiceSid: service.AccountSid
+                                );
+
+                var verificationCheck = VerificationCheckResource.Create(
+                    to: user.PhoneNumber,
+                    code: "123456",
+                    pathServiceSid: service.Sid
+                );
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             throw new NotImplementedException();
         }
     }

@@ -125,7 +125,7 @@ namespace WoodenAutomative.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
             var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-                var status =await _emailRepository.SendEmailOTP(claimName.Value);
+                var status =await _emailRepository.SendMobileOTP(claimName.Value);
                 if(status)
                 {
                     return RedirectToAction("Verification");

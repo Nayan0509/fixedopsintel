@@ -33,7 +33,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Email*</label>
-                                                         @Html.TextBoxFor(m => m.Email , new { id = "username", @class = "form-control", @placeholder = "Enter Your Email" })
+                                                         @Html.TextBoxFor(m => m.Email , new { id = "email", @class = "form-control", @placeholder = "Enter Your Email" })
                                                     </div>
                                                 </div>
                                                  <div class="col-md-12">
@@ -78,8 +78,8 @@
         const loginModel = document.querySelector('#login-form');
 
         loginModel.addEventListener('submit', function (event) {
-            var pass = $("#password").val();
-            var cpass = $("#confrimPassword").val();
+            var email = $("#email").val();
+            var password = $("#password").val();
 
             // Prevent the form from submitting
             event.preventDefault();
@@ -88,31 +88,24 @@
             const formData = new FormData(loginModel);
 
             // Validate the form data
-            if (pass === "" && cpass === "") {
+            if (email === "" && password === "") {
                 var x = document.getElementById("snackbar");
                 x.className = "show";
-                x.innerHTML = "please enter Password and Confrim Password";
+                x.innerHTML = "please enter Email Address and Password";
                 setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
                 return;
             }
-            else if (pass === "") {
+            else if (email === "") {
                 var x = document.getElementById("snackbar");
                 x.className = "show";
-                x.innerHTML = "please enter a Password";
+                x.innerHTML = "please enter Email Address";
                 setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
                 return;
             }
-            else if (cpass === "") {
+            else if (password === "") {
                 var x = document.getElementById("snackbar");
                 x.className = "show";
-                x.innerHTML = "please enter a Confrim Password";
-                setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
-                return;
-            }
-            else if (pass != cpass) {
-                var x = document.getElementById("snackbar");
-                x.className = "show";
-                x.innerHTML = "Password and Confrim Password not matched";
+                x.innerHTML = "please enter Password";
                 setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
                 return;
             }
