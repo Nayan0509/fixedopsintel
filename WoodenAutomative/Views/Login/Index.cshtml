@@ -73,4 +73,56 @@
                 </div>
             </div>
             <!--end login contant-->
+@section Scripts{
+    <script>
+        const loginModel = document.querySelector('#login-form');
+
+        loginModel.addEventListener('submit', function (event) {
+            var pass = $("#password").val();
+            var cpass = $("#confrimPassword").val();
+
+            // Prevent the form from submitting
+            event.preventDefault();
+
+            // Get the form data
+            const formData = new FormData(loginModel);
+
+            // Validate the form data
+            if (pass === "" && cpass === "") {
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                x.innerHTML = "please enter Password and Confrim Password";
+                setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
+                return;
+            }
+            else if (pass === "") {
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                x.innerHTML = "please enter a Password";
+                setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
+                return;
+            }
+            else if (cpass === "") {
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                x.innerHTML = "please enter a Confrim Password";
+                setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
+                return;
+            }
+            else if (pass != cpass) {
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                x.innerHTML = "Password and Confrim Password not matched";
+                setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
+                return;
+            }
+
+            // Submit the form
+            loginModel.submit();
+        });
+
+        $(document).ready(function () {
+        });
+    </script>
+}
 

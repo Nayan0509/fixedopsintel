@@ -27,8 +27,4 @@
     <ProjectReference Include="..\WoodenAutomative.Domain\WoodenAutomative.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
-
 </Project>

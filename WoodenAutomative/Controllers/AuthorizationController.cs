@@ -2,13 +2,11 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WoodenAutomative.EntityFramework.Interfaces.Services;
-using WoodenAutomative.EntityFramework;
-using WoodenAutomative.EntityFramework.Services;
-using WoodenAutomative.Domain.Dtos.Request.Password;
-using WoodenAutomative.Domain.Dtos.Request.Authorization;
 using System.Security.Claims;
+using WoodenAutomative.Domain.Dtos.Request.Authorization;
 using WoodenAutomative.Domain.Dtos.Request.OTP;
+using WoodenAutomative.Domain.Dtos.Request.Password;
+using WoodenAutomative.EntityFramework.Interfaces.Services;
 
 namespace WoodenAutomative.Controllers
 {
