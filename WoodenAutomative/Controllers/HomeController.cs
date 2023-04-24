@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using WoodenAutomative.Domain.Dtos.Request.ChangePassword;
 using WoodenAutomative.Domain.Dtos.Request.Login;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
+
 using WoodenAutomative.EntityFramework.Services;
 
 namespace WoodenAutomative.Controllers
@@ -71,5 +73,28 @@ namespace WoodenAutomative.Controllers
             await _loginService.GetUpdatedUserClaims(this.HttpContext);
             return RedirectToAction("UpdateProfile", "Home");
         }
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordRequest changePasswordRequest)
+        {
+            var user = User as ClaimsPrincipal;
+            var claimsIdentity = user.Identity as ClaimsIdentity;
+            var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            var status = await _userService.ChangePassword(claimName.Value, changePasswordRequest);
+            if (status == true)
+                _notyf.Success("Password is successfully updated");
+            else
+                _notyf.Warning("Failed to update the password. Please make sure you have entered the correct information.");
+
+            return RedirectToAction("ChangePassword", "Home");
+        }
+
     }
 }
