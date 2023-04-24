@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WoodenAutomative.Domain.Dtos.Request.ChangePassword;
 using WoodenAutomative.Domain.Dtos.Request.Login;
 using WoodenAutomative.Domain.Dtos.Response.Login;
 
@@ -22,5 +23,11 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
         /// </summary>
         /// <param name="id">Get Details of current login users request parameter</param>
         public Task<UserProfileResponse> GetDetailsOfLoginUser(string id);
+
+
+        ///
+
+        public Task<bool> ChangePassword(string userId, ChangePasswordRequest changePasswordRequest);
+
     }
 }
