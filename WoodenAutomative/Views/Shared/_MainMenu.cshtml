@@ -18,7 +18,7 @@
                     <i class="nav-icon ti ti-rocket"></i><span class="nav-title">Dashboard</span>
                 </a>
             </li>
-            @if (CurrentUserAccessor.Role != RoleAuthenticate.StoreAdmin || CurrentUserAccessor.Role != RoleAuthenticate.Advisor || CurrentUserAccessor.Role != RoleAuthenticate.DealerGroupAdmin)
+            @if (CurrentUserAccessor.Role != RoleAuthenticate.Distributor && CurrentUserAccessor.Role != RoleAuthenticate.Distributor && CurrentUserAccessor.Role != RoleAuthenticate.Advisor && CurrentUserAccessor.Role != RoleAuthenticate.DealerGroupAdmin && CurrentUserAccessor.Role != RoleAuthenticate.StoreAdmin)
             {
                 <li class="active">
                     <a href="" aria-expanded="false">
@@ -26,15 +26,15 @@
                     </a>
                 </li>
             }
-            @if (CurrentUserAccessor.Role != RoleAuthenticate.StoreAdmin || CurrentUserAccessor.Role != RoleAuthenticate.Advisor)
+            @if ((CurrentUserAccessor.Role != RoleAuthenticate.DealerGroupAdmin) && (CurrentUserAccessor.Role != RoleAuthenticate.StoreAdmin) && (CurrentUserAccessor.Role != RoleAuthenticate.Advisor))
             {
                 <li class="active">
                     <a href="" aria-expanded="false">
                         <i class="fa fa-flask"></i><span class="nav-title">Dealers</span>
-                </a>
-            </li>
+                    </a>
+                </li>
             }
-            @if (CurrentUserAccessor.Role != RoleAuthenticate.Advisor)
+            @if ((CurrentUserAccessor.Role != RoleAuthenticate.Advisor) && (CurrentUserAccessor.Role == RoleAuthenticate.StoreAdmin))
             {
                 <li class="active">
                     <a href="" aria-expanded="false">
@@ -42,11 +42,15 @@
                 </a>
             </li>
             }
+            @if ((CurrentUserAccessor.Role !=  RoleAuthenticate.Advisor))
+            {
                 <li class="active">
                     <a href="" aria-expanded="false">
                     <i class="fa fa-envelope-square"></i><span class="nav-title">Advisor</span>
                 </a>
             </li>
+            
+            }
         </ul>
     </div>
     <!-- end sidebar-nav -->

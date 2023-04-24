@@ -50,7 +50,7 @@ namespace WoodenAutomative.EntityFramework.Services
                     var roleNames = await _userManager.GetRolesAsync(user);
 
                     ClaimsIdentity identity = new ClaimsIdentity(
-                                    this.GetUserClaims(user, "WACAdmin"),
+                                    this.GetUserClaims(user, roleNames[0].ToString()),
                                     CookieAuthenticationDefaults.AuthenticationScheme);
 
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
