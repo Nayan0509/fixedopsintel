@@ -60,8 +60,10 @@ namespace WoodenAutomative.Controllers
         
         public async Task<IActionResult> Verification()
         {
-                ViewData["ErrorMsg"] = null;
-                return View();
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var email = claimsIdentity.FindFirst(ClaimTypes.Email).Value;
+            ViewBag.Email= email.Substring(0, 3) + new string('*', email.Length - 6) + email.Substring(email.Length - 3, 3);
+            return View();
         }
 
         [HttpPost]
@@ -116,6 +118,7 @@ namespace WoodenAutomative.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
             var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
                 var status =await _emailRepository.SendEmailOTP(claimName.Value);
                 if(status)
                 {
