@@ -26,7 +26,6 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
 
 
         ///
-
         public Task<bool> ChangePassword(string userId, ChangePasswordRequest changePasswordRequest);
 
     }

@@ -19,5 +19,7 @@ namespace WoodenAutomative.Domain.Dtos.Response.Login
         public string PhoneNumber { get; set; }
 
         public string ModifiedBy { get; set; }
+
+        public DateTime? LastPasswordModifiedDate { get; set; }
     }
 }

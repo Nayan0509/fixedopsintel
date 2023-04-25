@@ -3,10 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Net.Http;
 using System.Security.Claims;
-using System.Security.Principal;
 using WoodenAutomative.Domain.Dtos.Request.Login;
 using WoodenAutomative.Domain.Models;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
@@ -43,32 +40,31 @@ namespace WoodenAutomative.EntityFramework.Services
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginRequest.Email &&
                                                                     u.IsActive == true &&
                                                                     u.IsDeleted == false);
-                //var result = await _signInManager.CheckPasswordSignInAsync(user, loginRequest.Password, true);
-                var result = _userManager.PasswordHasher.VerifyHashedPassword(user,user.PasswordHash, loginRequest.Password);
-                if (result.ToString().Contains("Success"))
+                if(user != null)
                 {
-                    var roleNames = await _userManager.GetRolesAsync(user);
+                    var result = _userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, loginRequest.Password);
+                    if (result.ToString().Contains("Success"))
+                    {
+                        var roleNames = await _userManager.GetRolesAsync(user);
 
-                    ClaimsIdentity identity = new ClaimsIdentity(
-                                    this.GetUserClaims(user, roleNames[0].ToString()),
-                                    CookieAuthenticationDefaults.AuthenticationScheme);
-
-                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-                    await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                    if (user.LastPasswordModifiedDate == null || user.LastPasswordModifiedDate.Value.AddDays(60) <= DateTime.Now)
-                    {
-                        return LoginStatus.SetNewPassword;
+                        ClaimsIdentity identity = new ClaimsIdentity(
+                                        this.GetUserClaims(user, roleNames[0].ToString()),
+                                        CookieAuthenticationDefaults.AuthenticationScheme);
+                     
+                        ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                        await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                        if (user.LastPasswordModifiedDate == null || user.LastPasswordModifiedDate.Value.AddDays(60) <= DateTime.Now)
+                        {
+                            return LoginStatus.SetNewPassword;
+                        }
+                        else if (!user.EmailConfirmed && !user.PhoneNumberConfirmed)
+                        {
+                            return LoginStatus.SelectAuthorizationType;
+                        }
+                        return LoginStatus.Succeeded;
                     }
-                    else if(!user.EmailConfirmed)
-                    {
-                        return LoginStatus.EmailVerification;
-                    }
-                    else if(!user.PhoneNumberConfirmed)
-                    {
-                        return LoginStatus.MobileVerification;
-                    }
-                    return LoginStatus.Succeeded;
                 }
+                
                 return LoginStatus.Failed;
             }
             catch (Exception ex)
@@ -118,6 +114,6 @@ namespace WoodenAutomative.EntityFramework.Services
 
             return claims;
         }
-
+        
     }
 }

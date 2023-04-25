@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using WoodenAutomative.Domain.Dtos.Request.Login;
+using WoodenAutomative.Domain.Dtos.Request.Password;
 using WoodenAutomative.Domain.Dtos.Response.Login;
 using WoodenAutomative.Domain.Models;
 
@@ -32,5 +33,7 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
         /// </summary>
         /// <param name="httpContext">HttpContext</param>
         public Task<bool> GetUpdatedUserClaims(HttpContext httpContext);
+
+        public Task<bool> SetPassword(SetPasswordRequest setPasswordRequest);
     }
 }

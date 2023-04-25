@@ -7,6 +7,7 @@
         SetNewPassword,
         UpdatePassword,
         EmailVerification,
-        MobileVerification
+        MobileVerification,
+        SelectAuthorizationType
     }
 }

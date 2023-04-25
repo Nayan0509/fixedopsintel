@@ -34,6 +34,8 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Email*</label>
                                                          @Html.TextBoxFor(m => m.Email , new { id = "email", @class = "form-control", @placeholder = "Enter Your Email" })
+                                                        <span id="emailError" class="text-danger"></span>
+
                                                     </div>
                                                 </div>
                                                  <div class="col-md-12">
@@ -43,6 +45,8 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Password*</label>
                                                         @Html.PasswordFor(m => m.Password, new { id = "password", @class = "form-control", @placeholder = "Password", @style = "margin-bottom:14px !important;" })
+                                            <span id="passwordError" class="text-danger"></span>
+
                                                     </div>
                                                 </div>
                                                  <div class="col-md-12">
@@ -50,7 +54,7 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="d-block d-sm-flex  align-items-center">
-                                                        <a href="javascript:void(0);" class="ml-auto">Forgot Password ?</a>
+                                            <a href="ForgotPassword" class="ml-auto">Forgot Password ?</a>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 mt-3">
@@ -75,46 +79,37 @@
             <!--end login contant-->
 @section Scripts{
     <script>
-        const loginModel = document.querySelector('#login-form');
+        $("form").submit(function () {
+            $("#emailError").text("");
+            $("#passwordError").text("");
 
-        loginModel.addEventListener('submit', function (event) {
             var email = $("#email").val();
             var password = $("#password").val();
 
-            // Prevent the form from submitting
-            event.preventDefault();
-
-            // Get the form data
-            const formData = new FormData(loginModel);
-
-            // Validate the form data
-            if (email === "" && password === "") {
-                var x = document.getElementById("snackbar");
-                x.className = "show";
-                x.innerHTML = "please enter Email Address and Password";
-                setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
-                return;
+            if (email == "" && password == "") {
+                $("#emailError").text("Email is Required");
+                $("#passwordError").text("Password is Required");
+                return false;
             }
-            else if (email === "") {
-                var x = document.getElementById("snackbar");
-                x.className = "show";
-                x.innerHTML = "please enter Email Address";
-                setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
-                return;
+            else if (email == "") {
+                $("#emailError").text("Email is Required");
+                return false;
             }
-            else if (password === "") {
-                var x = document.getElementById("snackbar");
-                x.className = "show";
-                x.innerHTML = "please enter Password";
-                setTimeout(function () { x.className = x.className.replace("show", ""); }, 1000);
-                return;
+            else if (password == "") {
+                $("#passwordError").text("Password is Required");
+                return false;
             }
-
-            // Submit the form
-            loginModel.submit();
+            else {
+                $("#passwordError").text(""); // Clear the password error message
+            }
         });
 
-        $(document).ready(function () {
+        $("#email").on("input", function () {
+            $("#emailError").text("");
+        });
+
+        $("#password").on("input", function () {
+            $("#passwordError").text("");
         });
     </script>
 }

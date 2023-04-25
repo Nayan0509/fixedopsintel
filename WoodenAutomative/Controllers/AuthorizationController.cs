@@ -34,15 +34,15 @@ namespace WoodenAutomative.Controllers
 
         public async Task<IActionResult> SetNewPassword()
         {
-            try
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
+            var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await _userService.GetDetailsOfLoginUser(claimName.Value);
+            if (user != null && user.LastPasswordModifiedDate == null)
             {
-                ViewData["ErrorMsg"] = null;
                 return View();
             }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            return RedirectToAction("Index", "Home");
         }
         
         public async Task<IActionResult> SelectAuthorizationType()
@@ -97,6 +97,11 @@ namespace WoodenAutomative.Controllers
             }
             else if(authorizationTypeRequest.AuthorizationType.Contains("MobileNo"))
             {
+                var status = await _emailRepository.SendMobileOTP(claimName.Value);
+                if (status)
+                {
+                    return RedirectToAction("Verification");
+                }
                 return View();
             }
             else
@@ -153,13 +158,17 @@ namespace WoodenAutomative.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                else { return View(); }
+                else {
+                    
+                    return View(); 
+                }
             }
             else
             {
                 return View();
             }
         }
+
 
     }
 }
