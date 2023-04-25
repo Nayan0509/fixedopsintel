@@ -88,7 +88,11 @@
     <script src="~/assets/js/vendors.js"></script>
     <!-- custom app -->
     <script src="~/assets/js/app.js"></script>
+    <!-- jQuery -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @await Component.InvokeAsync("Notyf")
-    @await RenderSectionAsync("scripts", required: false)
+
+    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
