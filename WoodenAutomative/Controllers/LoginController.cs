@@ -134,7 +134,8 @@ namespace WoodenAutomative.Controllers
                 var status = await _unitOfWork.Email.VerifyOTPForforgotpassword(oTPRequest.Email, otpValue);
                 if (status)
                 {
-                    return View("");
+                    ViewBag.Email = oTPRequest.Email;
+                    return RedirectToAction("SetPassword", new { email = oTPRequest.Email });
                 }
                 else
                 {
@@ -148,23 +149,25 @@ namespace WoodenAutomative.Controllers
             }
         }
 
-        public IActionResult SetPassword()
+        public IActionResult SetPassword(string email)
         {
+            ViewBag.Email = email;
             return View() ;
         }
 
         [HttpPost]
-        public IActionResult SetPassword(SetPasswordRequest setPasswordRequest)
+        public async Task<IActionResult> SetPassword(SetForgotPasswordRequest setPasswordRequest)
         {
-            var status = true;
+            var status =await _unitOfWork.Login.SetPassword(setPasswordRequest);
             if (status)
             {
                 _notyf.Success("Password change Successfully");
-                return RedirectToAction("SelectAuthorizationType");
+                return RedirectToAction("Index","Home");
             }
             else
             {
-                return View("SavePassword");
+                _notyf.Error("Password not changed");
+                return View("SetPassword");
             }
         }
     }

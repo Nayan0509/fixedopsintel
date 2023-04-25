@@ -34,6 +34,6 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
         /// <param name="httpContext">HttpContext</param>
         public Task<bool> GetUpdatedUserClaims(HttpContext httpContext);
 
-        public Task<bool> SetPassword(SetPasswordRequest setPasswordRequest);
+        public Task<bool> SetPassword(SetForgotPasswordRequest setPasswordRequest);
     }
 }

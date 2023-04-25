@@ -159,8 +159,8 @@ namespace WoodenAutomative.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 else {
-                    
-                    return View(); 
+                    _notyf.Error("Please enter valid OTP !!");
+                    return View("Verification");
                 }
             }
             else

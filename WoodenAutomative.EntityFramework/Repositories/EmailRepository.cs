@@ -37,7 +37,7 @@ namespace WoodenAutomative.EntityFramework.Repositories
                 try
                 {
                     var emailMessage = new MimeMessage();
-                    MailboxAddress emailFrom = new MailboxAddress("woodenAutomative", "trackgaddireports1@gmail.com");
+                    MailboxAddress emailFrom = new MailboxAddress("Fixed Ops Intel", "admin@fixedopsintel.com");
                     emailMessage.From.Add(emailFrom);
                     MailboxAddress emailTo = MailboxAddress.Parse(emailData.EmailToId);
                     emailMessage.To.Add(emailTo);
@@ -45,8 +45,8 @@ namespace WoodenAutomative.EntityFramework.Repositories
 
                     emailMessage.Body = new TextPart(TextFormat.Html) { Text = emailData.EmailBody };
 
-                    emailClient.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                    emailClient.Authenticate("trackgaddireports1@gmail.com", "txqrdkvxwrduspwy");
+                    emailClient.Connect("register-imap-oxcs.hostingplatform.com", 587, SecureSocketOptions.StartTls);
+                    emailClient.Authenticate("admin@fixedopsintel.com", "@GGiany202020");
                     emailClient.Send(emailMessage);
 
                     return true;
@@ -76,7 +76,7 @@ namespace WoodenAutomative.EntityFramework.Repositories
             emailData.EmailSubject = "test";
 
             string otpValue = new Random().Next(100000, 999999).ToString();
-            emailData.EmailBody = "Your OTP Number is " + otpValue + " ( Sent By : WoodenAutomative )";
+            emailData.EmailBody = "Your OTP Number is " + otpValue ;
             await InsertOTP(user.Email, "Email", otpValue);
             var status=SendEmail(emailData);
             return status;

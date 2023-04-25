@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using WoodenAutomative.Domain.Dtos.Request.Login;
+using WoodenAutomative.Domain.Dtos.Request.Password;
 using WoodenAutomative.Domain.Models;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
 
@@ -114,6 +115,21 @@ namespace WoodenAutomative.EntityFramework.Services
 
             return claims;
         }
-        
+
+        public async Task<bool> SetPassword(SetForgotPasswordRequest setPasswordRequest)
+        {
+            var status = false;
+            if (setPasswordRequest == null)
+                throw new ArgumentNullException(nameof(setPasswordRequest));
+
+                ApplicationUser user = await _context.Users.Where(x => x.Email == setPasswordRequest.Email).FirstOrDefaultAsync();
+            if (user != null)
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, setPasswordRequest.Password);
+                user.SecurityStamp = Guid.NewGuid().ToString();
+                user.LastPasswordModifiedDate = DateTime.Now;
+                var result = await _context.SaveChangesAsync();
+                status = result > 0 ? true : false;
+            return status;
+        }
     }
 }
