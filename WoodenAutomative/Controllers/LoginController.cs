@@ -1,14 +1,11 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using System.Security.Claims;
 using WoodenAutomative.Domain.Dtos.Request.Login;
 using WoodenAutomative.Domain.Dtos.Request.OTP;
 using WoodenAutomative.Domain.Dtos.Request.Password;
 using WoodenAutomative.Domain.Models;
 using WoodenAutomative.EntityFramework;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
-using WoodenAutomative.EntityFramework.Repositories;
 
 namespace WoodenAutomative.Controllers
 {
@@ -53,6 +50,10 @@ namespace WoodenAutomative.Controllers
                     else if(regStatus == LoginStatus.SetNewPassword)
                     {
                         return RedirectToAction("SetNewPassword", "Authorization");
+                    }
+                    else if(regStatus == LoginStatus.EmailVerification)
+                    {
+                        return RedirectToAction("SendOTPonEmail", "Authorization");
                     }
                     else if(regStatus == LoginStatus.SelectAuthorizationType)
                     {
