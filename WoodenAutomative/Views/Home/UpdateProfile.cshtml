@@ -1,33 +1,10 @@
 ﻿@using WoodenAutomative.Domain.Dtos.Request.Login
 @model UserProfileRequest
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Update Profile";
 }
 <!-- begin container-fluid -->
 <div class="container-fluid">
-    <!-- begin row -->
-    <div class="row">
-        <div class="col-md-12 m-b-30">
-            <!-- begin page title -->
-            <div class="d-block d-sm-flex flex-nowrap align-items-center">
-                <div class="ml-auto d-flex align-items-center">
-                    <nav>
-                        <ol class="breadcrumb p-0 m-b-0">
-                            <li class="breadcrumb-item">
-                                <a href="~/Home/index"><i class="ti ti-home"></i></a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                Home
-                            </li>
-                            <li class="breadcrumb-item active text-primary" aria-current="page">Update Profile</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <!-- end page title -->
-        </div>
-    </div>
-    <!-- end row -->
     <!-- begin row -->
     <div class="row">
         <div class="col-md-12">
@@ -62,7 +39,6 @@
                             @Html.LabelFor(model => model.Email, new { @class="col-sm-2 col-form-label" })
                             <div class="col-sm-4">
                                 @Html.TextBoxFor(model => model.Email , new { @class="form-control" })
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                 <span id="emailError" class="text-danger"></span>
                             </div>
                         </div>
@@ -100,7 +76,7 @@
                 var lastname = $("#LastName").val();
                 var email = $("#Email").val();
                 var phoneNumber = $("#PhoneNumber").val();
-                if (firstname == "" || lastname == "" || email == "" || phoneNumber == "" || phoneNumber.length > 10) {
+                if (firstname == "" || lastname == "" || email == "" || phoneNumber == "" || phoneNumber.length != 10) {
                     if (firstname == "") {
                         $("#firstNameError").text("First Name is Required");
                     }
@@ -113,8 +89,8 @@
                     if (phoneNumber == "") {
                         $("#phoneNumberError").text("Mobile Number is Required");
                     }
-                    if (phoneNumber.length > 10) {
-                        $("#phoneNumberError").text("Only 10 digit Mobile Number is Required");
+                    if (phoneNumber.length != 10) {
+                        $("#phoneNumberError").text("10 digit Mobile Number is Required");
                     }
                     return false;
                 }

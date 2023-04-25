@@ -17697,10 +17697,11 @@ ol.breadcrumb {
     margin: 0
 }
 
-.top-bar .navbar .nav-right .nav-item.user-name{
-    padding: .9em 0;
+.top-bar .navbar .nav-right .nav-item.user-name {
+    padding: 1.5em 0px;
     position: relative;
-    width:80px;
+    width: 250px;
+    text-align: right !important;
 }
 
 .top-bar .navbar .nav-right .nav-item.user-profile {
@@ -18462,7 +18463,8 @@ ol.breadcrumb {
             }
 
         .app-navbar .sidebar-nav ul.metismenu li.active a {
-            color: #fff
+            color: #fff ;
+            background-color: #191a23;
         }
 
             .app-navbar .sidebar-nav ul.metismenu li.active a i {
