@@ -114,6 +114,7 @@ namespace WoodenAutomative.EntityFramework.Repositories
                                     .Options))
                 {
                     var user = await co.Users.FindAsync(userId);
+                if (user == null) return false;
                     var vaildOTP = await co.OTP.Where(x => x.AuthorizeFor == user.Email && x.OTPNumber == otp && x.ValidTill > DateTime.Now && x.IsVerify == false).FirstOrDefaultAsync();
                     if (vaildOTP != null)
                     {
@@ -264,6 +265,7 @@ namespace WoodenAutomative.EntityFramework.Repositories
                                 .Options))
             {
                 var user = await db.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
+                if(user == null) return false;
                 var vaildOTP = await db.OTP.Where(x => x.AuthorizeFor == user.Email && x.OTPNumber == otp && x.ValidTill > DateTime.Now && x.IsVerify == false).FirstOrDefaultAsync();
                 if (vaildOTP != null)
                 {
