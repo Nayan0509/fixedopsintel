@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using WoodenAutomative.Domain.Dtos.Request.ChangePassword;
+using WoodenAutomative.Domain.Dtos.Request.Distributor;
 using WoodenAutomative.Domain.Dtos.Request.Login;
+using WoodenAutomative.Domain.Dtos.Response.Distributor;
 using WoodenAutomative.Domain.Dtos.Response.Login;
 
 namespace WoodenAutomative.EntityFramework.Interfaces.Services
@@ -15,7 +12,7 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
         /// <summary>
         /// Update profile
         /// </summary>
-        /// <param name="userProfileRequest">Mofidy user profile request parameter</param>
+        /// <param name="userProfileRequest">Modify user profile request parameter</param>
         public Task<bool> ModifyUserProfile(UserProfileRequest userProfileRequest);
 
         /// <summary>
@@ -24,9 +21,17 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
         /// <param name="id">Get Details of current login users request parameter</param>
         public Task<UserProfileResponse> GetDetailsOfLoginUser(string id);
 
-
-        ///
+        /// <summary>
+        /// Change password
+        /// </summary>
+        /// <param name="userId">Id of user</param>
+        /// <param name="changePasswordRequest">Request param for users</param>
         public Task<bool> ChangePassword(string userId, ChangePasswordRequest changePasswordRequest);
 
+        /// <summary>
+        /// Get List of Distributor data
+        /// </summary>
+        /// <param name="distributorListRequest">Request param for users</param>
+        public Task<DistributorListResponse> GetDistributorList(DistributorListRequest distributorListRequest);
     }
 }

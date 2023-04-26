@@ -1,0 +1,148 @@
+﻿@{
+    ViewData["Title"] = "Distributor";
+}
+<!-- begin container-fluid -->
+<div class="container-fluid">
+    <!-- begin row -->
+    <div class="row">
+        <div class="col-md-12 m-b-30">
+            <!-- begin page title -->
+            <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                <div class="page-title mb-2 mb-sm-0">
+                    <h1>Distributor</h1>
+                </div>
+            </div>
+            <!-- end page title -->
+        </div>
+    </div>
+    <!-- end row -->
+    <!-- begin row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="datatable-wrapper table-responsive">
+                        <table class="reportTable table table-striped jambo_table bulk_action">
+                            <thead>
+                                <tr class="headings">
+                                    <th class="column-title">User Name</th>
+                                    <th class="column-title">Product Distributor</th>
+                                    <th class="column-title">Distributor</th>
+                                    <th class="column-title">Territory</th>
+                                    <th class="column-title">Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+</div>
+<!-- end container-fluid -->
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            leftSideMenuActive();
+            bindData();
+        });
+
+        function leftSideMenuActive() {
+            $("ul.metismenu li:eq(2)").addClass("active");
+        }
+
+        function bindData() {
+            var sr =1;
+            $(".reportTable").DataTable().destroy();
+            
+            $(".reportTable").on('error.dt', function (e, settings, techNote, message) {
+                alert("Something went wrong. Please try again !!");
+            }).DataTable({
+                "dom": 'Rrftlip',
+                "order": [[2, 'desc']],
+                "responsive": true,
+                "autoWidth": false,
+                "language": {
+                    //"processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw text-primary" style="text-decoration:none"></i>',
+                    "search": "",
+                    "searchPlaceholder": "Search"
+                },
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "ordering": true,
+                "lengthMenu": [[10, 25, 50, 100, 300, 500, 1000], [10, 25, 50, 100, 300, 500, 1000]],
+
+                "ajax": {
+                    "url": "/Distributor/GetDistributorList",
+                    "type": "POST",
+                    "data": { "Name":"sd" },
+                    "datatype": "json",
+                    "error": function (jqXHR, textStatus, error) {
+                        if (jqXHR.status == 401)
+                            location.reload();
+                    }
+                },
+                "columns": [ {
+                        "data": "username",
+                        "name": "UserName",
+                        "render": function (data, type, full, meta) {
+                            return data;
+                        }
+                    }, {
+                        "data": "productDistributor",
+                        "name": "ProductDistributor",
+                        "render": function (data, type, full, meta) {
+                            return data;
+                        }
+                    }, {
+                        "data": "distributorName",
+                        "name": "DistributorName",
+                        "render": function (data, type, full, meta) {
+                            return data;
+                        }
+                    }, {
+                        "data": "territoryName",
+                        "name": "TerritoryName",
+                        "render": function (data, type, full, meta) {
+                            return data;
+                        }
+                    }, {
+                        "data": "id",
+                        "name": "ID",
+                        "render": function (data, type, full, meta) {
+                        return " <a href = ''>Edit</a> &nbsp;|&nbsp; <a href=javascript:void(0); onclick=deleteConfirm('')>Delete</a>";
+                        }
+                    }
+                ],
+                "columnDefs": [
+                    {
+                        "targets": [0],
+                        "orderable": true,
+                        "searchable": true
+                    },
+                    {
+                        "targets": [1],
+                        "orderable": true,
+                        "searchable": true
+                    },
+                    {
+                        "targets": [2],
+                        "orderable": true,
+                        "searchable": true
+                    },
+                    {
+                        "targets": [3],
+                        "orderable": true,
+                        "searchable": true
+                    },
+                    {
+                        "targets": [4],
+                        "orderable": false,
+                        "searchable": false
+                    }
+                ]
+            });
+        }
+    </script>
+}
