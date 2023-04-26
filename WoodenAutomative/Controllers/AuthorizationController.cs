@@ -32,6 +32,21 @@ namespace WoodenAutomative.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> SavePassword(SetPasswordRequest setPasswordRequest)
+        {
+            var status = await _authorization.SetPassword(setPasswordRequest);
+            if (status)
+            {
+                _notyf.Success("Password change Successfully");
+                return RedirectToAction("SelectAuthorizationType");
+            }
+            else
+            {
+                return View("SavePassword");
+            }
+        }
+
         public async Task<IActionResult> SetNewPassword()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -57,30 +72,7 @@ namespace WoodenAutomative.Controllers
                 throw;
             }
         }
-        
-        public async Task<IActionResult> Verification()
-        {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var email = claimsIdentity.FindFirst(ClaimTypes.Email).Value;
-            ViewBag.Email= email.Substring(0, 3) + new string('*', email.Length - 6) + email.Substring(email.Length - 3, 3);
-            return View();
-        }
 
-        [HttpPost]
-        public async Task<IActionResult> SavePassword(SetPasswordRequest setPasswordRequest)
-        {
-                var status=await _authorization.SetPassword(setPasswordRequest);  
-                if(status)
-                {
-                    _notyf.Success("Password change Successfully");
-                    return RedirectToAction("SelectAuthorizationType");
-                }
-                else
-                {
-                    return View("SavePassword");
-                }
-        }
-        
         [HttpPost]
         public async Task<IActionResult> SendOTP(AuthorizationTypeRequest authorizationTypeRequest)
         {
@@ -90,20 +82,24 @@ namespace WoodenAutomative.Controllers
 
             if (authorizationTypeRequest.AuthorizationType.Contains("Email"))
             {
-                var status =await _emailRepository.SendEmailOTP(claimName.Value);
-                if(status)
+                var status = await _emailRepository.SendEmailOTP(claimName.Value);
+                if (status)
                 {
+                    _notyf.Error("OTP send successfully !!");
                     return RedirectToAction("Verification");
                 }
+                _notyf.Error("Failed to send OTP !!");
                 return View();
             }
-            else if(authorizationTypeRequest.AuthorizationType.Contains("MobileNo"))
+            else if (authorizationTypeRequest.AuthorizationType.Contains("MobileNo"))
             {
                 var status = await _emailRepository.SendMobileOTP(claimName.Value);
                 if (status)
                 {
+                    _notyf.Error("OTP send successfully !!");
                     return RedirectToAction("Verification");
                 }
+                _notyf.Error("Failed to send OTP !!");
                 return View();
             }
             else
@@ -111,7 +107,15 @@ namespace WoodenAutomative.Controllers
                 return View();
             }
         }
-        
+
+        public async Task<IActionResult> Verification()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var email = claimsIdentity.FindFirst(ClaimTypes.Email).Value;
+            ViewBag.Email= email.Substring(0, 3) + new string('*', email.Length - 6) + email.Substring(email.Length - 3, 3);
+            return View();
+        }
+
         [HttpGet]
         public async Task<IActionResult> SendOTPonEmail()
         {
@@ -119,26 +123,30 @@ namespace WoodenAutomative.Controllers
             var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
             var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-                var status =await _emailRepository.SendEmailOTP(claimName.Value);
-                if(status)
-                {
-                    return RedirectToAction("Verification");
-                }
-                return View();
-        } 
-        
+            var status = await _emailRepository.SendEmailOTP(claimName.Value);
+            if (status)
+            {
+                _notyf.Error("OTP send successfully !!");
+                return RedirectToAction("Verification");
+            }
+            _notyf.Error("Failed to send OTP !!");
+            return View();
+        }
+
         [HttpGet]
         public async Task<IActionResult> SendOTPonMobile()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
             var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-                var status =await _emailRepository.SendMobileOTP(claimName.Value);
-                if(status)
-                {
-                    return RedirectToAction("Verification");
-                }
-                return View();
+            var status = await _emailRepository.SendMobileOTP(claimName.Value);
+            if (status)
+            {
+                _notyf.Error("OTP send successfully !!");
+                return RedirectToAction("Verification");
+            }
+            _notyf.Error("Failed to send OTP !!");
+            return View();
         }
         
         [HttpPost]

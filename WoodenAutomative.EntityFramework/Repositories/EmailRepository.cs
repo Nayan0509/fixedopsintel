@@ -8,6 +8,8 @@ using MimeKit.Text;
 using System.Net;
 using System.Text;
 using System.Web;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
 using WoodenAutomative.Domain.Dtos.Request.Email;
 using WoodenAutomative.Domain.Models;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
@@ -129,106 +131,29 @@ namespace WoodenAutomative.EntityFramework.Repositories
 
         public async Task<bool> SendMobileOTP(string userId)
         {
-            string otpValue = new Random().Next(100000, 999999).ToString();
-            string message = "Your OTP Number is " + otpValue + " ( Sent By : TrackGaddi )";
-
-            SendSmsViaNewAPI(message, "7878548818");
-            //try
-            //{
-            //    var user = await _userManager.FindByIdAsync(userId);
-            //    // Your Twilio account SID and auth token from twilio.com/console
-            //    string accountSid = "AC6c46d01370a2958f1340596417d7f3dc";
-            //    string authToken = "7641a191ac254b8508cf572fb1e9d4c8";
-            //    string otpValue = new Random().Next(100000, 999999).ToString();
-            //    TwilioClient.Init(accountSid, authToken);
-
-            //    var service = ServiceResource.Create(friendlyName: "My Verify Service");
-
-            //    var verification = VerificationResource.Create(
-            //                        to: "+16076383751",
-            //                        channel: "sms",
-            //                        pathServiceSid: service.AccountSid
-            //                    );
-
-            //    var verificationCheck = VerificationCheckResource.Create(
-            //        to: user.PhoneNumber,
-            //        code: "123456",
-            //        pathServiceSid: service.Sid
-            //    );
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
-
-            throw new NotImplementedException();
-        }
-
-       
-        public string SendSmsViaNewAPI(string message, string mobileNumber)
-        {
-            string returnString = string.Empty;
-
             try
             {
-                string baseSendSMSUri = "http://sms.onlinebusinessbazaar.in/api/mt/SendSMS?";
-                string senderId = "VTRACK";
-                string userName = "wellwin";
-                string password = "sms123";
-                string channel = "trans";
-                string smsDCS = "0";
-                string flashsms = "0";
-                string route = "1";
+                var user = await _userManager.FindByIdAsync(userId);
 
-                string messageText = HttpUtility.UrlEncode(message);
+                string accountSid = "AC6c46d01370a2958f1340596417d7f3dc";
+                string authToken = "7641a191ac254b8508cf572fb1e9d4c8";
+                string otpValue = new Random().Next(100000, 999999).ToString();
+                TwilioClient.Init(accountSid, authToken);
 
-                // Prepare send SMS API Uri
-                StringBuilder sendSMSUri = new StringBuilder();
-                sendSMSUri.Append(baseSendSMSUri);
-                sendSMSUri.AppendFormat("user={0}", userName);
-                sendSMSUri.AppendFormat("&password={0}", password);
-                sendSMSUri.AppendFormat("&senderid={0}", senderId);
-                sendSMSUri.AppendFormat("&channel={0}", channel);
-                sendSMSUri.AppendFormat("&DCS={0}", smsDCS);
-                sendSMSUri.AppendFormat("&flashsms={0}", flashsms);
-                sendSMSUri.AppendFormat("&number={0}", mobileNumber);
-                sendSMSUri.AppendFormat("&text={0}", message);
-                sendSMSUri.AppendFormat("&route={0}", route);
-
-                HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(sendSMSUri.ToString());
-                UTF8Encoding encoding = new UTF8Encoding();
-
-                httpWReq.Method = "GET";
-                httpWReq.ContentType = "application/x-www-form-urlencoded";
-
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                string responseString = reader.ReadToEnd();
-
-                reader.Close();
-                response.Close();
-
-                returnString = responseString;
-
-                dynamic stuff = Newtonsoft.Json.JsonConvert.DeserializeObject(returnString);
-                int errorCode = Convert.ToInt32(stuff.ErrorCode.ToString());
-
-                if (errorCode == 0)
-                    return "Success.";
-                else
-                    return "Failure - " + returnString;
-
-            }
-            catch (SystemException ex)
-            {
-                returnString = ex.ToString();
+                var message = MessageResource.Create(
+                    body: "Hello from C#",
+                    from: new Twilio.Types.PhoneNumber("18776294572"),
+                    to: new Twilio.Types.PhoneNumber("917878548818")
+                );
+                return true;
             }
             catch (Exception ex)
             {
-                returnString = ex.ToString();
+                Console.WriteLine(ex.Message);
+                return false;
             }
-            return returnString;
         }
+
         public async Task<bool> SendEmailOTPForForgotpassword(string email)
         {
             try
