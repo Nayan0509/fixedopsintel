@@ -45,10 +45,10 @@ namespace WoodenAutomative.Controllers
                     var regStatus = await _unitOfWork.Login.SignIn(this.HttpContext, loginRequest);
                     if (regStatus == LoginStatus.Failed)
                     {
-                        _notyf.Warning("Please enter valid Username / Password. !!");
+                        TempData["Invalid"]="Please enter valid Username / Password.";
                     }
                     else if(regStatus == LoginStatus.SetNewPassword)
-                    {
+                    { 
                         return RedirectToAction("SetNewPassword", "Authorization");
                     }
                     else if(regStatus == LoginStatus.EmailVerification)
@@ -101,10 +101,10 @@ namespace WoodenAutomative.Controllers
             {
                 ViewBag.DisplayEmail = email.Substring(0, 3) + new string('*', email.Length - 6) + email.Substring(email.Length - 3, 3);
                 ViewBag.Email = email;
-                _notyf.Success("OTP Send successfully !!");
+                _notyf.Success("OTP Sent successfully !!");
                 return View("Verification");
             }
-            _notyf.Error("OTP Send Failed !!");
+            _notyf.Error("OTP Sent Failed !!");
             return View("Verification");
         }
 
@@ -118,7 +118,7 @@ namespace WoodenAutomative.Controllers
             {
                 return View();
             }
-            _notyf.Error("Please enter valid Email !!");
+            TempData["EmailInvalid"]= "Please enter a valid email address";
             return View("ForgotPassword");
         }
 
