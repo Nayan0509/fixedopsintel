@@ -109,6 +109,7 @@ namespace WoodenAutomative.EntityFramework.Services
             claims.Add(new Claim(ClaimTypes.Email, user.Email ?? ""));
             claims.Add(new Claim(ClaimTypes.Uri, value: user.LastName ?? ""));
             claims.Add(new Claim(ClaimTypes.Role, roles));
+            claims.Add(new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? ""));
             claims.Add(new Claim("SecurityStamp", user.SecurityStamp));
             claims.Add(new Claim("IsEmailverify",user.EmailConfirmed.ToString() ?? ""));
             claims.Add(new Claim("IsMobileVerify", user.PhoneNumberConfirmed.ToString() ?? ""));
@@ -124,11 +125,13 @@ namespace WoodenAutomative.EntityFramework.Services
 
                 ApplicationUser user = await _context.Users.Where(x => x.Email == setPasswordRequest.Email).FirstOrDefaultAsync();
             if (user != null)
+            {
                 user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, setPasswordRequest.Password);
                 user.SecurityStamp = Guid.NewGuid().ToString();
                 user.LastPasswordModifiedDate = DateTime.Now;
                 var result = await _context.SaveChangesAsync();
                 status = result > 0 ? true : false;
+            }
             return status;
         }
     }

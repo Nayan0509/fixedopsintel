@@ -140,6 +140,7 @@ namespace WoodenAutomative.Controllers
                 }
                 else
                 {
+                    ViewBag.Email = oTPRequest.Email;
                     _notyf.Error("Please enter valid OTP !!");
                     return View("Verification");
                 }
