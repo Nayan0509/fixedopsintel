@@ -99,6 +99,7 @@ namespace WoodenAutomative.Controllers
             var status = await _unitOfWork.Email.SendEmailOTPForForgotpassword(email);
             if(status)
             {
+                ViewBag.DisplayEmail = email.Substring(0, 3) + new string('*', email.Length - 6) + email.Substring(email.Length - 3, 3);
                 ViewBag.Email = email;
                 _notyf.Success("OTP Send successfully !!");
                 return View("Verification");
@@ -141,6 +142,7 @@ namespace WoodenAutomative.Controllers
                 }
                 else
                 {
+                    ViewBag.DisplayEmail = oTPRequest.Email.Substring(0, 3) + new string('*', oTPRequest.Email.Length - 6) + oTPRequest.Email.Substring(oTPRequest.Email.Length - 3, 3);
                     ViewBag.Email = oTPRequest.Email;
                     _notyf.Error("Please enter valid OTP !!");
                     return View("Verification");
@@ -154,7 +156,8 @@ namespace WoodenAutomative.Controllers
 
         public IActionResult SetPassword(string email)
         {
-            ViewBag.Email = email;
+                ViewBag.DisplayEmail = email.Substring(0, 3) + new string('*', email.Length - 6) + email.Substring(email.Length - 3, 3);
+                ViewBag.Email = email;
             return View() ;
         }
 
