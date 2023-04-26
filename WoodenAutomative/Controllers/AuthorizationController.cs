@@ -85,6 +85,7 @@ namespace WoodenAutomative.Controllers
                 var status = await _emailRepository.SendEmailOTP(claimName.Value);
                 if (status)
                 {
+                    TempData["authorizationType"] = "Email";
                     _notyf.Error("OTP send successfully !!");
                     return RedirectToAction("Verification");
                 }
@@ -96,6 +97,7 @@ namespace WoodenAutomative.Controllers
                 var status = await _emailRepository.SendMobileOTP(claimName.Value);
                 if (status)
                 {
+                    TempData["authorizationType"] = "Mobile";
                     _notyf.Error("OTP send successfully !!");
                     return RedirectToAction("Verification");
                 }
@@ -110,9 +112,22 @@ namespace WoodenAutomative.Controllers
 
         public async Task<IActionResult> Verification()
         {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var email = claimsIdentity.FindFirst(ClaimTypes.Email).Value;
-            ViewBag.Email= email.Substring(0, 3) + new string('*', email.Length - 6) + email.Substring(email.Length - 3, 3);
+            var type = TempData["authorizationType"];
+            if (type != null && Convert.ToString(type) == "Mobile")
+            {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var mobileno = claimsIdentity.FindFirst(ClaimTypes.MobilePhone).Value;
+                ViewBag.Type = mobileno.Substring(0, 2) + new string('*', mobileno.Length - 4) + mobileno.Substring(mobileno.Length - 2, 2);
+                ViewBag.Resendurl = "SendOTPonMobile";
+                TempData["authorizationType"] = "Mobile";
+            }
+            else
+            {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var email = claimsIdentity.FindFirst(ClaimTypes.Email).Value;
+                ViewBag.Type = email.Substring(0, 3) + new string('*', email.Length - 6) + email.Substring(email.Length - 3, 3);
+                ViewBag.Resendurl = "SendOTPonEmail";
+            }
             return View();
         }
 
