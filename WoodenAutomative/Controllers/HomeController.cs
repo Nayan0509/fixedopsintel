@@ -95,6 +95,5 @@ namespace WoodenAutomative.Controllers
 
             return RedirectToAction("ChangePassword", "Home");
         }
-
     }
 }

@@ -54,3 +54,14 @@
     <!-- end dashboard contant -->
 </div>
 <!-- end container-fluid -->
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            leftSideMenuActive();
+        });
+
+        function leftSideMenuActive() {
+            $("ul.metismenu li:eq(1)").addClass("active");
+        }
+    </script>
+}

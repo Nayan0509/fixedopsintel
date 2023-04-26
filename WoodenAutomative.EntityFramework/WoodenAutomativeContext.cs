@@ -11,10 +11,14 @@ namespace WoodenAutomative.EntityFramework
             { }
 
         public DbSet<otp> OTP { get; set; }
+        public DbSet<Distributor> Distributors { get; set; }
+        public DbSet<DistributorAdmin> DistributorAdmins { get; set; }
+        public DbSet<Territory> Territories { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
             {
-                base.OnModelCreating(builder);
-                                builder.Entity<ApplicationUser>()
+            base.OnModelCreating(builder);
+            //.OnDelete(DeleteBehavior.Cascade)
+            builder.Entity<ApplicationUser>()
                                                                 .Ignore(u => u.AccessFailedCount);      
                                 builder.Entity<ApplicationUser>()
                                                                 .Ignore(u => u.ConcurrencyStamp);   
@@ -32,6 +36,7 @@ namespace WoodenAutomative.EntityFramework
                                                                 .Ignore(u => u.TwoFactorEnabled);    
                                 builder.Entity<ApplicationUser>()
                                                                 .Ignore(u => u.UserName);
-            }
+
+        }
         }
 }
