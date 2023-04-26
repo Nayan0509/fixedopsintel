@@ -110,7 +110,7 @@ namespace WoodenAutomative.Controllers
         [HttpPost]
         public async Task<IActionResult> Verification(ForgotPassword forgotPassword)
         {
-            ViewBag.Email = forgotPassword.EmailAddress;
+            ViewBag.Email = forgotPassword.EmailAddress.Substring(0, 3) + new string('*', forgotPassword.EmailAddress.Length - 6) + forgotPassword.EmailAddress.Substring(forgotPassword.EmailAddress.Length - 3, 3);
             var status =await _unitOfWork.Email.SendEmailOTPForForgotpassword(forgotPassword.EmailAddress);
             if(status)
             {

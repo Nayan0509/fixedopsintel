@@ -96,3 +96,6 @@
 /WoodenAutomative/WoodenAutomative.csproj.user
 *.config
 *.txt
+/WoodenAutomative.DB/obj/Debug/net6.0/WoodenAutomative.DB.assets.cache
+/WoodenAutomative.DB/obj/Debug/net6.0/WoodenAutomative.DB.csproj.AssemblyReference.cache
+/WoodenAutomative.DB/obj/Debug/net6.0/WoodenAutomative.DB.GeneratedMSBuildEditorConfig.editorconfig
