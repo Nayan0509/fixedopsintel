@@ -95,3 +95,4 @@
 /WoodenAutomative.EntityFramework/obj/Release/net6.0
 /WoodenAutomative/WoodenAutomative.csproj.user
 *.config
+*.txt

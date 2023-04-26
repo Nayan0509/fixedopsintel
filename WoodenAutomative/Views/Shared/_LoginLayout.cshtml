@@ -9,18 +9,24 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/assets/css/vendors.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
-@*    <link rel="stylesheet" href="~/WoodenAutomative.styles.css" asp-append-version="true" />*@
+
+    <style>
+        .notyf-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+    </style>
 </head>
 <body class="bg-white">
     <!-- begin app -->
     <div class="app">
         <!-- begin app-wrap -->
         <div class="app-wrap">
-        <main role="main" class="pb-3">
-            @RenderBody()
-
-                <div id="snackbar"></div>
-        </main>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
     </div>
     <script src="~/assets/js/vendors.js"></script>

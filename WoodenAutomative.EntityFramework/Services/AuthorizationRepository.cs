@@ -51,6 +51,7 @@ namespace WoodenAutomative.EntityFramework.Services
                     ApplicationUser user = await db.Users.FindAsync(claimName.Value);
                     user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, setPasswordRequest.Password);
                     user.SecurityStamp = Guid.NewGuid().ToString();
+                    user.LastPasswordModifiedDate = DateTime.Now;
                     var result = await db.SaveChangesAsync();
                     status = result > 0 ? true : false;
                 }

@@ -73,7 +73,8 @@ namespace WoodenAutomative.EntityFramework.Services
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 PhoneNumber = user.PhoneNumber,
-                Email = user.Email
+                Email = user.Email,
+                LastPasswordModifiedDate= user.LastPasswordModifiedDate,
             };
         }
        

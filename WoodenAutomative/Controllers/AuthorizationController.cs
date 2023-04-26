@@ -34,15 +34,15 @@ namespace WoodenAutomative.Controllers
 
         public async Task<IActionResult> SetNewPassword()
         {
-            try
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
+            var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await _userService.GetDetailsOfLoginUser(claimName.Value);
+            if (user != null && user.LastPasswordModifiedDate == null)
             {
-                ViewData["ErrorMsg"] = null;
                 return View();
             }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            return RedirectToAction("Index", "Home");
         }
         
         public async Task<IActionResult> SelectAuthorizationType()
@@ -60,8 +60,10 @@ namespace WoodenAutomative.Controllers
         
         public async Task<IActionResult> Verification()
         {
-                ViewData["ErrorMsg"] = null;
-                return View();
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var email = claimsIdentity.FindFirst(ClaimTypes.Email).Value;
+            ViewBag.Email= email.Substring(0, 3) + new string('*', email.Length - 6) + email.Substring(email.Length - 3, 3);
+            return View();
         }
 
         [HttpPost]
@@ -97,6 +99,11 @@ namespace WoodenAutomative.Controllers
             }
             else if(authorizationTypeRequest.AuthorizationType.Contains("MobileNo"))
             {
+                var status = await _emailRepository.SendMobileOTP(claimName.Value);
+                if (status)
+                {
+                    return RedirectToAction("Verification");
+                }
                 return View();
             }
             else
@@ -111,6 +118,7 @@ namespace WoodenAutomative.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.Role);
             var claimName = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
                 var status =await _emailRepository.SendEmailOTP(claimName.Value);
                 if(status)
                 {
@@ -153,13 +161,17 @@ namespace WoodenAutomative.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                else { return View(); }
+                else {
+                    _notyf.Error("Please enter valid OTP !!");
+                    return View("Verification");
+                }
             }
             else
             {
                 return View();
             }
         }
+
 
     }
 }

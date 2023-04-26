@@ -1,6 +1,8 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using WoodenAutomative.Domain.Dtos.Request.Login;
+using WoodenAutomative.Domain.Dtos.Request.OTP;
+using WoodenAutomative.Domain.Dtos.Request.Password;
 using WoodenAutomative.Domain.Models;
 using WoodenAutomative.EntityFramework;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
@@ -9,21 +11,14 @@ namespace WoodenAutomative.Controllers
 {
     public class LoginController : Controller
     {
-
-        private readonly WoodenAutomativeContext _context;
-        private readonly ILoginService _loginService;
-        private readonly IEmailRepository _emailRepository;
         private readonly INotyfService _notyf;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public LoginController(ILoginService loginService,
-            IEmailRepository emailRepository, 
-                               WoodenAutomativeContext context,
-                               INotyfService notyf)
+        public LoginController(INotyfService notyf,
+                               IUnitOfWork unitOfWork)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
-            _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
             _notyf = notyf ?? throw new ArgumentNullException(nameof(notyf));
-            _emailRepository= emailRepository ?? throw new ArgumentNullException(nameof(_emailRepository));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         public async Task<IActionResult> Index()
@@ -47,7 +42,7 @@ namespace WoodenAutomative.Controllers
                 if (!string.IsNullOrWhiteSpace(loginRequest.Email) && !string.IsNullOrWhiteSpace(loginRequest.Password))
                 {
 
-                    var regStatus = await _loginService.SignIn(this.HttpContext, loginRequest);
+                    var regStatus = await _unitOfWork.Login.SignIn(this.HttpContext, loginRequest);
                     if (regStatus == LoginStatus.Failed)
                     {
                         _notyf.Warning("Please enter valid Username / Password. !!");
@@ -60,9 +55,9 @@ namespace WoodenAutomative.Controllers
                     {
                         return RedirectToAction("SendOTPonEmail", "Authorization");
                     }
-                    else if(regStatus == LoginStatus.MobileVerification)
+                    else if(regStatus == LoginStatus.SelectAuthorizationType)
                     {
-                        return RedirectToAction("SendOTPonMobile", "Authorization");
+                        return RedirectToAction("SelectAuthorizationType", "Authorization");
                     }
                     else
                     {
@@ -83,13 +78,97 @@ namespace WoodenAutomative.Controllers
         {
             try
             {
-                _loginService.SignOut(this.HttpContext);
+                _unitOfWork.Login.SignOut(this.HttpContext);
                 return RedirectToAction("Index", "Login");
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.ToString());
                 throw;
+            }
+        }
+
+        public async Task<IActionResult> ForgotPassword()
+        {
+            return View();
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> ReSendOTP(string email)
+        {
+            var status = await _unitOfWork.Email.SendEmailOTPForForgotpassword(email);
+            if(status)
+            {
+                ViewBag.Email = email;
+                _notyf.Success("OTP Send successfully !!");
+                return View("Verification");
+            }
+            _notyf.Error("OTP Send Failed !!");
+            return View("Verification");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Verification(ForgotPassword forgotPassword)
+        {
+            ViewBag.Email = forgotPassword.EmailAddress;
+            var status =await _unitOfWork.Email.SendEmailOTPForForgotpassword(forgotPassword.EmailAddress);
+            if(status)
+            {
+                return View();
+            }
+            _notyf.Error("Please enter valid Email !!");
+            return View("ForgotPassword");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> VerifyOTP(ForgotPasswordOTPRequest oTPRequest)
+        {
+            if (oTPRequest != null)
+            {
+                string otpValue = string.Concat(oTPRequest.Digit1,
+                                                oTPRequest.Digit2,
+                                                oTPRequest.Digit3,
+                                                oTPRequest.Digit4,
+                                                oTPRequest.Digit5,
+                                                oTPRequest.Digit6);
+
+                var status = await _unitOfWork.Email.VerifyOTPForforgotpassword(oTPRequest.Email, otpValue);
+                if (status)
+                {
+                    ViewBag.Email = oTPRequest.Email;
+                    return RedirectToAction("SetPassword", new { email = oTPRequest.Email });
+                }
+                else
+                {
+                    _notyf.Error("Please enter valid OTP !!");
+                    return View("Verification");
+                }
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        public IActionResult SetPassword(string email)
+        {
+            ViewBag.Email = email;
+            return View() ;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SetPassword(SetForgotPasswordRequest setPasswordRequest)
+        {
+            var status =await _unitOfWork.Login.SetPassword(setPasswordRequest);
+            if (status)
+            {
+                _notyf.Success("Password change Successfully");
+                return RedirectToAction("Index","Home");
+            }
+            else
+            {
+                _notyf.Error("Password not changed");
+                return View("SetPassword");
             }
         }
     }

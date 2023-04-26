@@ -1,4 +1,4 @@
-﻿@model WoodenAutomative.Domain.Dtos.Request.OTP.OTPRequest
+﻿@model WoodenAutomative.Domain.Dtos.Request.OTP.ForgotPasswordOTPRequest
 @{
     ViewData["Title"] = "Set New Password";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
@@ -47,18 +47,19 @@
                                                 <div class="col-sm-9">
 
                                                     <div class="otp-input pull-right">
-                                                        <input type="text" name="digit1" maxlength="1" onkeydown="return isNumberKey(event)" required/>
+                                                        <input type="text" name="digit1" maxlength="1" onkeydown="return isNumberKey(event)" required />
                                                         <input type="text" name="digit2" maxlength="1" onkeydown="return isNumberKey(event)" required />
                                                         <input type="text" name="digit3" maxlength="1" onkeydown="return isNumberKey(event)" required />
                                                         <input type="text" name="digit4" maxlength="1" onkeydown="return isNumberKey(event)" required />
                                                         <input type="text" name="digit5" maxlength="1" onkeydown="return isNumberKey(event)" required />
                                                         <input type="text" name="digit6" maxlength="1" onkeydown="return isNumberKey(event)" required />
+                                                        <input type="hidden" name="Email" value="@ViewBag.Email" />
 
                                                     </div>
                                                     <div class="d-block d-sm-flex  pull-right">
-                                                        <a href="SendOTPonEmail" class="ml-auto text-white">Resend OTP</a>
+                                                        <a href="ReSendOTP?email=@ViewBag.Email" class="ml-auto text-white">Resend OTP</a>
                                                     </div>
-                                                    <br/>
+                                                    <br />
                                                     <div class="form-check">
                                                         <button type="submit" class="btn btn-inverse-light pull-left" id="save">
                                                             Verify OTP
