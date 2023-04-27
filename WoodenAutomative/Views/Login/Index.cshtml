@@ -20,20 +20,22 @@
             <div class="app-contant">
                 <div class="bg-white">
                     <div class="container-fluid p-0">
-                        <div class="row no-gutters">
+            <div class="row no-gutters  bg-gradient">
                             <div class="col-sm-6 col-lg-5 col-xxl-3  align-self-center order-2 order-sm-1">
                                 <div class="d-flex align-items-center h-100-vh">
                                     <div class="login p-50">
-                                        <h1 class="mb-2">Fixed Ops Intel</h1>
-                                        <p>Welcome back, please login to your account.</p>
+                            <h1 class="mb-2">
+                                <img src="/assets/img/logo.png" style="width: 400px;" />
+                            </h1>
+                            <p class=" text-white">Welcome back, please login to your account.</p>
                             <div class="error">@TempData["ErrorMsg"]</div>
                                 <form method="post" role="form" class="form-horizontal" id="login-form">
                                 @Html.AntiForgeryToken()
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label class="control-label" id="lblemail">Email <span class="text-danger">*</span></label>
-                                                         @Html.TextBoxFor(m => m.Email , new { id = "email", @class = "form-control", @placeholder = "Enter Your Email" })
+                                                        <label class="control-label  text-white" id="lblemail">Email <span class="text-danger">*</span></label>
+                                            @Html.TextBoxFor(m => m.Email , new { id = "email", @class = "form-control", @placeholder = "Enter Your Email" ,@style = "margin-bottom:15px !important;"})
                                                         <span id="emailError" class="text-danger"></span>
 
                                                     </div>
@@ -43,7 +45,7 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                            <label class="control-label" id="lblpassword">Password <span class="text-danger">*</span></label>
+                                            <label class="control-label  text-white" id="lblpassword">Password <span class="text-danger">*</span></label>
                                                         @Html.PasswordFor(m => m.Password, new { id = "password", @class = "form-control", @placeholder = "Password", @style = "margin-bottom:14px !important;" })
                                             <span id="passwordError" class="text-danger"></span>
 
@@ -54,7 +56,7 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="d-block d-sm-flex  align-items-center">
-                                            <a href="~/Login/ForgotPassword" class="ml-auto">Forgot Password ?</a>
+                                            <a href="~/Login/ForgotPassword" class="ml-auto  text-white">Forgot Password ?</a>
                                                     </div>
                                                 </div> 
                                                 <div class="col-12">
@@ -70,7 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-xxl-9 col-lg-7 bg-gradient o-hidden order-1 order-sm-2">
+                            <div class="col-sm-6 col-xxl-9 col-lg-7 o-hidden order-1 order-sm-2">
                                 <div class="row align-items-center h-100">
                                     <div class="col-7 mx-auto ">
                                         <img class="img-fluid" src="~/assets/img/bg/login.svg" alt="">
