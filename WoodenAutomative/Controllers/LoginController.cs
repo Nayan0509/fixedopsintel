@@ -94,16 +94,19 @@ namespace WoodenAutomative.Controllers
         }
         
         [HttpGet]
-        public async Task<IActionResult> ReSendOTP(string email)
+        public async Task<IActionResult> ReSendOTP()
         {
+            var email = Convert.ToString(TempData["email"]);
             var status = await _unitOfWork.Email.SendEmailOTPForForgotpassword(email);
             if(status)
             {
                 ViewBag.DisplayEmail = email.Substring(0, 3) + new string('*', email.Length - 6) + email.Substring(email.Length - 3, 3);
                 ViewBag.Email = email;
+                TempData["email"] = email;
                 _notyf.Success("OTP Sent successfully !!");
                 return View("Verification");
             }
+            TempData["email"] = email;
             _notyf.Error("OTP Sent Failed !!");
             return View("Verification");
         }
@@ -113,6 +116,7 @@ namespace WoodenAutomative.Controllers
         {
             ViewBag.DisplayEmail = forgotPassword.EmailAddress.Substring(0, 3) + new string('*', forgotPassword.EmailAddress.Length - 6) + forgotPassword.EmailAddress.Substring(forgotPassword.EmailAddress.Length - 3, 3);
             ViewBag.Email = forgotPassword.EmailAddress;
+            TempData["email"]= forgotPassword.EmailAddress;
             var status =await _unitOfWork.Email.SendEmailOTPForForgotpassword(forgotPassword.EmailAddress);
             if(status)
             {
@@ -144,7 +148,7 @@ namespace WoodenAutomative.Controllers
                 {
                     ViewBag.DisplayEmail = oTPRequest.Email.Substring(0, 3) + new string('*', oTPRequest.Email.Length - 6) + oTPRequest.Email.Substring(oTPRequest.Email.Length - 3, 3);
                     ViewBag.Email = oTPRequest.Email;
-                    _notyf.Error("Please enter valid OTP !!");
+                    TempData["verificationError"]="Please enter valid OTP !!";
                     return View("Verification");
                 }
             }
