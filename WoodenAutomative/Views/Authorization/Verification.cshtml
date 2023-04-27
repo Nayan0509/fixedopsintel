@@ -44,7 +44,7 @@
                                         </h4>
                                         <div class="col-md-7 mx-auto">
                                             <form class="px-5 mt-3" id="otp" action="VerifyOTP" method="post">
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-11">
 
                                                     <div class="otp-input">
                                                         <input type="text" name="digit1" maxlength="1" onkeydown="return isNumberKey(event)" required/>
@@ -55,17 +55,18 @@
                                                         <input type="text" name="digit6" maxlength="1" onkeydown="return isNumberKey(event)" required />
 
                                                     </div>
-                                                    <div class="d-block d-sm-flex">
-                                                            <a href="@TempData["Resendurl"]" class="ml-auto text-white">Resend OTP</a>
+                                                    
+                                                    <div class="d-block d-md-flex">
+                                                            <a href="@TempData["Resendurl"]" class="ml-auto text-white pt-2 mr-2">Resend OTP</a>
                                                     </div>
                                                         <div class="text-danger">
                                                             @TempData["verificationError"]
                                                         </div>
-                                                    <div class="form-check">
-                                                        <button type="submit" class="btn btn-inverse-light" id="save">
+                                                    <div>
+                                                        <button type="submit" class="btn btn-success font-weight-bold text-uppercase pt-2" id="save">
                                                             Verify OTP
                                                         </button>
-                                                    </div>
+                                                            </div>
                                                 </div>
                                             </form>
 
