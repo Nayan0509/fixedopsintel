@@ -40,7 +40,7 @@
                                     <!-- newsletter -->
                                     <div class="row no-gutters" id="setPassword">
                                         <h4 class="text-white font-weight-normal">
-                                            Please enter OTP which has been sent to @ViewBag.Type
+                                                Please enter OTP which has been sent to @TempData["Type"]
                                         </h4>
                                         <div class="col-md-7 mx-auto">
                                             <form class="px-5 mt-3" id="otp" action="VerifyOTP" method="post">
@@ -56,8 +56,11 @@
 
                                                     </div>
                                                     <div class="d-block d-sm-flex">
-                                                        <a href="@ViewBag.Resendurl" class="ml-auto text-white">Resend OTP</a>
+                                                            <a href="@TempData["Resendurl"]" class="ml-auto text-white">Resend OTP</a>
                                                     </div>
+                                                        <div class="text-danger">
+                                                            @TempData["verificationError"]
+                                                        </div>
                                                     <div class="form-check">
                                                         <button type="submit" class="btn btn-inverse-light" id="save">
                                                             Verify OTP
