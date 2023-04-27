@@ -57,8 +57,11 @@
 
                                                     </div>
                                                     <div class="d-block d-sm-flex ">
-                                                        <a href="ReSendOTP?email=@ViewBag.Email" class="ml-auto text-white">Resend OTP</a>
+                                                        <a href="ReSendOTP" class="ml-auto text-white">Resend OTP</a>
                                                     </div>
+                                                        <div class="text-danger">
+                                                            @TempData["verificationError"]
+                                                        </div>
                                                     <div class="form-check">
                                                         <button type="submit" class="btn btn-inverse-light pull-left" id="save">
                                                             Verify OTP
