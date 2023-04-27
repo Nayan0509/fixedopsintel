@@ -86,7 +86,7 @@ namespace WoodenAutomative.Controllers
                 if (status)
                 {
                     TempData["authorizationType"] = "Email";
-                    _notyf.Error("OTP send successfully !!");
+                    _notyf.Success("OTP send successfully !!");
                     return RedirectToAction("Verification");
                 }
                 _notyf.Error("Failed to send OTP !!");
@@ -98,7 +98,7 @@ namespace WoodenAutomative.Controllers
                 if (status)
                 {
                     TempData["authorizationType"] = "Mobile";
-                    _notyf.Error("OTP send successfully !!");
+                    _notyf.Success("OTP send successfully !!");
                     return RedirectToAction("Verification");
                 }
                 _notyf.Error("Failed to send OTP !!");
@@ -117,16 +117,16 @@ namespace WoodenAutomative.Controllers
             {
                 var claimsIdentity = (ClaimsIdentity)User.Identity;
                 var mobileno = claimsIdentity.FindFirst(ClaimTypes.MobilePhone).Value;
-                ViewBag.Type = mobileno.Substring(0, 2) + new string('*', mobileno.Length - 4) + mobileno.Substring(mobileno.Length - 2, 2);
-                ViewBag.Resendurl = "SendOTPonMobile";
+                TempData["Type"] = mobileno.Substring(0, 2) + new string('*', mobileno.Length - 4) + mobileno.Substring(mobileno.Length - 2, 2);
+                TempData["Resendurl"] = "SendOTPonMobile";
                 TempData["authorizationType"] = "Mobile";
             }
             else
             {
                 var claimsIdentity = (ClaimsIdentity)User.Identity;
                 var email = claimsIdentity.FindFirst(ClaimTypes.Email).Value;
-                ViewBag.Type = email.Substring(0, 3) + new string('*', email.Length - 6) + email.Substring(email.Length - 3, 3);
-                ViewBag.Resendurl = "SendOTPonEmail";
+                TempData["Type"] = email.Substring(0, 3) + new string('*', email.Length - 6) + email.Substring(email.Length - 3, 3);
+                TempData["Resendurl"] = "SendOTPonEmail";
             }
             return View();
         }
@@ -141,10 +141,10 @@ namespace WoodenAutomative.Controllers
             var status = await _emailRepository.SendEmailOTP(claimName.Value);
             if (status)
             {
-                _notyf.Error("OTP send successfully !!");
+                _notyf.Success("OTP send successfully !!");
                 return RedirectToAction("Verification");
             }
-            _notyf.Error("Failed to send OTP !!");
+            TempData["verificationError"]="Failed to send OTP !!";
             return View();
         }
 
@@ -157,7 +157,7 @@ namespace WoodenAutomative.Controllers
             var status = await _emailRepository.SendMobileOTP(claimName.Value);
             if (status)
             {
-                _notyf.Error("OTP send successfully !!");
+                _notyf.Success("OTP send successfully !!");
                 return RedirectToAction("Verification");
             }
             _notyf.Error("Failed to send OTP !!");
@@ -185,8 +185,8 @@ namespace WoodenAutomative.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 else {
-                    _notyf.Error("Please enter valid OTP !!");
-                    return View("Verification");
+                    TempData["verificationError"]="Please enter valid OTP !!";
+                    return RedirectToAction("Verification");
                 }
             }
             else
