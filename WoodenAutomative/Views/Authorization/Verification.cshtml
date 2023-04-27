@@ -31,7 +31,9 @@
     <div class="bg-white comingsoon">
         <div class="container-fluid p-0">
             <div class="row no-gutters">
-                <div class="col-lg-6 align-self-center bg-gradient">
+                <div class="col-lg-12 align-self-center bg-gradient">
+                    <div class="row no-gutters">
+                        <div class="col-lg-6">
                     <div class="d-flex align-items-center h-100-vh">
                         <div class="comingsoon-wrap w-100">
                             <div class="row no-gutters align-items-center justify-content-center">
@@ -63,7 +65,7 @@
                                                             @TempData["verificationError"]
                                                         </div>
                                                     <div>
-                                                        <button type="submit" class="btn btn-success font-weight-bold text-uppercase pt-2" id="save">
+                                                            <button type="submit" class="btn btn-primary text-uppercase font-bold pt-2" id="save">
                                                             Verify OTP
                                                         </button>
                                                             </div>
@@ -79,10 +81,13 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+                        <div class="col-lg-6 align-self-end">
+                            <img class="img-fluid" src="~/assets/img/bg/coming-soon-bg.svg" alt="">
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-6 align-self-end">
-                    <img class="img-fluid" src="~/assets/img/bg/coming-soon-bg.svg" alt="">
-                </div>
+
             </div>
         </div>
     </div>
