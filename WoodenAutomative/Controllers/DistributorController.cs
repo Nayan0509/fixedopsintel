@@ -38,7 +38,7 @@ namespace WoodenAutomative.Controllers
             return View();
         }
 
-        public IActionResult AddDistributor()
+        public async Task<IActionResult> AddDistributor()
         {
             return View();
         }
@@ -48,9 +48,10 @@ namespace WoodenAutomative.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _distributorService.AddDistributorData(distributorRequest);
+                var result = await _distributorService.AddDistributorData(distributorRequest);
+                if (result == true)
+                    _notyf.Success("Distributor added successfully ");
                 ModelState.Clear();
-                _notyf.Success("Distributor is successfully Added");
                 return View();
             }
             return View(distributorRequest);
@@ -62,7 +63,6 @@ namespace WoodenAutomative.Controllers
             try
             {
                 var data = await _distributorService.GetDistributorList(distributorListRequest);
-
                 return Json(new { draw = distributorListRequest.Draw, 
                     recordsFiltered = data.TotalRecords, 
                     recordsTotal = data.TotalRecords, 
@@ -73,7 +73,22 @@ namespace WoodenAutomative.Controllers
             {
                 throw;
             }
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> AddUser(UserRequest userRequest)
+        {
+            try
+            {
+                var status = await _distributorService.AddUsersData(userRequest);
+                if (status == true)
+                    _notyf.Success("User added successfully");
+                return RedirectToAction("AddDistributor","Distributor");
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

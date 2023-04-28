@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using WoodenAutomative.Domain.Dtos.Request.Distributor;
 using WoodenAutomative.Domain.Dtos.Response.Distributor;
@@ -102,10 +103,10 @@ namespace WoodenAutomative.EntityFramework.Services
                 }
                 switch (sortOrder)
                 {
-                    case "FIRSTNAME_DESC":
+                    case "USERNAME_DESC":
                         result = result.OrderByDescending(c => c.FirstName).ToList();
                         break;
-                    case "FIRSTNAME_ASC":
+                    case "USERNAME_ASC":
                         result = result.OrderBy(c => c.FirstName).ToList();
                         break;
                     case "DISTRIBUTORNAME_DESC":
@@ -154,10 +155,9 @@ namespace WoodenAutomative.EntityFramework.Services
             #endregion
         }
 
-        public async Task<DistributorListResponse> AddDistributorData(DistributorRequest distributorRequest)
+        public async Task<bool> AddDistributorData(DistributorRequest distributorRequest)
         {
             #region declare field
-            DistributorListResponse distributorListResponse;
             Distributor distributor;
 
             #endregion
@@ -184,25 +184,84 @@ namespace WoodenAutomative.EntityFramework.Services
             };
             var result = await _context.Distributors.AddAsync(distributor);
             var status = await _context.SaveChangesAsync(); 
-            //List<DistributorDetailsResponse> distributorDetailsResponses = result.Select(p => new DistributorDetailsResponse()
-            //{
-            //    DistributorName = p.DistributorName,
-            //    ProductDistributor = p.ProductDistributor,
-            //    Username = p.FirstName,
-            //    TerritoryName = p.TerritoryName,
-            //    Id = p.Id
-            //}).ToList();
             #endregion
 
             #region response
-            distributorListResponse = new DistributorListResponse()
-            {
-                //DistributorDetails = distributorDetailsResponses,
-                //TotalRecords = totalRecords
-            };
-            return distributorListResponse;
+            return status > 0 ? true : false ;
             #endregion
         }
+        public async Task<bool> AddUsersData(UserRequest userRequest)
+        {
+            #region declare field
+            DistributorListResponse distributorListResponse;
+            DistributorAdmin distributor;
+            ApplicationUser applicationUser;
+            #endregion
+
+            #region logic define
+            if (userRequest == null)
+                throw new ArgumentNullException(nameof(userRequest));
+
+            applicationUser = new ApplicationUser()
+            {
+                FirstName = userRequest.FirstName,
+                LastName = userRequest.LastName,
+                PhoneNumber = userRequest.MobileNo,
+                Email = userRequest.Email,
+                PasswordHash = "AQAAAAEAACcQAAAAEIjzJkjwZKYY8QgCwviAXc206p//bXVJqutkLYWXBbZQL0QDQuR368+VCFzp6UmICQ==",
+                LastLoginTime = DateTime.Now,
+                LastPasswordModifiedDate = DateTime.Now,
+                EmailConfirmed = true,
+                CreatedBy = userRequest.FirstName,
+                CreatedDate = DateTime.Now,
+                ModifiedBy = userRequest.FirstName,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            };
+
+            distributor = new DistributorAdmin()
+            {
+                DistributorId = 1,
+                TerritoryId = userRequest.Territory,
+                UserId = applicationUser.Id,
+                CreatedBy = userRequest.FirstName,
+                CreatedDate = DateTime.Now,
+                ModifiedBy = userRequest.FirstName,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            };
+            await _context.Users.AddAsync(applicationUser);
+            await _context.DistributorAdmins.AddAsync(distributor);
+            var status = await _context.SaveChangesAsync();
+            #endregion
+
+            #region response
+            return status > 0 ? true : false;
+            #endregion
+        }
+
+        public async Task<List<TerritoryResponse>> GetAllTerritory()
+        {
+            try
+            {
+                List<TerritoryResponse> territoryResponses;
+                var territories = await _context.Territories.ToListAsync();
+                territoryResponses = territories.Select(t => new TerritoryResponse()
+                {
+                    TerritoryName = t.TerritoryName,
+                    TerritoryID = t.Id
+
+                }).ToList();
+                return territoryResponses;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         #endregion
     }
 }

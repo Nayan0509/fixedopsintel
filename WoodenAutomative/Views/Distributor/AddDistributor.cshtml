@@ -3,15 +3,26 @@
 @{
     ViewData["Title"] = "Add Distributor";
 }
+
 <style type="text/css">
     .dataTables_wrapper .dataTables_filter input {
         padding: 8px !important;
+    }
+
+    .add-User{
+        float: right;
+        position: relative;
+        margin-top: -210px;
+    }
+
+    .dataTables_filter label input{
+        margin-right: 100px;
     }
 </style>
 
 <!-- begin container-fluid -->
 <div class="container-fluid">
-    @using (Html.BeginForm("AddDistributor","Distributor",FormMethod.Post))
+    @using (Html.BeginForm("AddDistributor", "Distributor", FormMethod.Post, new { id = "addDistributorForm" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
@@ -105,10 +116,15 @@
         <!-- end row -->
     }
 </div>
+
+@await Component.InvokeAsync("User")
+
 <!-- end container-fluid -->
 @section Scripts{
     <script>
         $(document).ready(function () {
+            $(".datatable-wrapper").append('<button type="reset" class="btn btn-primary add-User" data-toggle="modal" data-target="#addUser">Add User</button>');
+
             $("#distributorNameError").text("");
             $("#distributorAddressError").text("");
             $("#distributorCityError").text("");
@@ -118,14 +134,18 @@
             $("#productDistributorError").text("");
 
             leftSideMenuActive();
+            
             bindData();
-            $('#DistributorZipCode').keypress(function (e) {
+            
+            componentData();
+
+            $("#DistributorZipCode,#Mobileno").keypress(function (e) {
                 var charCode = (e.which) ? e.which : event.keyCode
                 if (String.fromCharCode(charCode).match(/[^0-9]/g))
                     return false;
             });
 
-            $("form").submit(function () {
+            $("#addDistributorForm").submit(function () {
                 $("#distributorNameError").text("");
                 $("#distributorAddressError").text("");
                 $("#distributorCityError").text("");
@@ -170,12 +190,12 @@
                 }
             });
 
-                    $("#confirm_allData").click(function () {
-                        $("form").submit(function(){
+            $("#confirm_allData").click(function () {
+                $("form").submit(function(){
 
-                        });
-                        return true;
-                    });
+                });
+                return true;
+            });
         });
 
         function leftSideMenuActive() {
@@ -273,11 +293,52 @@
                     }
                 ]
             });
-        } 
-        
-        function redirect(event) {
-            
-            //if (!confirm("Are you sure")) event.preventDefault();
         }
+
+        function componentData() {
+
+            $("#firstNameError").text("");
+            $("#lastNameError").text("");
+            $("#emailError").text("");
+            $("#mobilenoError").text("");
+            $("#territoryError").text("");
+
+            $("#addUserDetails").submit(function () {
+                $("#firstNameError").text("");
+                $("#lastNameError").text("");
+                $("#emailError").text("");
+                $("#mobilenoError").text("");
+                $("#territoryError").text("");
+
+                var firstName = $("#FirstName").val();
+                var lastName = $("#LastName").val();
+                var email = $("#Email").val();
+                var mobileNo = $("#Mobileno").val();
+                var territory = $("#Territory").val();
+
+                if (firstName == "" || lastName == "" || email == "" || mobileNo == "" || mobileNo.length != 10 || territory == 0) {
+                    if (firstName == "") {
+                        $("#firstNameError").text("First Name is Required");
+                    }
+                    if (lastName == "") {
+                        $("#lastNameError").text("Last Name is Required");
+                    }
+                    if (email == "") {
+                        $("#emailError").text("Email ID is Required");
+                    }
+                    if (mobileNo.length != 10) {
+                        $("#mobilenoError").text("10 digit Mobile Number is Required");
+                    }
+                    if (mobileNo == "") {
+                        $("#mobilenoError").text("Mobile Number is Required");
+                    }
+                    if (territory == 0) {
+                        $("#territoryError").text("Please select at least one territory");
+                    }
+                    return false;
+                }
+            });
+        }
+
     </script>
 }

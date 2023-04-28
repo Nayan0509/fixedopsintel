@@ -20,6 +20,17 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
         /// Add Distributor data
         /// </summary>
         /// <param name="distributorRequest">Request param for users</param>
-        public Task<DistributorListResponse> AddDistributorData(DistributorRequest distributorRequest);
+        public Task<bool> AddDistributorData(DistributorRequest distributorRequest);
+
+        /// <summary>
+        /// Add users data
+        /// </summary>
+        /// <param name="distributorRequest">Request param for users</param>
+        public Task<bool> AddUsersData(UserRequest userRequest);
+
+        /// <summary>
+        /// Get all territory data
+        /// </summary>
+        public Task<List<TerritoryResponse>> GetAllTerritory();
     }
 }
