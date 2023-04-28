@@ -91,8 +91,9 @@ namespace WoodenAutomative.Controllers
             if (status == true)
                 _notyf.Success("Password is successfully updated");
             else
-                TempData["changepassworderror"] = "Entered current password is invalid";
-
+            {
+                TempData["changepassworderror"] = "Current password is incorrect.";                         
+            }
             return RedirectToAction("ChangePassword", "Home");
         }
     }
