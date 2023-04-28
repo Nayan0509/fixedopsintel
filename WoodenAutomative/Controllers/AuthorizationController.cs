@@ -39,7 +39,7 @@ namespace WoodenAutomative.Controllers
             if (status)
             {
                 _notyf.Success("Password change Successfully");
-                return RedirectToAction("SelectAuthorizationType");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -182,7 +182,7 @@ namespace WoodenAutomative.Controllers
                 var status = await _emailRepository.VerifyOTP(claimName.Value, otpValue);
                 if (status)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("SetNewPassword");
                 }
                 else {
                     TempData["verificationError"]="Please enter valid OTP !!";

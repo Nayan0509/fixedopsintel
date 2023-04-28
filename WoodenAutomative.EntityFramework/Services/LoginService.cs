@@ -54,15 +54,17 @@ namespace WoodenAutomative.EntityFramework.Services
                      
                         ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                         await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                        if (user.LastPasswordModifiedDate == null || user.LastPasswordModifiedDate.Value.AddDays(60) <= DateTime.Now)
+                        if (user.LastPasswordModifiedDate == null)
                         {
                             return LoginStatus.SetNewPassword;
                         }
-                        else if (!user.EmailConfirmed)
+                        else if (!user.EmailConfirmed || user.LastLoginTime.Value.AddDays(60) <= DateTime.Now)
                         {
                             return LoginStatus.EmailVerification;
                         }
                         return LoginStatus.Succeeded;
+                        user.LastLoginTime = DateTime.Now;
+                        await _context.SaveChangesAsync();
                     }
                 }
                 

@@ -49,7 +49,7 @@ namespace WoodenAutomative.Controllers
                     }
                     else if(regStatus == LoginStatus.SetNewPassword)
                     { 
-                        return RedirectToAction("SetNewPassword", "Authorization");
+                        return RedirectToAction("SelectAuthorizationType", "Authorization");
                     }
                     else if(regStatus == LoginStatus.EmailVerification)
                     {
