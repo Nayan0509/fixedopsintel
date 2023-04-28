@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using WoodenAutomative.Domain.Models;
 using WoodenAutomative.EntityFramework;
+using WoodenAutomative.EntityFramework.Helpers;
 using WoodenAutomative.EntityFramework.Interfaces.Services;
 using WoodenAutomative.EntityFramework.Repositories;
 using WoodenAutomative.EntityFramework.Services;
@@ -98,7 +99,7 @@ app.UseAuthentication();
 app.UseAuthentication();
 
 app.UseAuthorization();
-
+//app.UseMiddleware<EmailVerificationMiddleware>("");
 app.UseNotyf();
 
 //app.Use(async (context, next) =>

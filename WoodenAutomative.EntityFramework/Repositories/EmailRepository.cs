@@ -120,6 +120,7 @@ namespace WoodenAutomative.EntityFramework.Repositories
                     var vaildOTP = await co.OTP.Where(x => x.AuthorizeFor == user.Email && x.OTPNumber == otp && x.ValidTill > DateTime.Now && x.IsVerify == false).FirstOrDefaultAsync();
                     if (vaildOTP != null)
                     {
+                        user.LastLoginTime=DateTime.Now;
                         user.EmailConfirmed = true;
                         vaildOTP.IsVerify= true;
                         var result = await co.SaveChangesAsync();
