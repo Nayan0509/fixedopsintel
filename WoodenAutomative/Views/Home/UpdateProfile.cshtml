@@ -72,6 +72,11 @@
             $("#phoneNumberError").text("");
 
             $("form").submit(function () {
+                $("#firstNameError").text("");
+                $("#lastNameError").text("");
+                $("#emailError").text("");
+                $("#phoneNumberError").text("");
+
                 var firstname = $("#FirstName").val();
                 var lastname = $("#LastName").val();
                 var email = $("#Email").val();

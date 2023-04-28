@@ -1,8 +1,5 @@
-﻿
-using WoodenAutomative.Domain.Dtos.Request.ChangePassword;
-using WoodenAutomative.Domain.Dtos.Request.Distributor;
+﻿using WoodenAutomative.Domain.Dtos.Request.ChangePassword;
 using WoodenAutomative.Domain.Dtos.Request.Login;
-using WoodenAutomative.Domain.Dtos.Response.Distributor;
 using WoodenAutomative.Domain.Dtos.Response.Login;
 
 namespace WoodenAutomative.EntityFramework.Interfaces.Services
@@ -27,11 +24,5 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
         /// <param name="userId">Id of user</param>
         /// <param name="changePasswordRequest">Request param for users</param>
         public Task<bool> ChangePassword(string userId, ChangePasswordRequest changePasswordRequest);
-
-        /// <summary>
-        /// Get List of Distributor data
-        /// </summary>
-        /// <param name="distributorListRequest">Request param for users</param>
-        public Task<DistributorListResponse> GetDistributorList(DistributorListRequest distributorListRequest);
     }
 }

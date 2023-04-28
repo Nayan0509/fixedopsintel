@@ -28,6 +28,7 @@ builder.Services.AddTransient<ICurrentUserAccessor, CurrentUserAccessor>();
 builder.Services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<ILoginService, LoginService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IDistributorService, DistributorService>();
 builder.Services.AddTransient<IAuthorizationRepository, AuthorizationRepository>();
 builder.Services.AddTransient<IEmailRepository, EmailRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

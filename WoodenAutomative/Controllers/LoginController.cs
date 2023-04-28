@@ -63,7 +63,7 @@ namespace WoodenAutomative.Controllers
                     {
                         return RedirectToAction("Index","Home");
                     }
-                    return RedirectToAction("Index", "Login");
+                    return View("Index",loginRequest);
                 }
                 return View();
             }

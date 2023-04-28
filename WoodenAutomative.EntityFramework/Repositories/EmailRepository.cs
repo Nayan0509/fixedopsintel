@@ -135,16 +135,17 @@ namespace WoodenAutomative.EntityFramework.Repositories
             {
                 var user = await _userManager.FindByIdAsync(userId);
 
-                string accountSid = "AC6c46d01370a2958f1340596417d7f3dc";
-                string authToken = "7641a191ac254b8508cf572fb1e9d4c8";
+                string accountSid = "ACcc0c6671d1985bcb6c6832bc0f312b1f";
+                string authToken = "ef06ec25d553b0a4408b7d0e697f511c";
                 string otpValue = new Random().Next(100000, 999999).ToString();
                 TwilioClient.Init(accountSid, authToken);
 
                 var message = MessageResource.Create(
-                    body: "Hello from C#",
-                    from: new Twilio.Types.PhoneNumber("18776294572"),
-                    to: new Twilio.Types.PhoneNumber("917878548818")
+                    body: "Your OTP"+otpValue,
+                    from: new Twilio.Types.PhoneNumber("16076382201"),
+                    to: new Twilio.Types.PhoneNumber(user.PhoneNumber)
                 );
+                await InsertOTP(user.Email, "Mobile No", otpValue);
                 return true;
             }
             catch (Exception ex)

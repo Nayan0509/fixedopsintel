@@ -5768,7 +5768,7 @@ a.badge-dark.focus, a.badge-dark:focus {
 
 .alert {
     position: relative;
-    padding: .75rem 1.25rem;
+    padding: .5rem 1.25rem !important;
     margin-bottom: 1rem;
     border: 1px solid transparent;
     border-radius: .25rem
@@ -12985,7 +12985,7 @@ a.text-dark:focus, a.text-dark:hover {
 }
 
 .bg-primary {
-    background-color: #8e54e9 !important
+    background-color: #0092CA !important
 }
 
 .bg-primary-inverse {
@@ -13069,7 +13069,7 @@ a.text-dark:focus, a.text-dark:hover {
 }
 
 .bg-purple {
-    background-color: #4776e6 !important
+    background-color: #292b2c !important
 }
 
 .bg {
@@ -13104,7 +13104,7 @@ a.text-dark:focus, a.text-dark:hover {
 
 .bg-primary-overlay:before {
     content: '';
-    background: #8e54e9;
+    background: #0092CA;
     background: rgba(142,84,233,.8) !important;
     width: 100%;
     height: 100%;
@@ -13171,13 +13171,13 @@ a.text-dark:focus, a.text-dark:hover {
 }
 
 .bg-gradient {
-    background: #8e54e9;
-    background: -moz-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: -webkit-gradient(linear,left,right,color-stop(0,#8e54e9),color-stop(100%,#4776e6)) !important;
-    background: -webkit-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: -o-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: -ms-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: linear-gradient(to right,#8e54e9 0,#4776e6 100%) !important
+    background: #0092CA;
+    background: -moz-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: -webkit-gradient(linear,left,right,color-stop(0,#0092CA),color-stop(100%,#292b2c)) !important;
+    background: -webkit-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: -o-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: -ms-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: linear-gradient(to left,#0092CA 0,#292b2c 100%) !important
 }
 
 .bg-gradient-overlay:before {
@@ -13238,7 +13238,7 @@ p-bottom-0 {
 }
 
 .label-primary {
-    background: #8e54e9
+    background: #0092CA
 }
 
 .label-info {
@@ -13324,7 +13324,7 @@ p-bottom-0 {
 }
 
 .text-primary {
-    color: #8e54e9 !important
+    color: #0092CA !important
 }
 
 .text-info {
@@ -13332,23 +13332,23 @@ p-bottom-0 {
 }
 
 a.text-primary {
-    color: #8e54e9 !important
+    color: #0092CA !important
 }
 
     a.text-primary:hover {
-        color: #7630e4 !important
+        color: #00092CA !important
     }
 
     a.text-primary:focus {
-        color: #7630e4 !important
+        color: #00092CA !important
     }
 
     a.text-primary:active {
-        color: #7630e4 !important
+        color: #00092CA !important
     }
 
     a.text-primary:visited {
-        color: #7630e4 !important
+        color: #00092CA !important
     }
 
 a.text-secondary {
@@ -13372,7 +13372,7 @@ a.text-secondary {
     }
 
 a.text-muted {
-    color: #a6a9b7 !important
+    color: #2c2e3e !important
 }
 
     a.text-muted:hover {
@@ -13492,23 +13492,23 @@ a.text-blue {
     }
 
 a.text-purple {
-    color: #8e54e9 !important
+    color: #0092CA !important
 }
 
     a.text-purple:hover {
-        color: #7630e4 !important
+        color: #00092CA !important
     }
 
     a.text-purple:focus {
-        color: #7630e4 !important
+        color: #00092CA !important
     }
 
     a.text-purple:active {
-        color: #7630e4 !important
+        color: #00092CA !important
     }
 
     a.text-purple:visited {
-        color: #7630e4 !important
+        color: #00092CA !important
     }
 
 a.text-pink {
@@ -13532,7 +13532,7 @@ a.text-pink {
     }
 
 .text-muted {
-    color: #a6a9b7 !important
+    color: #2c2e3e !important
 }
 
 .text-orange {
@@ -13548,7 +13548,7 @@ a.text-pink {
 }
 
 .text-purple {
-    color: #8e54e9
+    color: #0092CA
 }
 
 .text-pink {
@@ -15172,7 +15172,7 @@ a.text-pink {
     width: 30px;
     height: 30px;
     line-height: 30px;
-    background: #8e54e9;
+    background: #0092CA;
     color: #fff;
     text-align: center;
     border-radius: 30px
@@ -15188,7 +15188,7 @@ a.text-pink {
         width: 40px;
         height: 40px;
         line-height: 40px;
-        background: #8e54e9;
+        background: #0092CA;
         color: #fff;
         text-align: center;
         border-radius: 40px
@@ -15230,7 +15230,7 @@ a.text-pink {
     width: 26px;
     height: 26px;
     line-height: 24px;
-    background: #8e54e9;
+    background: #0092CA;
     color: #fff;
     text-align: center;
     border-radius: 26px
@@ -15288,7 +15288,7 @@ ul.activity {
             }
 
             ul.activity li.activity-item.primary:after {
-                border-color: #8e54e9
+                border-color: #0092CA
             }
 
             ul.activity li.activity-item.cyan:after {
@@ -15308,7 +15308,7 @@ ul.activity {
             }
 
             ul.activity li.activity-item.primary2:after {
-                border-color: #4776e6
+                border-color: #292b2c
             }
 
             ul.activity li.activity-item.danger:after {
@@ -17106,7 +17106,7 @@ body {
     padding: 0;
     outline: 0;
     background: #f9f9fb;
-    color: #a6a9b7
+    color: #2c2e3e
 }
 
     body.sidebar-mini .app-main {
@@ -17238,7 +17238,7 @@ body {
 }
 
 .footer a:hover {
-    color: #8e54e9
+    color: #0092CA
 }
 
 .page-title h1 {
@@ -17546,7 +17546,7 @@ ol.breadcrumb {
     }
 
     .top-bar .navbar .nav-link:hover {
-        color: #8e54e9
+        color: #0092CA
     }
 
 @media screen and (min-width:577px) and (max-width:767px) {
@@ -17600,7 +17600,7 @@ ol.breadcrumb {
 
         .top-bar .navbar .nav-left .dropdown-menu a.dropdown-item:hover {
             background-color: transparent;
-            color: #8e54e9
+            color: #0092CA
         }
 
     .top-bar .navbar .nav-left .dropdown-menu.mega-menu {
@@ -17770,7 +17770,7 @@ ol.breadcrumb {
 
     .top-bar .navbar .nav-right .nav-item.user-profile .dropdown-menu a.dropdown-item:focus, .top-bar .navbar .nav-right .nav-item.user-profile .dropdown-menu a.dropdown-item:hover {
         background-color: transparent;
-        color: #8e54e9
+        color: #0092CA
     }
 
     .top-bar .navbar .nav-right .nav-item.user-profile .dropdown-menu a.dropdown-item i {
@@ -17837,7 +17837,7 @@ ol.breadcrumb {
         }
 
             .top-bar .navbar .nav-right .dropdown-menu.extended .dropdown-footer a:hover {
-                color: #8e54e9
+                color: #0092CA
             }
 
             .top-bar .navbar .nav-right .dropdown-menu.extended .dropdown-footer a.btn:hover {
@@ -17857,7 +17857,7 @@ ol.breadcrumb {
 
                 .top-bar .navbar .nav-right .dropdown-menu.extended .dropdown-body li a:hover {
                     background: #eceef3;
-                    color: #8e54e9
+                    color: #0092CA
                 }
 
             .top-bar .navbar .nav-right .dropdown-menu.extended .dropdown-body .notification .notify-icon {
@@ -17879,7 +17879,7 @@ ol.breadcrumb {
             }
 
             .top-bar .navbar .nav-right .dropdown-menu.extended .dropdown-body .notify-message small {
-                color: #a6a9b7
+                color: #2c2e3e
             }
 
 .top-bar .navbar .sidebar-toggle {
@@ -18017,7 +18017,7 @@ ol.breadcrumb {
         .top-bar .search-wrapper .close-btn i {
             font-size: 1.285rem;
             line-height: 2.142rem;
-            color: #a6a9b7
+            color: #2c2e3e
         }
 
     .top-bar .search-wrapper .search-content {
@@ -18026,7 +18026,7 @@ ol.breadcrumb {
     }
 
         .top-bar .search-wrapper .search-content .magnifier {
-            color: #a6a9b7;
+            color: #2c2e3e;
             position: absolute;
             top: 20px;
             left: 20px;
@@ -18042,7 +18042,7 @@ ol.breadcrumb {
             background: 0 0;
             padding-left: 60px;
             padding-right: 60px;
-            color: #a6a9b7
+            color: #2c2e3e
         }
 
 .sidebar-mini .top-bar .navbar .navbar-header {
@@ -18181,7 +18181,7 @@ ol.breadcrumb {
 }
 
 .dot {
-    background-color: #8e54e9;
+    background-color: #0092CA;
     border-radius: 10px;
     margin-right: 6px;
     width: 10px;
@@ -18236,7 +18236,7 @@ ol.breadcrumb {
         padding: .7rem 1.5rem .7rem 0;
         font-size: 13px;
         line-height: 18px;
-        color: #a6a9b7
+        color: #2c2e3e
     }
 
         .custom-dropdown.dropdown-menu a i {
@@ -18252,7 +18252,7 @@ ol.breadcrumb {
 
     .custom-dropdown.dropdown-menu a.dropdown-item:focus, .custom-dropdown.dropdown-menu a.dropdown-item:hover {
         background-color: transparent;
-        color: #8e54e9
+        color: #0092CA
     }
 
     .custom-dropdown.dropdown-menu a.dropdown-item:first-child {
@@ -18265,7 +18265,7 @@ ol.breadcrumb {
 
     .custom-dropdown.dropdown-menu.extended .dropdown-body li a:hover {
         background-color: transparent;
-        color: #8e54e9
+        color: #0092CA
     }
 
 .top-bar-fixed .top-bar {
@@ -18541,7 +18541,7 @@ ol.breadcrumb {
 
                 .app-navbar .sidebar-nav ul.metismenu li ul li a:focus, .app-navbar .sidebar-nav ul.metismenu li ul li a:hover {
                     background: 0 0;
-                    color: #8e54e9
+                    color: #0092CA
                 }
 
         .app-navbar .sidebar-nav ul.metismenu li + li, .app-navbar .sidebar-nav ul.metismenu li:first-child {
@@ -18584,7 +18584,7 @@ ol.breadcrumb {
 
         .light-sidebar .app-navbar .sidebar-nav ul.metismenu li a:hover {
             background: #eceef3;
-            color: #8e54e9
+            color: #0092CA
         }
 
         .light-sidebar .app-navbar .sidebar-nav ul.metismenu li a:focus {
@@ -18598,39 +18598,39 @@ ol.breadcrumb {
 
     .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active a {
         background: #fff;
-        color: #8e54e9
+        color: #0092CA
     }
 
         .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active a:hover {
-            color: #8e54e9 !important
+            color: #0092CA !important
         }
 
         .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active a:focus {
-            color: #8e54e9 !important
+            color: #0092CA !important
         }
 
         .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active a:active {
-            color: #8e54e9 !important
+            color: #0092CA !important
         }
 
         .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active a i {
-            color: #8e54e9
+            color: #0092CA
         }
 
         .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active a:hover i {
-            color: #8e54e9
+            color: #0092CA
         }
 
         .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active a:focus i {
-            color: #8e54e9
+            color: #0092CA
         }
 
         .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active a:visited i {
-            color: #8e54e9
+            color: #0092CA
         }
 
         .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active a:active i {
-            color: #8e54e9
+            color: #0092CA
         }
 
     .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active ul:before {
@@ -18646,11 +18646,11 @@ ol.breadcrumb {
     }
 
     .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active ul li.active ul li.active a {
-        color: #8e54e9 !important
+        color: #0092CA !important
     }
 
     .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active ul li.active a {
-        color: #8e54e9 !important
+        color: #0092CA !important
     }
 
         .light-sidebar .app-navbar .sidebar-nav ul.metismenu li.active ul li.active a:before {
@@ -18803,7 +18803,7 @@ h6 {
 }
 
 p {
-    color: #a6a9b7;
+    color: #2c2e3e;
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.714rem
@@ -18821,7 +18821,7 @@ a {
 }
 
     a:focus, a:hover {
-        color: #8e54e9;
+        color: #0092CA;
         text-decoration: none
     }
 
@@ -18830,7 +18830,7 @@ ol, ul {
 }
 
     ol li, ul li {
-        color: #a6a9b7
+        color: #2c2e3e
     }
 
 .blockquote.blockquote-reverse {
@@ -18842,7 +18842,7 @@ dl dt {
 }
 
 dl dd {
-    color: #a6a9b7
+    color: #2c2e3e
 }
 
 .list-none {
@@ -19217,7 +19217,7 @@ code {
     line-height: 40px;
     font-size: 1.3rem;
     background: #fff;
-    color: #8e54e9;
+    color: #0092CA;
     box-shadow: 0 0 20px rgba(115,105,215,.2)
 }
 
@@ -19305,14 +19305,14 @@ code {
 .currency-price .input-group-text {
     background-color: rgba(142,84,233,.1);
     border-color: rgba(142,84,233,.1);
-    color: #8e54e9;
+    color: #0092CA;
     font-weight: 700
 }
 
 .currency-price .input-group-prepend select.form-control {
     background-color: rgba(142,84,233,.1);
     border-color: rgba(142,84,233,.1);
-    color: #8e54e9;
+    color: #0092CA;
     font-weight: 700
 }
 
@@ -19360,7 +19360,7 @@ code {
     }
 
         .accordion .acd-group .card-header .acd-heading:hover {
-            color: #8e54e9
+            color: #0092CA
         }
 
         .accordion .acd-group .card-header .acd-heading:before {
@@ -19392,7 +19392,7 @@ code {
 }
 
 .accordion .acd-active .acd-heading {
-    color: #8e54e9
+    color: #0092CA
 }
 
     .accordion .acd-active .acd-heading:before {
@@ -19427,7 +19427,7 @@ code {
 
     .accordion.gray .acd-heading:hover {
         color: #fff;
-        background: #8e54e9
+        background: #0092CA
     }
 
 .accordion.gray .acd-des {
@@ -19436,7 +19436,7 @@ code {
 
 .accordion.gray .acd-group.acd-active .acd-heading {
     color: #fff;
-    background: #8e54e9
+    background: #0092CA
 }
 
 .accordion.shadow .acd-heading {
@@ -19454,12 +19454,12 @@ code {
 
 .accordion.shadow .acd-group.acd-active .acd-heading {
     color: #fff;
-    background: #8e54e9
+    background: #0092CA
 }
 
 .accordion.shadow .acd-group .acd-heading:hover {
     color: #fff;
-    background: #8e54e9
+    background: #0092CA
 }
 
 .accordion.accordion-border .acd-heading {
@@ -19476,12 +19476,12 @@ code {
 
 .accordion.accordion-border .acd-group.acd-active .acd-heading {
     color: #fff;
-    background: #8e54e9
+    background: #0092CA
 }
 
 .accordion.accordion-border .acd-group .acd-heading:hover {
     color: #fff;
-    background: #8e54e9
+    background: #0092CA
 }
 
 .accordion.no-radius .acd-heading {
@@ -19499,28 +19499,28 @@ code {
 }
 
 .badge-primary {
-    background-color: #8e54e9;
+    background-color: #0092CA;
     color: #fff
 }
 
     .badge-primary[href]:hover {
-        background-color: #8e54e9;
+        background-color: #0092CA;
         color: #fff
     }
 
     .badge-primary[href]:focus {
-        background-color: #8e54e9;
+        background-color: #0092CA;
         color: #fff
     }
 
 .badge-primary-inverse {
-    background: #8e54e9;
+    background: #0092CA;
     background: rgba(142,84,233,.1) !important;
-    color: #8e54e9
+    color: #0092CA
 }
 
     .badge-primary-inverse:focus, .badge-primary-inverse:hover {
-        color: #8e54e9
+        color: #0092CA
     }
 
 .badge-secondary {
@@ -19722,7 +19722,7 @@ code {
         }
 
 .border-primary {
-    border: 1px solid #8e54e9
+    border: 1px solid #0092CA
 }
 
 .border-secondary {
@@ -19759,8 +19759,8 @@ code {
 }
 
     .alert.alert-primary {
-        background-color: #4776e6;
-        border-color: #4776e6;
+        background-color: #292b2c;
+        border-color: #292b2c;
         color: #fff
     }
 
@@ -19811,8 +19811,8 @@ code {
     }
 
     .alert.alert-outline-primary {
-        border-color: #4776e6;
-        color: #4776e6
+        border-color: #292b2c;
+        color: #292b2c
     }
 
     .alert.alert-outline-secondary {
@@ -19855,9 +19855,9 @@ code {
     }
 
     .alert.alert-inverse-primary {
-        background: #4776e6;
+        background: #292b2c;
         background: rgba(71,118,230,.3) !important;
-        color: #4776e6
+        color: #292b2c
     }
 
     .alert.alert-inverse-secondary {
@@ -19938,55 +19938,55 @@ code {
 }
 
 .btn-primary {
-    background-color: #8e54e9;
+    background-color: #0092CA;
     color: #fff;
-    border-color: #8e54e9
+    border-color: #0092CA
 }
 
     .btn-primary:hover {
-        background-color: #7630e4;
-        border-color: #7630e4
+        background-color: #00092CA;
+        border-color: #00092CA
     }
 
     .btn-primary:focus {
-        background-color: #7630e4;
-        border-color: #7630e4;
+        background-color: #00092CA;
+        border-color: #00092CA;
         box-shadow: none;
         color: #fff
     }
 
     .btn-primary:active {
-        background-color: #7630e4;
-        border-color: #7630e4
+        background-color: #00092CA;
+        border-color: #00092CA
     }
 
     .btn-primary:not(:disabled):not(.disabled):active {
-        background-color: #7630e4;
-        border-color: #7630e4;
+        background-color: #00092CA;
+        border-color: #00092CA;
         box-shadow: none
     }
 
         .btn-primary:not(:disabled):not(.disabled):active:focus {
-            background-color: #7630e4;
-            border-color: #7630e4;
+            background-color: #00092CA;
+            border-color: #00092CA;
             box-shadow: none
         }
 
     .btn-primary:not(:disabled):not(.disabled).active {
-        background-color: #7630e4;
-        border-color: #7630e4;
+        background-color: #00092CA;
+        border-color: #00092CA;
         box-shadow: none
     }
 
     .btn-primary:not(:disabled):not(.disabled):active {
-        background-color: #7630e4;
-        border-color: #7630e4;
+        background-color: #00092CA;
+        border-color: #00092CA;
         box-shadow: none
     }
 
     .btn-primary:not(:disabled):not(.disabled).active:focus {
-        background-color: #7630e4;
-        border-color: #7630e4;
+        background-color: #00092CA;
+        border-color: #00092CA;
         box-shadow: none
     }
 
@@ -20390,46 +20390,46 @@ code {
 }
 
 .btn.btn-outline-primary {
-    color: #8e54e9;
-    border-color: #8e54e9
+    color: #0092CA;
+    border-color: #0092CA
 }
 
     .btn.btn-outline-primary:hover {
-        background-color: #7630e4;
-        border-color: #7630e4;
+        background-color: #00092CA;
+        border-color: #00092CA;
         color: #fff
     }
 
     .btn.btn-outline-primary:focus {
-        background-color: #7630e4;
-        border-color: #7630e4;
+        background-color: #00092CA;
+        border-color: #00092CA;
         box-shadow: none;
         color: #fff
     }
 
     .btn.btn-outline-primary:active {
-        background-color: #7630e4;
-        border-color: #7630e4;
+        background-color: #00092CA;
+        border-color: #00092CA;
         color: #fff
     }
 
     .btn.btn-outline-primary:not(:disabled):not(.disabled).active {
-        background-color: #7630e4;
-        border-color: #7630e4;
+        background-color: #00092CA;
+        border-color: #00092CA;
         box-shadow: none;
         color: #fff
     }
 
     .btn.btn-outline-primary:not(:disabled):not(.disabled):active {
-        background-color: #7630e4;
-        border-color: #7630e4;
+        background-color: #00092CA;
+        border-color: #00092CA;
         box-shadow: none;
         color: #fff
     }
 
         .btn.btn-outline-primary:not(:disabled):not(.disabled):active:focus {
-            background-color: #7630e4;
-            border-color: #7630e4;
+            background-color: #00092CA;
+            border-color: #00092CA;
             box-shadow: none;
             color: #fff
         }
@@ -20754,40 +20754,40 @@ code {
 }
 
 .btn.btn-inverse-primary {
-    background: #8e54e9;
+    background: #0092CA;
     background: rgba(142,84,233,.1) !important;
-    color: #8e54e9
+    color: #0092CA
 }
 
     .btn.btn-inverse-primary:hover {
-        background-color: #8e54e9 !important;
-        border-color: #8e54e9;
+        background-color: #0092CA !important;
+        border-color: #0092CA;
         color: #fff
     }
 
     .btn.btn-inverse-primary:focus {
-        background-color: #8e54e9 !important;
-        border-color: #8e54e9;
+        background-color: #0092CA !important;
+        border-color: #0092CA;
         box-shadow: none;
         color: #fff
     }
 
     .btn.btn-inverse-primary:active {
-        background-color: #8e54e9 !important;
-        border-color: #8e54e9;
+        background-color: #0092CA !important;
+        border-color: #0092CA;
         color: #fff
     }
 
     .btn.btn-inverse-primary:not(:disabled):not(.disabled):active {
-        background-color: #8e54e9 !important;
-        border-color: #8e54e9;
+        background-color: #0092CA !important;
+        border-color: #0092CA;
         box-shadow: none;
         color: #fff
     }
 
         .btn.btn-inverse-primary:not(:disabled):not(.disabled):active:focus {
-            background-color: #8e54e9 !important;
-            border-color: #8e54e9;
+            background-color: #0092CA !important;
+            border-color: #0092CA;
             box-shadow: none;
             color: #fff
         }
@@ -21066,8 +21066,8 @@ code {
         }
 
 .show > .btn-primary.dropdown-toggle {
-    background-color: #8e54e9 !important;
-    border-color: #8e54e9;
+    background-color: #0092CA !important;
+    border-color: #0092CA;
     box-shadow: none;
     color: #fff
 }
@@ -21644,7 +21644,7 @@ code {
 }
 
 .progress-bar {
-    background-color: #8e54e9
+    background-color: #0092CA
 }
 
 .progressbar-contant .progress {
@@ -21652,7 +21652,7 @@ code {
 }
 
 .nav .nav-item .nav-link.active {
-    color: #8e54e9
+    color: #0092CA
 }
 
 .nav .nav-item .nav-link.disabled {
@@ -21660,7 +21660,7 @@ code {
 }
 
 .nav .nav-link.active {
-    color: #8e54e9
+    color: #0092CA
 }
 
 .nav .nav-link.disabled {
@@ -21669,11 +21669,11 @@ code {
 
 .nav-pills .nav-item .nav-link.active {
     color: #fff;
-    background-color: #8e54e9
+    background-color: #0092CA
 }
 
 .nav-pills .nav-item .nav-link.disabled {
-    color: #a6a9b7;
+    color: #2c2e3e;
     opacity: .7
 }
 
@@ -21683,17 +21683,17 @@ code {
 
     .nav-pills .nav-link.active {
         color: #fff;
-        background-color: #8e54e9
+        background-color: #0092CA
     }
 
     .nav-pills .nav-link.disabled {
-        color: #a6a9b7;
+        color: #2c2e3e;
         opacity: .7
     }
 
 .nav-pills .show > .nav-link {
     color: #fff;
-    background-color: #8e54e9
+    background-color: #0092CA
 }
 
 .list-group-contant .list-group-item.disabled {
@@ -21706,8 +21706,8 @@ code {
 }
 
 .list-group-contant .list-group-item.active {
-    background-color: #8e54e9;
-    border-color: #8e54e9
+    background-color: #0092CA;
+    border-color: #0092CA
 }
 
 .list-group-contant .list-group-1 .list-group-item {
@@ -21715,7 +21715,7 @@ code {
 }
 
 .list-group-item-primary {
-    background: #8e54e9
+    background: #0092CA
 }
 
 .list-group-item-secondary {
@@ -21747,17 +21747,17 @@ code {
 }
 
 .page-link {
-    color: #8e54e9
+    color: #0092CA
 }
 
     .page-link:focus, .page-link:hover {
         box-shadow: none;
-        color: #8e54e9
+        color: #0092CA
     }
 
 .page-item.active .page-link {
-    background-color: #8e54e9;
-    border-color: #8e54e9
+    background-color: #0092CA;
+    border-color: #0092CA
 }
 
 .checkbox.checbox-switch {
@@ -22131,13 +22131,13 @@ code {
 }
 
     .tab .nav.nav-tabs li a.active {
-        background: #8e54e9;
+        background: #0092CA;
         color: #fff;
         border-color: transparent
     }
 
         .tab .nav.nav-tabs li a.active:focus, .tab .nav.nav-tabs li a.active:hover {
-            background: #8e54e9;
+            background: #0092CA;
             color: #fff;
             border-color: transparent
         }
@@ -22154,14 +22154,14 @@ code {
 
     .nav-border .nav.nav-tabs li a.active {
         color: #fff;
-        background: #8e54e9;
-        border-color: #8e54e9
+        background: #0092CA;
+        border-color: #0092CA
     }
 
         .nav-border .nav.nav-tabs li a.active:focus, .nav-border .nav.nav-tabs li a.active:hover {
             color: #fff;
-            background: #8e54e9;
-            border-color: #8e54e9
+            background: #0092CA;
+            border-color: #0092CA
         }
 
 .tab-border .nav.nav-tabs {
@@ -22169,14 +22169,14 @@ code {
 }
 
     .tab-border .nav.nav-tabs li a.active {
-        color: #8e54e9;
+        color: #0092CA;
         background: #fff !important;
         border-color: #eee;
         border-bottom: 1px solid #fff
     }
 
         .tab-border .nav.nav-tabs li a.active:focus, .tab-border .nav.nav-tabs li a.active:hover {
-            color: #8e54e9;
+            color: #0092CA;
             background: #fff !important;
             border-color: #eee;
             border-bottom: 1px solid #fff
@@ -22217,7 +22217,7 @@ code {
     }
 
 .shadow .nav.nav-tabs li a.active {
-    color: #8e54e9;
+    color: #0092CA;
     background: #fff !important;
     border-color: #eee;
     border-bottom: 0;
@@ -22227,7 +22227,7 @@ code {
 }
 
     .shadow .nav.nav-tabs li a.active:focus, .shadow .nav.nav-tabs li a.active:hover {
-        color: #8e54e9;
+        color: #0092CA;
         background: #fff !important;
         border-color: #eee;
         border-bottom: 0;
@@ -22283,8 +22283,8 @@ code {
 
 .tab.nav-bt .nav.nav-tabs li a.active {
     background: #fff;
-    border-top: 3px solid #8e54e9;
-    color: #8e54e9
+    border-top: 3px solid #0092CA;
+    color: #0092CA
 }
 
     .tab.nav-bt .nav.nav-tabs li a.active:first-child {
@@ -22314,9 +22314,9 @@ code {
     }
 
         .tab.nav-border-bottom .nav.nav-tabs li a.active, .tab.nav-border-bottom .nav.nav-tabs li a:hover {
-            border-color: #8e54e9;
+            border-color: #0092CA;
             background: 0 0;
-            color: #8e54e9
+            color: #0092CA
         }
 
 @media (max-width:575px) and (min-width:320px) {
@@ -22368,7 +22368,7 @@ code {
 }
 
     .nestable-contant .dd-handle:focus, .nestable-contant .dd-handle:hover {
-        color: #8e54e9
+        color: #0092CA
     }
 
 .nestable-contant .dd3-content {
@@ -22377,12 +22377,12 @@ code {
 }
 
     .nestable-contant .dd3-content:hover {
-        color: #8e54e9
+        color: #0092CA
     }
 
 .nestable-contant #nestable2 .dd-handle {
-    background: #8e54e9;
-    border: 1px solid #8e54e9;
+    background: #0092CA;
+    border: 1px solid #0092CA;
     color: #fff
 }
 
@@ -22457,7 +22457,7 @@ code {
 .fc-button {
     background: #eceef3;
     border: none;
-    color: #a6a9b7;
+    color: #2c2e3e;
     text-transform: capitalize;
     box-shadow: none !important;
     text-shadow: none !important;
@@ -22476,12 +22476,12 @@ code {
     }
 
 .fc-state-active {
-    background: #8e54e9;
+    background: #0092CA;
     color: #fff
 }
 
 .fc-today-button {
-    background: #8e54e9;
+    background: #0092CA;
     color: #fff
 }
 
@@ -22507,18 +22507,18 @@ code {
     }
 
 .fc-event-primary {
-    background: #8e54e9;
+    background: #0092CA;
     background: rgba(142,84,233,.2) !important;
-    color: #8e54e9
+    color: #0092CA
 }
 
     .fc-event-primary:before {
-        background: #8e54e9;
+        background: #0092CA;
         background: rgba(142,84,233,.8) !important
     }
 
     .fc-event-primary:hover {
-        color: #8e54e9
+        color: #0092CA
     }
 
 .fc-event-warning {
@@ -22588,7 +22588,7 @@ code {
     }
 
 .fc-widget-content .fc-event-primary .fc-title {
-    color: #8e54e9
+    color: #0092CA
 }
 
 .fc-widget-content .fc-event-warning .fc-title {
@@ -22604,7 +22604,7 @@ code {
 }
 
 .fc-event-dot {
-    background-color: #8e54e9
+    background-color: #0092CA
 }
 
 .fc-day-grid-event .fc-time, .fc-day-grid-event .fc-title {
@@ -22714,13 +22714,13 @@ code {
         }
 
     .app-chat-sidebar-user .active {
-        background: #8e54e9;
-        background: -moz-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-        background: -webkit-gradient(linear,left,right,color-stop(0,#8e54e9),color-stop(100%,#4776e6)) !important;
-        background: -webkit-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-        background: -o-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-        background: -ms-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-        background: linear-gradient(to right,#8e54e9 0,#4776e6 100%) !important
+        background: #0092CA;
+        background: -moz-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+        background: -webkit-gradient(linear,left,right,color-stop(0,#0092CA),color-stop(100%,#292b2c)) !important;
+        background: -webkit-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+        background: -o-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+        background: -ms-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+        background: linear-gradient(to right,#0092CA 0,#292b2c 100%) !important
     }
 
         .app-chat-sidebar-user .active h5, .app-chat-sidebar-user .active small {
@@ -22774,8 +22774,8 @@ code {
     }
 
     .app-chat-msg-chat .chat-left .chat-msg .chat-msg-content {
-        color: #8e54e9 !important;
-        background-color: #8e54e9 !important;
+        color: #0092CA !important;
+        background-color: #0092CA !important;
         margin-right: 8px
     }
 
@@ -22786,7 +22786,7 @@ code {
         .app-chat-msg-chat .chat-left .chat-msg .chat-msg-content:first-child::before {
             right: -16px;
             left: auto;
-            border-left-color: #8e54e9 !important;
+            border-left-color: #0092CA !important;
             border-right-color: transparent
         }
 
@@ -22882,11 +22882,11 @@ code {
     }
 
         .mail-sidebar ul li:hover i, .mail-sidebar ul li:hover p {
-            color: #8e54e9 !important
+            color: #0092CA !important
         }
 
         .mail-sidebar ul li a:focus i, .mail-sidebar ul li a:focus p {
-            color: #8e54e9 !important
+            color: #0092CA !important
         }
 
     .mail-sidebar .mail-sidebar-title {
@@ -22966,14 +22966,14 @@ code {
     text-align: center;
     padding: 40px 20px;
     background: #fff;
-    color: #a6a9b7
+    color: #2c2e3e
 }
 
     .icon-list .icon-wrap i {
         display: block;
         margin-bottom: 15px;
         font-size: 2.571rem;
-        color: #8e54e9
+        color: #0092CA
     }
 
     .icon-list .icon-wrap:hover {
@@ -22981,7 +22981,7 @@ code {
     }
 
         .icon-list .icon-wrap:hover i {
-            color: #8e54e9
+            color: #0092CA
         }
 
 @font-face {
@@ -39154,7 +39154,7 @@ input[readonly] {
             height: 13px;
             margin: -6px 0 0;
             opacity: 0;
-            background: #8e54e9;
+            background: #0092CA;
             transform: translate3d(0,0,0) scale(.5);
             transition: opacity .25s ease-in-out,transform .25s ease-in-out
         }
@@ -39199,11 +39199,11 @@ input[readonly] {
 .form-control {
     height: 40px;
     border: 1px solid #dee2e6;
-    color: #a6a9b7
+    color: #2c2e3e
 }
 
     .form-control:focus {
-        border-color: #8e54e9;
+        border-color: #0092CA;
         box-shadow: none
     }
 
@@ -39216,7 +39216,7 @@ input[readonly] {
 }
 
 .form-control-plaintext {
-    color: #a6a9b7
+    color: #2c2e3e
 }
 
 textarea.form-control {
@@ -39241,7 +39241,7 @@ select.form-control[multiple], select.form-control[size] {
 
 label, legend {
     font-weight: 500;
-    color: #a6a9b7
+    color: #2c2e3e
 }
 
 .custom-select.is-valid, .form-control.is-valid {
@@ -39394,8 +39394,8 @@ label, legend {
 }
 
 .selects-contant .Multi-sel .select2-container--default .select2-selection--multiple .select2-selection__choice, .selects-contant .Multi-sel .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-    background-color: #8e54e9;
-    border: 1px solid #8e54e9;
+    background-color: #0092CA;
+    border: 1px solid #0092CA;
     color: #fff;
     padding: 1px 10px 1px 4px
 }
@@ -39419,13 +39419,13 @@ label, legend {
     }
 
     .selects-contant-boots .bootstrap-tagsinput .label-info {
-        background-color: #8e54e9
+        background-color: #0092CA
     }
 
 .input-group-addon {
     padding: 8px 14px;
-    background: #8e54e9;
-    border: 1px solid #8e54e9;
+    background: #0092CA;
+    border: 1px solid #0092CA;
     color: #fff
 }
 
@@ -39449,46 +39449,46 @@ label, legend {
         }
 
             .datepicker table tr td.today {
-                background: #8e54e9;
-                background: -moz-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                background: -webkit-gradient(linear,left,right,color-stop(0,#8e54e9),color-stop(100%,#4776e6)) !important;
-                background: -webkit-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                background: -o-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                background: -ms-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                background: linear-gradient(to right,#8e54e9 0,#4776e6 100%) !important;
+                background: #0092CA;
+                background: -moz-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                background: -webkit-gradient(linear,left,right,color-stop(0,#0092CA),color-stop(100%,#292b2c)) !important;
+                background: -webkit-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                background: -o-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                background: -ms-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                background: linear-gradient(to right,#0092CA 0,#292b2c 100%) !important;
                 color: #fff
             }
 
                 .datepicker table tr td.today:hover {
-                    background: #8e54e9;
-                    background: -moz-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                    background: -webkit-gradient(linear,left,right,color-stop(0,#8e54e9),color-stop(100%,#4776e6)) !important;
-                    background: -webkit-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                    background: -o-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                    background: -ms-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                    background: linear-gradient(to right,#8e54e9 0,#4776e6 100%) !important;
+                    background: #0092CA;
+                    background: -moz-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                    background: -webkit-gradient(linear,left,right,color-stop(0,#0092CA),color-stop(100%,#292b2c)) !important;
+                    background: -webkit-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                    background: -o-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                    background: -ms-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                    background: linear-gradient(to right,#0092CA 0,#292b2c 100%) !important;
                     color: #fff
                 }
 
                 .datepicker table tr td.today.disabled {
-                    background: #8e54e9;
-                    background: -moz-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                    background: -webkit-gradient(linear,left,right,color-stop(0,#8e54e9),color-stop(100%,#4776e6)) !important;
-                    background: -webkit-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                    background: -o-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                    background: -ms-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                    background: linear-gradient(to right,#8e54e9 0,#4776e6 100%) !important;
+                    background: #0092CA;
+                    background: -moz-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                    background: -webkit-gradient(linear,left,right,color-stop(0,#0092CA),color-stop(100%,#292b2c)) !important;
+                    background: -webkit-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                    background: -o-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                    background: -ms-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                    background: linear-gradient(to right,#0092CA 0,#292b2c 100%) !important;
                     color: #fff
                 }
 
                     .datepicker table tr td.today.disabled:hover {
-                        background: #8e54e9;
-                        background: -moz-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                        background: -webkit-gradient(linear,left,right,color-stop(0,#8e54e9),color-stop(100%,#4776e6)) !important;
-                        background: -webkit-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                        background: -o-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                        background: -ms-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-                        background: linear-gradient(to right,#8e54e9 0,#4776e6 100%) !important;
+                        background: #0092CA;
+                        background: -moz-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                        background: -webkit-gradient(linear,left,right,color-stop(0,#0092CA),color-stop(100%,#292b2c)) !important;
+                        background: -webkit-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                        background: -o-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                        background: -ms-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+                        background: linear-gradient(to right,#0092CA 0,#292b2c 100%) !important;
                         color: #fff
                     }
 
@@ -39501,13 +39501,13 @@ label, legend {
 }
 
 .datepicker table tr td.active.active, .datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled.disabled, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover.active, .datepicker table tr td.active.disabled:hover.disabled, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active.disabled:hover[disabled], .datepicker table tr td.active.disabled[disabled], .datepicker table tr td.active:active, .datepicker table tr td.active:hover, .datepicker table tr td.active:hover.active, .datepicker table tr td.active:hover.disabled, .datepicker table tr td.active:hover:active, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active:hover[disabled], .datepicker table tr td.active[disabled] {
-    background: #8e54e9;
-    background: -moz-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: -webkit-gradient(linear,left,right,color-stop(0,#8e54e9),color-stop(100%,#4776e6)) !important;
-    background: -webkit-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: -o-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: -ms-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: linear-gradient(to right,#8e54e9 0,#4776e6 100%) !important;
+    background: #0092CA;
+    background: -moz-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: -webkit-gradient(linear,left,right,color-stop(0,#0092CA),color-stop(100%,#292b2c)) !important;
+    background: -webkit-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: -o-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: -ms-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: linear-gradient(to right,#0092CA 0,#292b2c 100%) !important;
     color: #fff
 }
 
@@ -39579,7 +39579,7 @@ label, legend {
 }
 
     .dropzone .dz-message {
-        color: #a6a9b7;
+        color: #2c2e3e;
         font-size: 1.714rem;
         margin: 5em
     }
@@ -39598,12 +39598,12 @@ label, legend {
 
 .input-group-text {
     color: #fff;
-    background-color: #8e54e9;
-    border-color: #8e54e9
+    background-color: #0092CA;
+    border-color: #0092CA
 }
 
 .bootstrap-duallistbox-container label {
-    color: #8e54e9
+    color: #0092CA
 }
 
 .bootstrap-duallistbox-container .filter {
@@ -39615,14 +39615,14 @@ label, legend {
 }
 
     .bootstrap-duallistbox-container .btn-group .btn:focus, .bootstrap-duallistbox-container .btn-group .btn:hover {
-        background-color: #8e54e9;
-        border-color: #8e54e9;
+        background-color: #0092CA;
+        border-color: #0092CA;
         color: #fff !important
     }
 
 .bootstrap-duallistbox-container .btn-outline-secondary {
-    background-color: #8e54e9;
-    border-color: #8e54e9;
+    background-color: #0092CA;
+    border-color: #0092CA;
     color: #fff !important
 }
 
@@ -39666,7 +39666,7 @@ label, legend {
 }
 
     .select2-container .select2-dropdown .select2-results__group {
-        color: #a6a9b7
+        color: #2c2e3e
     }
 
 .select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single {
@@ -39675,7 +39675,7 @@ label, legend {
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color: #8e54e9
+    background-color: #0092CA
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field {
@@ -39724,73 +39724,73 @@ label, legend {
 
 .custom-select:focus {
     box-shadow: none;
-    border-color: #8e54e9
+    border-color: #0092CA
 }
 
 .bootstrap-tagsinput .badge {
-    background-color: #8e54e9;
-    border: 1px solid #8e54e9;
+    background-color: #0092CA;
+    border: 1px solid #0092CA;
     padding: 2px 6px;
     border-radius: 2px
 }
 
 .irs--flat .irs-bar {
-    background-color: #8e54e9
+    background-color: #0092CA
 }
 
 .irs--flat .irs-handle > i:first-child {
-    background-color: #8e54e9
+    background-color: #0092CA
 }
 
 .irs--flat .irs-from, .irs--flat .irs-single, .irs--flat .irs-to {
-    background-color: #8e54e9
+    background-color: #0092CA
 }
 
     .irs--flat .irs-from:before, .irs--flat .irs-single:before, .irs--flat .irs-to:before {
-        border-top-color: #8e54e9
+        border-top-color: #0092CA
     }
 
 .irs-from {
-    background: #8e54e9
+    background: #0092CA
 }
 
     .irs-from:after {
-        border-top-color: #8e54e9
+        border-top-color: #0092CA
     }
 
 .irs-to {
-    background: #8e54e9
+    background: #0092CA
 }
 
     .irs-to:after {
-        border-top-color: #8e54e9
+        border-top-color: #0092CA
     }
 
 .irs-single {
-    background: #8e54e9
+    background: #0092CA
 }
 
     .irs-single:after {
-        border-top-color: #8e54e9
+        border-top-color: #0092CA
     }
 
 .table-primary {
-    background: #8e54e9;
+    background: #0092CA;
     background: rgba(142,84,233,.1) !important;
-    color: #8e54e9
+    color: #0092CA
 }
 
     .table-primary th {
-        background: #8e54e9;
+        background: #0092CA;
         background: rgba(142,84,233,.1) !important;
-        color: #8e54e9;
+        color: #0092CA;
         border-color: #fff !important
     }
 
     .table-primary td {
-        background: #8e54e9;
+        background: #0092CA;
         background: rgba(142,84,233,.1) !important;
-        color: #8e54e9;
+        color: #0092CA;
         border-color: #fff !important
     }
 
@@ -40095,7 +40095,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 
     .tableexport-caption .btn {
         line-height: 1;
-        background-color: #8e54e9;
+        background-color: #0092CA;
         color: #fff;
         padding: 9px 10px;
         margin: 0;
@@ -40235,7 +40235,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 }
 
 .mapael path {
-    fill: #8e54e9;
+    fill: #0092CA;
     stroke: #eceef3
 }
 
@@ -40273,15 +40273,15 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 }
 
 .ct-series-a .ct-area, .ct-series-a .ct-slice-donut-solid, .ct-series-a .ct-slice-pie {
-    fill: #8e54e9
+    fill: #0092CA
 }
 
 .ct-series-b .ct-bar, .ct-series-b .ct-line, .ct-series-b .ct-point, .ct-series-b .ct-slice-donut {
-    stroke: #4776e6
+    stroke: #292b2c
 }
 
 .ct-series-b .ct-area, .ct-series-b .ct-slice-donut-solid, .ct-series-b .ct-slice-pie {
-    fill: #4776e6
+    fill: #292b2c
 }
 
 .ct-series-c .ct-bar, .ct-series-c .ct-line, .ct-series-c .ct-point, .ct-series-c .ct-slice-donut {
@@ -40312,20 +40312,20 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 
     .c3chart-wrapper .c3 .tick {
         font-family: Roboto,sans-serif;
-        fill: #a6a9b7
+        fill: #2c2e3e
     }
 
     .c3chart-wrapper .c3 .c3-legend-item text {
         font-family: Roboto,sans-serif;
-        fill: #a6a9b7
+        fill: #2c2e3e
     }
 
     .c3chart-wrapper .c3 line {
-        stroke: #a6a9b7
+        stroke: #2c2e3e
     }
 
     .c3chart-wrapper .c3 path.domain {
-        stroke: #a6a9b7;
+        stroke: #2c2e3e;
         stroke-width: 1px
     }
 
@@ -40365,7 +40365,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 }
 
 .apexcharts-menu-icon svg, .apexcharts-reset-zoom-icon svg, .apexcharts-zoom-icon svg, .apexcharts-zoom-in-icon svg, .apexcharts-zoom-out-icon svg {
-    fill: #a6a9b7 !important
+    fill: #2c2e3e !important
 }
 
 .widget-support-list .dot-online {
@@ -40546,13 +40546,13 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
         }
 
 .widget-social .widget-social-box11 .widget-social-contant, .widget-social .widget-social-box12 .widget-social-contant, .widget-social .widget-social-box15 .widget-social-contant, .widget-social .widget-social-box3 .widget-social-contant, .widget-social .widget-social-box7 .widget-social-contant, .widget-social .widget-social-box9 .widget-social-contant {
-    background: #8e54e9;
-    background: -moz-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: -webkit-gradient(linear,left,right,color-stop(0,#8e54e9),color-stop(100%,#4776e6)) !important;
-    background: -webkit-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: -o-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: -ms-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: linear-gradient(to right,#8e54e9 0,#4776e6 100%) !important
+    background: #0092CA;
+    background: -moz-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: -webkit-gradient(linear,left,right,color-stop(0,#0092CA),color-stop(100%,#292b2c)) !important;
+    background: -webkit-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: -o-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: -ms-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: linear-gradient(to right,#0092CA 0,#292b2c 100%) !important
 }
 
     .widget-social .widget-social-box11 .widget-social-contant h4, .widget-social .widget-social-box11 .widget-social-contant h5, .widget-social .widget-social-box12 .widget-social-contant h4, .widget-social .widget-social-box12 .widget-social-contant h5, .widget-social .widget-social-box15 .widget-social-contant h4, .widget-social .widget-social-box15 .widget-social-contant h5, .widget-social .widget-social-box3 .widget-social-contant h4, .widget-social .widget-social-box3 .widget-social-contant h5, .widget-social .widget-social-box7 .widget-social-contant h4, .widget-social .widget-social-box7 .widget-social-contant h5, .widget-social .widget-social-box9 .widget-social-contant h4, .widget-social .widget-social-box9 .widget-social-contant h5 {
@@ -40630,7 +40630,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 }
 
 .b-outline-primary, .b-primary {
-    border-color: #8e54e9
+    border-color: #0092CA
 }
 
 .b-info, .b-outline-info {
@@ -40655,7 +40655,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 }
 
 .task-table .dot {
-    background-color: #8e54e9;
+    background-color: #0092CA;
     border-radius: 10px;
     margin-right: 6px;
     width: 10px;
@@ -40724,7 +40724,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 }
 
 .st0 {
-    fill: #8e54e9
+    fill: #0092CA
 }
 
 .st1 {
@@ -40817,13 +40817,13 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 }
 
 .pricing-highlight {
-    background: #8e54e9;
-    background: -moz-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: -webkit-gradient(linear,left,right,color-stop(0,#8e54e9),color-stop(100%,#4776e6)) !important;
-    background: -webkit-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: -o-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: -ms-linear-gradient(left,#8e54e9 0,#4776e6 100%) !important;
-    background: linear-gradient(to right,#8e54e9 0,#4776e6 100%) !important
+    background: #0092CA;
+    background: -moz-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: -webkit-gradient(linear,left,right,color-stop(0,#0092CA),color-stop(100%,#292b2c)) !important;
+    background: -webkit-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: -o-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: -ms-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
+    background: linear-gradient(to right,#0092CA 0,#292b2c 100%) !important
 }
 
     .pricing-highlight .pricing-content h5 {
@@ -40865,7 +40865,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 .faq-contant .tab-content .card-header .btn {
     font-size: 16px;
     font-weight: 700;
-    color: #8e54e9
+    color: #0092CA
 }
 
     .faq-contant .tab-content .card-header .btn:focus {
@@ -40911,7 +40911,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 
     .portfolio-item .portfolio-overlay {
         width: 100%;
-        background: #8e54e9 !important;
+        background: #0092CA !important;
         padding: 10px 0;
         position: absolute;
         bottom: -80px;
@@ -40975,7 +40975,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
     }
 
         .portfolio-item a.popup:hover {
-            background: #8e54e9;
+            background: #0092CA;
             color: #fff
         }
 
@@ -41069,7 +41069,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 
     .contact-contant ul li i {
         font-size: 16px;
-        color: #8e54e9
+        color: #0092CA
     }
 
     .contact-contant ul.nav:first-child {
@@ -41111,7 +41111,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, tab
 
 .employees-contant h4 .badge {
     background-color: #f7f7f7;
-    color: #8e54e9
+    color: #0092CA
 }
 
 .employees-contant .bg-img {

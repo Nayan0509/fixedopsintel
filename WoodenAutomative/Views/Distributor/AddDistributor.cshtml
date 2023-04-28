@@ -1,0 +1,283 @@
+﻿@using WoodenAutomative.Domain.Dtos.Request.Distributor;
+@model DistributorRequest
+@{
+    ViewData["Title"] = "Add Distributor";
+}
+<style type="text/css">
+    .dataTables_wrapper .dataTables_filter input {
+        padding: 8px !important;
+    }
+</style>
+
+<!-- begin container-fluid -->
+<div class="container-fluid">
+    @using (Html.BeginForm("AddDistributor","Distributor",FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <!-- begin row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-statistics">
+                    <div class="row col-md-12">
+                        <div class="card-body col-md-6">
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DistributorName, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.DistributorName , new { @class="form-control",placeholder = "Enter name" })
+                                    <span id="distributorNameError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DistributorAddress, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.DistributorAddress , new { @class="form-control",placeholder = "Enter address" })
+                                    <span id="distributorAddressError" class="text-danger"></span>
+                                </div>
+                            </div>                  
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DistributorCity, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.DistributorCity , new { @class="form-control",placeholder = "Enter city" })
+                                    <span id="distributorCityError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DistributorState, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.DistributorState , new { @class="form-control",placeholder = "Enter state" })
+                                    <span id="distributorStateError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DistributorCountry, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.DistributorCountry , new { @class="form-control",placeholder = "Enter country" })
+                                    <span id="distributorCountryError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DistributorZipCode, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.DistributorZipCode , new { @class="form-control",placeholder = "Enter zipcode" })
+                                    <span id="distributorZipCodeError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.ProductDistributor, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.ProductDistributor , new { @class="form-control",placeholder = "Enter product distributor" })
+                                    <span id="productDistributorError" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body col-md-6">
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <button type="reset" class="btn btn-primary">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="datatable-wrapper table-responsive">
+                            <table class="reportTable table table-striped jambo_table bulk_action">
+                                <thead>
+                                    <tr class="headings">
+                                        <th class="column-title">First Name</th>
+                                        <th class="column-title">Last Name</th>
+                                        <th class="column-title">Email ID</th>
+                                        <th class="column-title">Mobile Number</th>
+                                        <th class="column-title">Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    }
+</div>
+<!-- end container-fluid -->
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#distributorNameError").text("");
+            $("#distributorAddressError").text("");
+            $("#distributorCityError").text("");
+            $("#distributorStateError").text("");
+            $("#distributorCountryError").text("");
+            $("#distributorZipCodeError").text("");
+            $("#productDistributorError").text("");
+
+            leftSideMenuActive();
+            bindData();
+            $('#DistributorZipCode').keypress(function (e) {
+                var charCode = (e.which) ? e.which : event.keyCode
+                if (String.fromCharCode(charCode).match(/[^0-9]/g))
+                    return false;
+            });
+
+            $("form").submit(function () {
+                $("#distributorNameError").text("");
+                $("#distributorAddressError").text("");
+                $("#distributorCityError").text("");
+                $("#distributorStateError").text("");
+                $("#distributorCountryError").text("");
+                $("#distributorZipCodeError").text("");
+                $("#productDistributorError").text("");
+
+                var distributorName = $("#DistributorName").val();
+                var distributorAddress = $("#DistributorAddress").val();
+                var distributorCity = $("#DistributorCity").val();
+                var distributorState = $("#DistributorState").val();
+                var distributorCountry = $("#DistributorCountry").val();
+                var distributorZipCode = $("#DistributorZipCode").val();
+                var productDistributor = $("#ProductDistributor").val();
+
+                if (distributorName == "" || distributorAddress == "" || distributorCity == "" || 
+                    distributorState == "" || distributorCountry == "" || distributorZipCode == "" || 
+                    productDistributor == "") {
+                    if (distributorName == "") {
+                        $("#distributorNameError").text("Distributor Name is Required");
+                    }
+                    if (distributorAddress == "") {
+                        $("#distributorAddressError").text("Distributor Address is Required");
+                    }
+                    if (distributorCity == "") {
+                        $("#distributorCityError").text("Distributor City is Required");
+                    }
+                    if (distributorState == "") {
+                        $("#distributorStateError").text("Distributor State is Required");
+                    }
+                    if (distributorCountry == "") {
+                        $("#distributorCountryError").text("Distributor Country is Required");
+                    }
+                    if (distributorZipCode == "") {
+                        $("#distributorZipCodeError").text("Distributor ZipCode is Required");
+                    }
+                    if (productDistributor == "") {
+                        $("#productDistributorError").text("Product Distributor is Required");
+                    }
+                    return false;
+                }
+            });
+
+                    $("#confirm_allData").click(function () {
+                        $("form").submit(function(){
+
+                        });
+                        return true;
+                    });
+        });
+
+        function leftSideMenuActive() {
+            $("ul.metismenu li:eq(2)").addClass("active");
+        }
+
+        function bindData() {
+            var sr = 1;
+            $(".reportTable").DataTable().destroy();
+
+            $(".reportTable").on('error.dt', function (e, settings, techNote, message) {
+                alert("Something went wrong. Please try again !!");
+            }).DataTable({
+                "dom": 'Rrftlip',
+                "order": [[2, 'desc']],
+                "responsive": true,
+                "autoWidth": false,
+                "language": {
+                    //"processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw text-primary" style="text-decoration:none"></i>',
+                    "search": "",
+                    "searchPlaceholder": "Search"
+                },
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "ordering": true,
+                "lengthMenu": [[10, 25, 50, 100, 300, 500, 1000], [10, 25, 50, 100, 300, 500, 1000]],
+
+                "ajax": {
+                    "url": "/Distributor/GetDistributorList",
+                    "type": "POST",
+                    "data": { "Name": "sd" },
+                    "datatype": "json",
+                    "error": function (jqXHR, textStatus, error) {
+                        if (jqXHR.status == 401)
+                            location.reload();
+                    }
+                },
+                "columns": [{
+                    "data": "username",
+                    "name": "UserName",
+                    "render": function (data, type, full, meta) {
+                        return data;
+                    }
+                }, {
+                    "data": "productDistributor",
+                    "name": "ProductDistributor",
+                    "render": function (data, type, full, meta) {
+                        return data;
+                    }
+                }, {
+                    "data": "distributorName",
+                    "name": "DistributorName",
+                    "render": function (data, type, full, meta) {
+                        return data;
+                    }
+                }, {
+                    "data": "territoryName",
+                    "name": "TerritoryName",
+                    "render": function (data, type, full, meta) {
+                        return data;
+                    }
+                }, {
+                    "data": "id",
+                    "name": "ID",
+                    "render": function (data, type, full, meta) {
+                        return " <a href = ''>Edit</a> &nbsp;|&nbsp; <a href=javascript:void(0); onclick=deleteConfirm('')>Delete</a>";
+                    }
+                }
+                ],
+                "columnDefs": [
+                    {
+                        "targets": [0],
+                        "orderable": true,
+                        "searchable": true
+                    },
+                    {
+                        "targets": [1],
+                        "orderable": true,
+                        "searchable": true
+                    },
+                    {
+                        "targets": [2],
+                        "orderable": true,
+                        "searchable": true
+                    },
+                    {
+                        "targets": [3],
+                        "orderable": true,
+                        "searchable": true
+                    },
+                    {
+                        "targets": [4],
+                        "orderable": false,
+                        "searchable": false
+                    }
+                ]
+            });
+        } 
+        
+        function redirect(event) {
+            
+            //if (!confirm("Are you sure")) event.preventDefault();
+        }
+    </script>
+}
