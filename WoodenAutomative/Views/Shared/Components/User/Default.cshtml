@@ -1,0 +1,69 @@
+﻿@using WoodenAutomative.Domain.Dtos.Request.Distributor;
+@model UserRequest
+@{
+    List<SelectListItem> territoryList = new List<SelectListItem>();
+    if (ViewBag.territoryList != null)
+    {
+        foreach (var role in ViewBag.territoryList)
+        {
+            territoryList.Add(new SelectListItem { Text = "" + role.TerritoryName + "", Value = "" + role.TerritoryID + "" });
+        }
+    }
+}
+
+<!-- Modals -->
+<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="defaultModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form method="post" action="/Distributor/AddUser" id="addUserDetails">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal_Header">Add User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal_Body">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">First Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="Enter first name" />
+                            <span id="firstNameError" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Last Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="LastName" name="LastName" placeholder="Enter last name" />
+                            <span id="lastNameError" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Email ID</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="Email" name="Email" placeholder="ex. test@gmail.com" />
+                            <span id="emailError" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Mobile Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Mobileno" name="MobileNo" maxlength="10" placeholder="ex. 90******89" />
+                            <span id="mobilenoError" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Territory</label>
+                        <div class="col-sm-9">
+                            @Html.DropDownListFor(model => model.Territory, territoryList,"-- Select --",new{ @class="form-control"})
+                            <span id="territoryError" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success" id="addUserData">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
