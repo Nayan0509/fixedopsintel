@@ -13177,7 +13177,7 @@ a.text-dark:focus, a.text-dark:hover {
     background: -webkit-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
     background: -o-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
     background: -ms-linear-gradient(left,#0092CA 0,#292b2c 100%) !important;
-    background: linear-gradient(to left,#0092CA 0,#292b2c 100%) !important
+    background: linear-gradient(to left,#0092CA 0,#292b2c 100%) !important;
 }
 
 .bg-gradient-overlay:before {
@@ -17233,7 +17233,18 @@ body {
     .footer {
         width: 100%;
         height: auto;
-        position: relative
+        /*position: relative*/
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .image-mobile-size {
+        max-width: 255px;
+    }
+
+    .login {
+        width: 100%;
+        /*height:100%;*/
     }
 }
 
