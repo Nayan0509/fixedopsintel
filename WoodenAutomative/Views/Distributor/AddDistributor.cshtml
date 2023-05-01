@@ -190,6 +190,36 @@
                 }
             });
 
+            $("#DistributorName").on("input", function () {
+                $("#distributorNameError").text("");
+            });
+
+            $("#DistributorAddress").on("input", function () {
+                $("#distributorAddressError").text("");
+            });
+
+            $("#DistributorCity").on("input", function () {
+                $("#distributorCityError").text("");
+            });
+
+            $("#DistributorState").on("input", function () {
+                $("#distributorStateError").text("");
+            });
+
+            $("#DistributorCountry").on("input", function () {
+                $("#distributorCountryError").text("");
+            });
+
+            $("#DistributorZipCode").on("input", function () {
+                $("#distributorZipCodeError").text("");
+            });
+
+            $("#ProductDistributor").on("input", function () {
+                $("#productDistributorError").text("");
+            });
+
+
+
             $("#confirm_allData").click(function () {
                 $("form").submit(function(){
 
@@ -338,7 +368,29 @@
                     return false;
                 }
             });
+
+            $("#FirstName").on("input", function () {
+                $("#firstNameError").text("");
+            });
+
+            $("#LastName").on("input", function () {
+                $("#lastNameError").text("");
+            });
+
+            $("#Email").on("input", function () {
+                $("#emailError").text("");
+            });
+
+            $("#Mobileno").on("input", function () {
+                $("#mobilenoError").text("");
+            });
+
+            $("#Territory").on("input", function () {
+                $("#territoryError").text("");
+            });
         }
+
+
 
     </script>
 }
