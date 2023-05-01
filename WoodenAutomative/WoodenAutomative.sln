@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WoodenAutomative.Domain", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WoodenAutomative.EntityFramework", "..\WoodenAutomative.EntityFramework\WoodenAutomative.EntityFramework.csproj", "{8FE9B2B0-DA72-4392-AC6C-8551A19C2B72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoodenAutomative.DB", "..\WoodenAutomative.DB\WoodenAutomative.DB.csproj", "{67CBA2E6-C4B5-4791-9F4B-FE8ED0F343FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WoodenAutomative.DB", "..\WoodenAutomative.DB\WoodenAutomative.DB.csproj", "{67CBA2E6-C4B5-4791-9F4B-FE8ED0F343FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

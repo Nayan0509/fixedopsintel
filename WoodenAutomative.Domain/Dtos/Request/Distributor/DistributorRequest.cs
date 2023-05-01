@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WoodenAutomative.Domain.Dtos.Response.Distributor;
 
 namespace WoodenAutomative.Domain.Dtos.Request.Distributor
 {

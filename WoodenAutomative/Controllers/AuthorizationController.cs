@@ -141,6 +141,7 @@ namespace WoodenAutomative.Controllers
             var status = await _emailRepository.SendEmailOTP(claimName.Value);
             if (status)
             {
+                TempData["authorizationType"] = "Email";
                 _notyf.Success("OTP send successfully !!");
                 return RedirectToAction("Verification");
             }
