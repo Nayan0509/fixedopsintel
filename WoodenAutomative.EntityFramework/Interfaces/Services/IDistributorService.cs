@@ -14,7 +14,13 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
         /// Get List of Distributor data
         /// </summary>
         /// <param name="distributorListRequest">Request param for users</param>
-        public Task<DistributorListResponse> GetDistributorList(DistributorListRequest distributorListRequest);
+        public Task<DistributorListResponse> GetDistributorList(DistributorListRequest distributorListRequest); 
+        
+        /// <summary>
+        /// Get List of Distributor data
+        /// </summary>
+        /// <param name="id">Request param for users</param>
+        public Task<DistributorRequest> GetSingleDistributor(int id);
 
         /// <summary>
         /// Add Distributor data
@@ -32,5 +38,5 @@ namespace WoodenAutomative.EntityFramework.Interfaces.Services
         /// Get all territory data
         /// </summary>
         public Task<List<TerritoryResponse>> GetAllTerritory();
-    }
+            }
 }

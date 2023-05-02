@@ -90,5 +90,16 @@ namespace WoodenAutomative.Controllers
                 throw;
             }
         }
+
+        public async Task<IActionResult> EditDistributor(int id)
+        {
+           var dis= await _distributorService.GetSingleDistributor(id);
+            return View(dis);
+        }
+        //[HttpGet]
+        //public async Task<IActionResult> EditDistributor(DistributorRequest distributorRequest)
+        //{
+        //    return View();
+        //}
     }
 }

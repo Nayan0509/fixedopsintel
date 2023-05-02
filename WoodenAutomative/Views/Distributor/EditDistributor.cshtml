@@ -9,13 +9,13 @@
         padding: 8px !important;
     }
 
-    .add-User{
+    .add-User {
         float: right;
         position: relative;
         margin-top: -210px;
     }
 
-    .dataTables_filter label input{
+    .dataTables_filter label input {
         margin-right: 100px;
     }
 </style>
@@ -26,77 +26,75 @@
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-statistics">
-                    <div class="card-header">
-                        <div class="card-heading">
-                            <h4 class="card-title">Distributor Details</h4>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            @Html.LabelFor(model => model.DistributorName, new { @class="col-md-2 col-form-label" })
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.DistributorName , new { @class="form-control",placeholder = "Enter name" })
-                                <span id="distributorNameError" class="text-danger"></span>
-                            </div>
-                            @Html.LabelFor(model => model.DistributorAddress, new { @class="col-md-2 col-form-label" })
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.DistributorAddress , new { @class="form-control",placeholder = "Enter address" })
-                                <span id="distributorAddressError" class="text-danger"></span>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            @Html.LabelFor(model => model.DistributorCity, new { @class="col-md-2 col-form-label" })
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.DistributorCity , new { @class="form-control",placeholder = "Enter city" })
-                                <span id="distributorCityError" class="text-danger"></span>
-                            </div>
-                            @Html.LabelFor(model => model.DistributorState, new { @class="col-md-2 col-form-label" })
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.DistributorState , new { @class="form-control",placeholder = "Enter state" })
-                                <span id="distributorStateError" class="text-danger"></span>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            @Html.LabelFor(model => model.DistributorCountry, new { @class="col-md-2 col-form-label" })
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.DistributorCountry , new { @class="form-control",placeholder = "Enter country" })
-                                <span id="distributorCountryError" class="text-danger"></span>
-                            </div>
-                            @Html.LabelFor(model => model.DistributorZipCode, new { @class="col-md-2 col-form-label" })
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.DistributorZipCode , new { @class="form-control",placeholder = "Enter zipcode" })
-                                <span id="distributorZipCodeError" class="text-danger"></span>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            @Html.LabelFor(model => model.ProductDistributor, new { @class="col-md-2 col-form-label" })
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.ProductDistributor , new { @class="form-control",placeholder = "Enter product distributor" })
-                                <span id="productDistributorError" class="text-danger"></span>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            <div class="col-md-6">
-
-                                <button type="reset" class="btn btn-light">Cancel</button>
-                                <button type="submit" class="btn btn-success">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- begin row -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-statistics">
+                    <div class="row col-md-12">
+                        <div class="card-body col-md-6">
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DistributorName, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.DistributorName , new { @class="form-control",placeholder = "Enter name" })
+                                    <span id="distributorNameError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DistributorAddress, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.DistributorAddress , new { @class="form-control",placeholder = "Enter address" })
+                                    <span id="distributorAddressError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DistributorCity, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.DistributorCity , new { @class="form-control",placeholder = "Enter city" })
+                                    <span id="distributorCityError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DistributorState, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.DistributorState , new { @class="form-control",placeholder = "Enter state" })
+                                    <span id="distributorStateError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DistributorCountry, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.DistributorCountry , new { @class="form-control",placeholder = "Enter country" })
+                                    <span id="distributorCountryError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DistributorZipCode, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.DistributorZipCode , new { @class="form-control",placeholder = "Enter zipcode" })
+                                    <span id="distributorZipCodeError" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.ProductDistributor, new { @class="col-sm-3 col-form-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.ProductDistributor , new { @class="form-control",placeholder = "Enter product distributor" })
+                                    <span id="productDistributorError" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body col-md-6">
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <button type="reset" class="btn btn-primary">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <div class="datatable-wrapper table-responsive">
                             <table class="reportTable table table-striped jambo_table bulk_action">
@@ -117,32 +115,6 @@
         </div>
         <!-- end row -->
     }
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-statistics">
-                <div class="card-header">
-                    <div class="card-heading">
-                        <h4 class="card-title">Distributor Admins</h4>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="datatable-wrapper table-responsive">
-                        <table class="reportTable table table-striped jambo_table bulk_action">
-                            <thead>
-                                <tr class="headings">
-                                    <th class="column-title">First Name</th>
-                                    <th class="column-title">Last Name</th>
-                                    <th class="column-title">Email ID</th>
-                                    <th class="column-title">Mobile Number</th>
-                                    <th class="column-title">Action</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 @await Component.InvokeAsync("User")
@@ -162,9 +134,9 @@
             $("#productDistributorError").text("");
 
             leftSideMenuActive();
-            
+
             bindData();
-            
+
             componentData();
 
             $("#DistributorZipCode,#Mobileno").keypress(function (e) {
@@ -190,8 +162,8 @@
                 var distributorZipCode = $("#DistributorZipCode").val();
                 var productDistributor = $("#ProductDistributor").val();
 
-                if (distributorName == "" || distributorAddress == "" || distributorCity == "" || 
-                    distributorState == "" || distributorCountry == "" || distributorZipCode == "" || 
+                if (distributorName == "" || distributorAddress == "" || distributorCity == "" ||
+                    distributorState == "" || distributorCountry == "" || distributorZipCode == "" ||
                     productDistributor == "") {
                     if (distributorName == "") {
                         $("#distributorNameError").text("Distributor Name is Required");
@@ -249,7 +221,7 @@
 
 
             $("#confirm_allData").click(function () {
-                $("form").submit(function(){
+                $("form").submit(function () {
 
                 });
                 return true;

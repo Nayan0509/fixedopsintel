@@ -262,6 +262,27 @@ namespace WoodenAutomative.EntityFramework.Services
             }
         }
 
+        public async Task<DistributorRequest> GetSingleDistributor(int id)
+        {
+           var distributor= await _context.Distributors.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var distributorListResponse = new DistributorRequest();
+            if (distributor != null)
+            {
+                distributorListResponse = new DistributorRequest
+                {
+                    //Id = id,
+                    DistributorName = distributor.DistributorName,
+                    DistributorAddress = distributor.Address,
+                    DistributorCity = distributor.City,
+                    DistributorState = distributor.State,
+                    DistributorCountry = distributor.Country,
+                    DistributorZipCode = distributor.ZipCode,
+                    ProductDistributor = distributor.ProductDistributor
+                };
+            }
+            return distributorListResponse;
+        }
+
         #endregion
     }
 }
